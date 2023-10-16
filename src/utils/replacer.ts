@@ -1,4 +1,4 @@
-import {getValue} from "@/packages/utils/src/getters";
+import {getValue} from "../../packages/utils/src/getters";
 
 export const setValue = (obj: any, path: string, value: any) => {
     const parts = path.split(".");
