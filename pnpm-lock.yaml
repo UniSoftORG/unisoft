@@ -75,6 +75,9 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.2.13
+      '@types/uuid':
+        specifier: ^9.0.4
+        version: 9.0.5
       autoprefixer:
         specifier: ^10
         version: 10.4.16(postcss@8.4.31)
@@ -1351,6 +1354,10 @@ packages:
 
   /@types/stack-utils@2.0.1:
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
+    dev: true
+
+  /@types/uuid@9.0.5:
+    resolution: {integrity: sha512-xfHdwa1FMJ082prjSJpoEI57GZITiQz10r3vEJCHa2khEFQjKy91aWKz6+zybzssCvXUwE1LQWgWVwZ4nYUvHQ==}
     dev: true
 
   /@types/yargs-parser@21.0.1:
