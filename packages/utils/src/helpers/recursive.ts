@@ -1,4 +1,4 @@
-import { Nested } from "../../@types";
+import { Nested } from "../../@utils";
 
 /**
  * Recursively maps over an array of nested objects and applies a mapper function to each object.

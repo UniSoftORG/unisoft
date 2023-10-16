@@ -1,4 +1,4 @@
-import { forRecursive } from "../helpers/recursive";
+import { forRecursive } from "../helpers";
 
 /**
  * Finds an object in an array of objects by searching for a specific value in a specified key.

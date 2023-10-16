@@ -2,13 +2,11 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "outDir": "./dist/",
     "module": "CommonJS",
     "baseUrl": "./",
     "sourceMap": true,
-    "typeRoots": ["./node_modules/@types",
-      "./@types"
-    ],
     "strict": true
   },
   "exclude": [

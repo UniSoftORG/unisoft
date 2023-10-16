@@ -1,66 +1,24 @@
-import {getValue} from "unisoft-utils/src/getters";
+import {Setters, Getters} from "unisoft-utils";
 
-export const setValue = (obj: any, path: string, value: any) => {
-    const parts = path.split(".");
-    parts.reduce((acc, part, index) => {
-        if (index === parts.length - 1) {
-            acc[part] = value;
-        }
-        return acc[part];
-    }, obj);
-};
-
-const resolvePlaceholders = (str: string, obj: any): string => {
-    const regex = /\$\{(.*?)\}/g;
-    let match;
-    let lastIndex = 0;
-    let result = '';
-
-    while ((match = regex.exec(str)) !== null) {
-        const placeholder = match[1];
-        const replacementValue = placeholder.includes('${')
-            ? resolvePlaceholders(placeholder, obj)
-            : getValue(obj, placeholder);
-
-        result += str.slice(lastIndex, match.index) + replacementValue;
-        lastIndex = regex.lastIndex;
-    }
-
-    result += str.slice(lastIndex);
-    return result;
-};
-
-const extractAndReplace = (str: string, obj: any): string => {
-    let replacedStr = str;
-    let regexMatch;
-
+export const extractAndReplace = <T>(str: string, obj: T): string => {
     const regex = /\$\{([^${}]+)\}/g;
 
-    while ((regexMatch = regex.exec(replacedStr))) {
-        const fullMatch = regexMatch[0];
-        const path = regexMatch[1];
-
-        const value = getValue(obj, path);
-
+    return str.replace(regex, (fullMatch, path) => {
+        const value = Getters.getValue(obj, path);
         if (typeof value === 'string' && value.includes('${')) {
-            replacedStr = replacedStr.replace(fullMatch, extractAndReplace(value, obj));
-        } else {
-            replacedStr = replacedStr.replace(fullMatch, value);
+            return extractAndReplace(value, obj);
         }
-
-        regex.lastIndex = 0;
-    }
-
-    return replacedStr;
+        return value;
+    });
 };
 
-export const dynamicReplacer = (obj: any, targets: any[]) => {
+
+export const dynamicReplacer = <T>(obj: T, targets: string[]): T => {
     for (let path of targets) {
-        const targetStr = getValue(obj, path);
-        const replaced = extractAndReplace(targetStr, obj);
-        setValue(obj, path, replaced);
+        const targetStr = Getters.getValue(obj, path);
+        const replaced = extractAndReplace(targetStr as string, obj);
+        Setters.setByDotNotation(obj, path, replaced);
     }
 
     return obj;
 };
-
