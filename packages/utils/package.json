@@ -5,6 +5,7 @@
     "build": "tsup",
     "docs": "typedoc --out docs src",
     "test": "jest",
+    "watch": "tsup --watch",
     "test:watch": "jest --watch",
     "lint": "eslint \"src/**/*.ts\"",
     "format": "prettier --write src/**/*.ts",

@@ -1,4 +1,4 @@
-import { MapOption } from "@utils";
+import { MapOption } from "@types";
 
 /**
  * Generates an object from an array of map options.

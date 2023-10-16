@@ -1,4 +1,4 @@
-import {Nested} from '@utils';
+import {Nested} from '@types';
 import {mapRecursive, forRecursive, forEachRecursive, forLoopRecursive} from "../../src/helpers/recursive";
 
 describe('dataMapping Module', () => {

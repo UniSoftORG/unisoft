@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build:utils": "pnpm -C ../packages/utils run build",
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run build:utils && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "next": "13.5.4"
+    "next": "13.5.4",
+    "unisoft-utils": "workspace:^1.0.3"
   },
   "devDependencies": {
     "typescript": "^5",

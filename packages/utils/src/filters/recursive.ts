@@ -1,4 +1,4 @@
-import { FilterOptions } from "@utils";
+import { FilterOptions } from "@types";
 import { mapRecursive } from "../helpers";
 import { assignProp } from "../setters";
 

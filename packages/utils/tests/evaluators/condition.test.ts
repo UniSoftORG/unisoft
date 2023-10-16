@@ -1,4 +1,4 @@
-import {Conditional} from "@utils";
+import {Conditional} from "@types";
 import {
     evaluateCondition,
     evaluateConditions

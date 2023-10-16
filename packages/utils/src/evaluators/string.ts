@@ -1,4 +1,4 @@
-import { ValueReplacement } from "../../@utils";
+import { ValueReplacement } from "../../@types";
 import { addAfter, addBefore } from "../setters";
 
 /**

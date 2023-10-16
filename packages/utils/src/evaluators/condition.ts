@@ -1,4 +1,4 @@
-import { Conditional, ValueReplacement } from "../../@utils";
+import { Conditional, ValueReplacement } from "../../@types";
 import {createCondition, mapObjectValues} from "../helpers";
 import { evaluateReplacement } from "./string";
 import { getValue } from "../getters";

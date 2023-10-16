@@ -1,4 +1,4 @@
-import { FlexibleObj, ExtractOptions } from "@utils";
+import { FlexibleObj, ExtractOptions } from "@types";
 
 /**
  * Recursively collects keys from an object based on the specified criteria.

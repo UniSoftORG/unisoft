@@ -6,6 +6,9 @@
     "module": "CommonJS",
     "baseUrl": "./",
     "sourceMap": true,
+    "typeRoots": ["./node_modules/@types",
+      "./@types"
+    ],
     "strict": true
   },
   "exclude": [

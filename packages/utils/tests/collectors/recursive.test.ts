@@ -1,5 +1,5 @@
 import {describe, it, expect} from "@jest/globals";
-import { FlexibleObj } from '@utils';
+import { FlexibleObj } from '@types';
 import {recursiveKeyCollection} from "../../src/collectors/recursive";
 
 describe('dataCollection Module', () => {

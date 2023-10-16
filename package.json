@@ -1,11 +1,21 @@
 {
   "name": "unisoft",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.3",
   "scripts": {
-    "dev": "cd src && npm run dev"
+    "dev": "concurrently \"pnpm dev:src\" \"pnpm dev:utils\"",
+    "dev:src": "cd src && pnpm dev",
+    "dev:utils": "cd packages/utils && pnpm watch",
+    "build": "cd src && pnpm build"
+  },
+  "pnpm": {
+    "workspaces": [
+      "src",
+      "packages/*"
+    ]
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  }
 }

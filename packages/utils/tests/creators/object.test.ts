@@ -1,4 +1,4 @@
-import {MapOption} from "@utils";
+import {MapOption} from "@types";
 import {createObjectFromMapOptions} from "../../src/creators";
 
 describe('Object Creator Module', () => {

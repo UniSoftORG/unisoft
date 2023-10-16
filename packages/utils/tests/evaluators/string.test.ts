@@ -1,6 +1,6 @@
 import { evaluateReplacement } from '../../src/evaluators';
 import { addAfter, addBefore } from '../../src/setters';
-import {ValueReplacement} from "@utils";
+import {ValueReplacement} from "@types";
 
 describe('evaluateReplacement function', () => {
   const values = {
