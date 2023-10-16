@@ -6,5 +6,7 @@
  * @return {any} The value found at the specified path.
  */
 export const getValue = <T>(obj: T, path: string): any => {
-  return path.split(".").reduce((acc, part) => (acc as any)[part], obj);
+  return path.split(".").reduce((acc, part) => {
+    return acc && typeof acc === 'object' ? (acc as any)[part] : undefined;
+  }, obj);
 };
