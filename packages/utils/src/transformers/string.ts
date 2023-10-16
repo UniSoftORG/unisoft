@@ -1,3 +1,40 @@
+import {getValue} from "../getters";
+
+/**
+ * Iteratively resolves placeholders in a template-like string using values from a provided object.
+ * If a resolved value contains another template, it will continue the resolution until all placeholders
+ * are replaced.
+ *
+ * @param {string} str - The template-like string containing placeholders.
+ * @param {any} obj - The object from which to source replacement values.
+ * @returns {string} - The fully resolved string.
+ */
+export const resolveTemplateString = (str: string, obj: any): string => {
+  let replacedStr = str;
+  let regexMatch;
+
+  const regex = /\$\{([^${}]+)\}/g;
+
+  while ((regexMatch = regex.exec(replacedStr))) {
+    const fullMatch = regexMatch[0];
+    const path = regexMatch[1];
+
+    const value = getValue(obj, path);
+
+    if (typeof value === 'string' && value.includes('${')) {
+      replacedStr = replacedStr.replace(fullMatch, resolveTemplateString(value, obj));
+    } else {
+      replacedStr = replacedStr.replace(fullMatch, value);
+    }
+
+    regex.lastIndex = 0;
+  }
+
+  return replacedStr;
+};
+
+
+
 /**
  * Limits the length of a string to a specified number of characters, appending an ending if truncated.
  *

@@ -1,4 +1,4 @@
-import {dynamicReplacer} from "@/utils/replacer";
+import {Transformers} from "unisoft-utils";
 
 export default function Home() {
     const inputJson: any = {
@@ -40,11 +40,9 @@ export default function Home() {
         ]
     };
 
-    console.log(dynamicReplacer(inputJson, inputJson.dynamic))
-
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            {JSON.stringify(dynamicReplacer(inputJson, inputJson.dynamic))}
+            {JSON.stringify(Transformers.replaceTargetedStrings(inputJson, inputJson.dynamic))}
         </main>
     )
 }

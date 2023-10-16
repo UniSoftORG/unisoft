@@ -1,3 +1,25 @@
+import {getValue} from "../getters";
+import {resolveTemplateString} from "./string";
+import {setByDotNotation} from "../setters";
+
+/**
+ * Replaces specified targeted strings within an object using a provided list.
+ *
+ * @template T - The type of the object containing strings to replace.
+ * @param {T} obj - The object containing targeted strings.
+ * @param {string[]} targets - List of paths pointing to strings to be replaced within the object.
+ * @returns {T} - The modified object with targeted strings replaced.
+ */
+export const replaceTargetedStrings = <T>(obj: T, targets: string[]): T => {
+  for (let path of targets) {
+    const targetStr = getValue(obj, path);
+    const replaced = resolveTemplateString(targetStr as string, obj);
+    setByDotNotation(obj, path, replaced);
+  }
+
+  return obj;
+};
+
 /**
  * Merge two objects
  *
