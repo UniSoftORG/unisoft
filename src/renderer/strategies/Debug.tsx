@@ -1,6 +1,6 @@
-import {ComponentData} from "@/types";
+import {IComponent} from "@/types";
 
-const Debug: React.FC<{ componentData: ComponentData; events?:any }> = ({componentData, events}) => {
+const Debug: React.FC<{ componentData: IComponent; events?:any }> = ({componentData, events}) => {
     return JSON.stringify(componentData.props)
 };
 

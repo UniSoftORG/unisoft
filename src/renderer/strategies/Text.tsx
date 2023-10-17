@@ -1,7 +1,7 @@
-import {ComponentData} from "@/types";
+import {IComponent} from "@/types";
 
-const Text: React.FC<{ componentData: ComponentData; events?:any }> = ({componentData, events}) => {
-    return componentData.props[componentData.props.text]
+const Text: React.FC<{ componentData: IComponent; events?:any }> = ({componentData, events}) => {
+    return componentData.props.text
 };
 
 export default Text;

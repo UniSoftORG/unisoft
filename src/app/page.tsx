@@ -1,6 +1,4 @@
-import {Transformers} from "unisoft-utils";
-
-export default function Home() {
+export default async function Home() {
     const inputJson: any = {
         test: "Test",
         props: {
@@ -40,9 +38,7 @@ export default function Home() {
         ]
     };
 
-    return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            {JSON.stringify(Transformers.replaceTargetedStrings(inputJson, inputJson.dynamic))}
-        </main>
-    )
+
+    return JSON.stringify(inputJson)
+
 }

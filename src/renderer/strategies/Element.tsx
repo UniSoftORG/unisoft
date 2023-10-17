@@ -1,10 +1,10 @@
-import {ComponentData} from "@/types";
+import {IComponent} from "@/types";
 import {createAttributes} from "@/utils/Renderer/helpers";
-import {handleEvents} from "@/Builder/utils/eventUtils";
+import {handleEvents} from "@/utils/Renderer/events";
 import React, {createElement} from "react";
 import ChildRenderer from "../renderers/ChildRenderer";
 
-const Element: React.FC<{ children: any, componentData: ComponentData }> = ({
+const Element: React.FC<{ children: any, componentData: IComponent }> = ({
                                                                                 children,
                                                                                 componentData,
                                                                                 ...parentProps

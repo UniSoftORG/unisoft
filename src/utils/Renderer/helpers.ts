@@ -1,4 +1,4 @@
-import {ComponentData} from "@/types";
+import {IComponent} from "@/types";
 import {v4} from "uuid";
 import {Evaluators, Transformers} from "unisoft-utils";
 
@@ -13,10 +13,10 @@ export const mergeParentProps = (newProps: any, oldProps: any) => {
     };
 };
 
-export const createAttributes = (componentData: ComponentData<any, any>): ComponentData => {
+export const createAttributes = (componentData: IComponent<any, any>): IComponent => {
     return {
         ...(componentData.propConfig?.dynamicAttributes && Transformers.replaceTargetedStrings(componentData, componentData.propConfig?.dynamicAttributes)), ...(componentData.conditional && componentData.conditionalClasses &&
-            Evaluators.evaluateConditions<any>(componentData.conditional, {
+            Evaluators.evaluateConditions<any>(componentData.conditionalClasses, {
                 mainObj: componentData,
                 valueKey: 'attrs.className',
                 returnValueKeyOnly: true
@@ -24,13 +24,13 @@ export const createAttributes = (componentData: ComponentData<any, any>): Compon
     };
 };
 
-export const updateUUIDs = (component: ComponentData): ComponentData => {
+export const updateUUIDs = (component: IComponent): IComponent => {
     const newComponent = {...component};
 
     newComponent.uuid = v4();
 
     if (Array.isArray(newComponent.children)) {
-        newComponent.children = newComponent.children.map(child => updateUUIDs(child as ComponentData));
+        newComponent.children = newComponent.children.map(child => updateUUIDs(child as IComponent));
     }
 
     return newComponent;

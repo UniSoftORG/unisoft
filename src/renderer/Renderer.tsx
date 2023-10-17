@@ -1,6 +1,6 @@
-import componentsMap from "@/Builder/definitions/components";
-import {ComponentData, DetermineRendererProps} from "@/types";
-import prepareProps from "@/Builder/utils/builderPropUtils";
+import componentsMap from "@/utils/Collections/components";
+import {IComponent, DetermineRendererProps} from "@/types";
+import {prepareProps} from "@/utils/Renderer/propUtils";
 
 const Renderer: React.FC<DetermineRendererProps> = ({
                                                               componentData,
@@ -28,7 +28,7 @@ const Renderer: React.FC<DetermineRendererProps> = ({
 
     // Render children with same renderer
     const renderChildren = (props = {}) => (
-        children && (children as ComponentData[]).map((child: ComponentData, idx: number) => (
+        children && (children as IComponent[]).map((child: IComponent, idx: number) => (
             <Renderer
                 componentData={{...child, props: {...child.props}}}
                 parentType={parentType}
