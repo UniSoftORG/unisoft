@@ -3,14 +3,6 @@ import { DynamicProp, DynamicRequest } from "@/types/dynamic";
 import {Conditional} from "unisoft-utils/@utils/interfaces";
 
 /**
- * Represents conditions to set CSS classes.
- */
-export interface ConditionalValue {
-    condition: string;
-    value: string;
-}
-
-/**
  * Configuration for component props.
  */
 export interface PropConfig<T = unknown, ChildType = unknown> {
