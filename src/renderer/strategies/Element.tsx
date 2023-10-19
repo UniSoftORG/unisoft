@@ -1,7 +1,7 @@
+import React, {createElement} from "react";
 import {IComponent} from "@/types";
 import {createAttributes} from "@/utils/Renderer/helpers";
 import {handleEvents} from "@/utils/Renderer/events";
-import React, {createElement} from "react";
 import ChildRenderer from "../renderers/ChildRenderer";
 
 const Element: React.FC<{ children: any, componentData: IComponent }> = ({

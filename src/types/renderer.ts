@@ -1,6 +1,6 @@
 import { ReactNode, ComponentType, FC } from 'react';
 import { DynamicProp, DynamicRequest } from "@/types/dynamic";
-import {Conditional} from "unisoft-utils/@utils/interfaces";
+import {Conditional} from "unisoft";
 
 /**
  * Configuration for component props.

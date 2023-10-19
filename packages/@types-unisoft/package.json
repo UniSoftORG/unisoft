@@ -1,0 +1,19 @@
+{
+  "name": "@types/unisoft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "author": "",
+  "license": "ISC"
+}

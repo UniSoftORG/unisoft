@@ -1,3 +1,6 @@
+import {createElement, createTextField} from "@/renderer/helpers/creators";
+import InitiateRenderer from "@/renderer/InitiateRenderer";
+
 export default async function Home() {
     const inputJson: any = {
         test: "Test",
@@ -39,6 +42,26 @@ export default async function Home() {
     };
 
 
-    return JSON.stringify(inputJson)
+    const testComponents = [createTextField({
+        name: 'CategoryTitleText',
+        props: {text: 'Test'},
+    })]
 
+    const test = [
+        createElement({
+            name: "TestElement",
+            childen: testComponents,
+            attrs: {}
+        })
+    ];
+
+    // return JSON.stringify(testComponents)
+    return await InitiateRenderer(testComponents)
+
+    // return (
+    //     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    //         {/*{JSON.stringify(Transformers.replaceTargetedStrings(inputJson, inputJson.dynamic))}*/}
+    //         {/*<InitiateRenderer template={testComponents}/>*/}
+    //     </main>
+    // )
 }

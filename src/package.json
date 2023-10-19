@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "build:utils": "pnpm -C ../packages/utils run build",
+    "build:types": "pnpm -C ../packages/@types-unisoft run build",
     "dev": "next dev",
-    "build": "npm run build:utils && next build",
+    "build": "npm run build:types && npm run build:utils && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -14,7 +15,7 @@
     "react-dom": "^18",
     "next": "13.5.5",
     "uuid": "^9.0.1",
-    "unisoft-utils": "^1.0.3"
+    "unisoft-utils": "workspace:^1.0.3"
   },
   "devDependencies": {
     "typescript": "^5",
@@ -22,6 +23,7 @@
     "@types/react": "^18",
     "@types/uuid": "^9.0.4",
     "@types/react-dom": "^18",
+    "@types/unisoft": "workspace:^1.0.0",
     "autoprefixer": "^10",
     "postcss": "^8",
     "tailwindcss": "^3",

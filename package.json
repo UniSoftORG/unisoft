@@ -2,10 +2,12 @@
   "name": "unisoft",
   "version": "1.0.3",
   "scripts": {
-    "dev": "concurrently \"pnpm dev:src\" \"pnpm dev:utils\"",
+    "dev": "concurrently \"pnpm dev:src\" \"pnpm dev:utils\" \"pnpm dev:types\"",
     "dev:src": "cd src && pnpm dev",
     "dev:utils": "cd packages/utils && pnpm watch",
-    "build": "cd src && pnpm build"
+    "dev:types": "cd packages/@types-unisoft && pnpm watch",
+    "build": "cd src && pnpm build",
+    "start": "cd src && pnpm start"
   },
   "pnpm": {
     "workspaces": [
