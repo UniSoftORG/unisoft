@@ -1,16 +1,16 @@
-import {IComponent, KnownComponentType} from "@/types";
+import {IComponentBase, IComponent, KnownComponentType} from "@/types";
 import {generateComponentBase} from "@/renderer/helpers/generators";
 import {v4} from "uuid";
 
-export const createTextField = ({...props}): IComponent => {
+export const createTextField = ({...props}): IComponentBase => {
     const uniqueIdentity = v4();
     return {
+        ...props,
         uuid: uniqueIdentity,
         name: 'TextField',
         type: KnownComponentType.Text,
         props: props.props,
         receiveProps: ['text'],
-        ...props
     }
 }
 
@@ -22,17 +22,23 @@ export const createTextField = ({...props}): IComponent => {
 //     }
 // }
 
-export const createElement = ({...props}, type?: string, editable?: boolean): IComponent => {
+export const createElement = ({...props}: IComponent, type?: string): IComponentBase => {
     const uniqueIdentity = v4();
     return {
+        ...props,
         uuid: uniqueIdentity,
-        name: props.name,
         type: KnownComponentType.Element,
-        element: type ?? 'div',
-        attrs: {
-            ...props.attrs,
-        },
-        ...props
+        element: type ?? 'div'
+    }
+}
+
+export const createImage = ({...props}, squared?: number): IComponentBase => {
+    const uniqueIdentity = v4();
+    return {
+        ...props,
+        uuid: uniqueIdentity,
+        type: 'Image',
+        ...(squared !== undefined && {...{attrs: {width: squared, height: squared, ...props.attrs}}})
     }
 }
 // export const createElement = (props: { name: string, attrs?: object }, elementType: string = 'div'): IComponent => {

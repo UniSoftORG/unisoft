@@ -2,7 +2,7 @@
   "name": "unisoft",
   "version": "1.0.3",
   "scripts": {
-    "dev": "concurrently \"pnpm dev:src\" \"pnpm dev:utils\" \"pnpm dev:types\"",
+    "dev": "concurrently  \"pnpm dev:utils\" \"pnpm dev:types\" \"pnpm dev:src\"",
     "dev:src": "cd src && pnpm dev",
     "dev:utils": "cd packages/utils && pnpm watch",
     "dev:types": "cd packages/@types-unisoft && pnpm watch",

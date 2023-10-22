@@ -1,67 +1,75 @@
 import {createElement, createTextField} from "@/renderer/helpers/creators";
 import InitiateRenderer from "@/renderer/InitiateRenderer";
+import {Slider} from "@/predefined/components/Sliders/Slider";
 
 export default async function Home() {
-    const inputJson: any = {
-        test: "Test",
-        props: {
-            testKey: 0,
-            testKey2: '1',
-            val1: "Test",
-            obj1: {
-                obj2: {
-                    val2: "Test2"
-                }
-            },
-            array1: [
-                "Test3",
-                "Test4"
-            ],
-            array2: [
-                {
-                    obj3: {
-                        val4: "Test5"
-                    }
-                }
-            ]
-        },
-        target: {
-            val: "example string with replacements ${props.val1}",
-            val2: "example 2 ${props.obj1.obj2.val2}",
-            val3: "example 3 ${props.array1.${props.testKey2}}",
-            val4: "example 4 ${props.array2.${props.testKey}.obj3.val4}",
-            val5: "example 5 ${test}"
-        },
-        dynamic: [
-            "target.val",
-            "target.val2",
-            "target.val3",
-            "target.val4",
-            "target.val5"
-        ]
-    };
-
-
-    const testComponents = [createTextField({
-        name: 'CategoryTitleText',
-        props: {text: 'Test'},
-    })]
-
-    const test = [
+    const pageComponents = [
         createElement({
             name: "TestElement",
-            childen: testComponents,
-            attrs: {}
-        })
+            variables: {
+                data: [
+                    {
+                        test1: 'test1'
+                    },
+                    {
+                        test2: 'test2'
+                    }
+                ]
+            },
+            states: {
+                dynamicState: "${variables.data}",
+                staticState: 'defaultTestValues',
+                testState: 'asdasd'
+            },
+            children: [
+                createElement({
+                    name: 'ChildTest',
+                    receiveAttributes: {
+                        attributeName: 'TestElement.states.staticState'
+                    },
+                    states: {
+                        cde: 'Rade'
+                    },
+                    children: [
+                        createElement({
+                            name: 'ChildChildTest',
+                            receiveAttributes: {
+                                attributeName: 'TestElement.states.staticState',
+                                attributeName2: 'TestElement.states.dynamicState'
+                            },
+                            children: [
+                                createElement({
+                                    name: 'ERa',
+                                    receiveAttributes: {
+                                        as: 'ChildTest.states.cde',
+                                        ata: 'TestElement.states.testState'
+                                    },
+                                    children: [
+                                        createElement({
+                                            name: 'Rade',
+                                            receiveAttributes: {
+                                                ata: 'TestElement.states.staticState'
+                                            }
+                                        })
+                                    ]
+                                })
+                            ]
+                        })
+                    ]
+                })
+            ],
+            dynamic: [
+                "states.dynamicState"
+            ]
+        }, 'div')
     ];
 
-    // return JSON.stringify(testComponents)
-    return await InitiateRenderer(testComponents)
+    return await InitiateRenderer([Slider])
 
-    // return (
-    //     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    //         {/*{JSON.stringify(Transformers.replaceTargetedStrings(inputJson, inputJson.dynamic))}*/}
-    //         {/*<InitiateRenderer template={testComponents}/>*/}
-    //     </main>
-    // )
+    return (
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+            {/*{JSON.stringify(Transformers.replaceTargetedStrings(inputJson, inputJson.dynamic))}*/}
+            {/*<InitiateRenderer template={testComponents}/>*/}
+        </main>
+    )
 }

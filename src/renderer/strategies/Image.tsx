@@ -1,8 +1,8 @@
-import {IComponent} from "@/types";
+import {IComponentBase} from "@/types";
 import Image from "next/image";
 import {handleEvents} from "@/utils/Renderer/events";
 
-const ImageRenderer: React.FC<IComponent> =
+const ImageRenderer: React.FC<IComponentBase> =
     ({children, componentData, events}) => {
         // let src;
         // const data = componentData.dynamicAttributes ? replaceDynamic(componentData, 'attrs', 'dynamicAttributes') : componentData

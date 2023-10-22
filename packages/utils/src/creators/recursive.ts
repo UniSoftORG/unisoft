@@ -30,3 +30,14 @@ export const deepClone = <T>(obj: T): T => {
         {},
       ) as T);
 };
+
+
+/**
+ * Creates a simple deep clone of an object.
+ *
+ * @param {T} obj - The object to be cloned.
+ * @return {T} - The cloned object.
+ */
+export const simpleDeepClone = <T>(obj: T): T => {
+  return JSON.parse(JSON.stringify(obj));
+};

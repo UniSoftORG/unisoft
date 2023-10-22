@@ -1,4 +1,4 @@
-import {IComponent} from "@/types";
+import {IComponentBase} from "@/types";
 
 type EventConfig = {
     function: string;
@@ -8,7 +8,7 @@ type EventConfig = {
 
 const events = ["Click", "MouseOver", "MouseEnter", "MouseDown", "MouseUp", "MouseMove", "MouseOut", "Blur", "Focus", "Change", "Submit"];
 
-export const handleEvents = (componentData: IComponent, options: { customPrefix?: string }) => {
+export const handleEvents = (componentData: IComponentBase, options: { customPrefix?: string }) => {
     if (!componentData || !componentData.props) return {};
 
     const {props} = componentData;

@@ -10,14 +10,19 @@ import {setByDotNotation} from "../setters";
  * @param {string[]} targets - List of paths pointing to strings to be replaced within the object.
  * @returns {T} - The modified object with targeted strings replaced.
  */
-export const replaceTargetedStrings = <T>(obj: T, targets: string[]): T => {
-  for (let path of targets) {
-    const targetStr = getValue(obj, path);
+export const replaceDynamicTargets = <T>(obj: T, targets: string[]): T | undefined => {
+  targets?.map((target) => {
+    const targetStr = getValue(obj, target);
     const replaced = resolveTemplateString(targetStr as string, obj);
-    setByDotNotation(obj, path, replaced);
-  }
+    setByDotNotation(obj, target, replaced)
+  })
+  // for (let path of targets) {
+  //   const targetStr = getValue(obj, path);
+  //   const replaced = resolveTemplateString(targetStr as string, obj);
+  //   setByDotNotation(obj, path, replaced);
+  // }
 
-  return obj;
+  return targets ? obj : undefined;
 };
 
 /**

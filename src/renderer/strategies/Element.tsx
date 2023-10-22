@@ -1,16 +1,14 @@
 import React, {createElement} from "react";
-import {IComponent} from "@/types";
-import {createAttributes} from "@/utils/Renderer/helpers";
-import {handleEvents} from "@/utils/Renderer/events";
+import {IComponentBase} from "@/types";
 import ChildRenderer from "../renderers/ChildRenderer";
 
-const Element: React.FC<{ children: any, componentData: IComponent }> = ({
+const Element: React.FC<{ children: any, componentData: IComponentBase }> = ({
                                                                                 children,
                                                                                 componentData,
                                                                                 ...parentProps
                                                                             }) => {
     return createElement(componentData.element as string, {
-        ...createAttributes(componentData), ...handleEvents(componentData, {customPrefix: 'executeOn'}),
+        ...componentData.elementAttributes,
         key: componentData.uuid
     }, <ChildRenderer passProps={parentProps}>{children}</ChildRenderer>);
 };

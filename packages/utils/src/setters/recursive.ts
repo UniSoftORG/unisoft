@@ -31,11 +31,22 @@ export const setNestedValue = <T>(
  * @param {K} value - The value to set for the nested key.
  */
 export const setByDotNotation = <T, K extends keyof any = keyof any>(obj: T, path: string, value: K): void => {
-  const parts = path.split(".");
-  parts.reduce((acc: any, part, index) => {
-    if (index === parts.length - 1) {
+  // Handle both dot and array notations and split the path.
+  const parts = path.replace(/\[/g, '.').replace(/\]/g, '').split('.');
+
+  parts.reduce((acc: any, part, index, array) => {
+    // If it's the last part, set the value
+    if (index === array.length - 1) {
       acc[part] = value;
+      return acc;
     }
+
+    // If the part doesn't exist, create either an array or an object.
+    if (!(part in acc)) {
+      // Check if the next part can be parsed into a number
+      acc[part] = isFinite(Number(array[index + 1])) ? [] : {};
+    }
+
     return acc[part];
   }, obj);
 };

@@ -1,12 +1,11 @@
 "use client"
 import {Children, isValidElement, cloneElement, ReactElement, JSXElementConstructor} from "react";
-import {IComponent} from "@/types";
-import {mergeParentProps} from "@/utils/Renderer/helpers";
+import {IComponentBase} from "@/types";
 
 const ChildRenderer: React.FC<{
     children: ReactElement<{ parentProps?: any; }, string | JSXElementConstructor<any>>[] | ReactElement<{
         parentProps?: any;
-    }, string | JSXElementConstructor<any>> | IComponent[] | undefined,
+    }, string | JSXElementConstructor<any>> | IComponentBase[] | undefined,
     passProps?: any
 }> = ({children, passProps}) => {
 
@@ -15,9 +14,8 @@ const ChildRenderer: React.FC<{
             parentProps?: any
         }>, (child) => {
             if (isValidElement(child)) {
-                const newProps = mergeParentProps((child.props as any).componentData.props, passProps);
-
-                return cloneElement(child, {parentProps: newProps});
+                // const newProps = mergeParentProps((child.props as any).componentData.props, passProps);
+                return cloneElement(child);
             }
             return child;
         })

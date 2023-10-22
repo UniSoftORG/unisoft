@@ -21,15 +21,15 @@ export const resolveTemplateString = (str: string, obj: any): string => {
 
     const value = getValue(obj, path);
 
-    if (typeof value === 'string' && value.includes('${')) {
+    if(typeof value === 'object'){
+      replacedStr = value
+    } else if (typeof value === 'string' && value.includes('${')) {
       replacedStr = replacedStr.replace(fullMatch, resolveTemplateString(value, obj));
     } else {
       replacedStr = replacedStr.replace(fullMatch, value);
     }
-
     regex.lastIndex = 0;
   }
-
   return replacedStr;
 };
 

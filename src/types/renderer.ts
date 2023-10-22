@@ -1,6 +1,7 @@
 import { ReactNode, ComponentType, FC } from 'react';
 import { DynamicProp, DynamicRequest } from "@/types/dynamic";
 import {Conditional} from "unisoft";
+import {CreateState} from "@/types/react";
 
 /**
  * Configuration for component props.
@@ -21,7 +22,7 @@ export interface PropConfig<T = unknown, ChildType = unknown> {
 /**
  * A unified type for child elements/components.
  */
-export type ChildComponent<Type = unknown, ChildType = unknown> = FC<ChildType> | ReactNode | IComponent<Type, Partial<ChildType>>;
+export type ChildComponent<Type = unknown, ChildType = unknown> = FC<ChildType> | ReactNode | IComponentBase<Type, Partial<ChildType>>;
 
 export enum  KnownComponentType {
     Element = 'Element',
@@ -31,20 +32,107 @@ export enum  KnownComponentType {
     Text = 'Text'
 }
 
+export enum  KnownElementTag {
+    Main = 'main',
+    Div = 'div',
+    Section = 'section',
+    Form = 'form',
+    Span = 'span'
+}
 
-// type KnownComponentType = 'Element' | 'Translation' | 'Component' | 'Image';
+
+type KnownComponent = 'Element' | 'Translation' | 'Component' | 'Image' | 'Text';
 
 /**
  * Represents data for components.
  */
-export interface IComponent<Type = any, ChildType = any> {
+export interface IComponentBase<Type = any, ChildType = any> {
     [key: string]: any;
-    name?: string;
     uuid: string;
-    type: KnownComponentType;
+    type: KnownComponent;
     element?: string;
+    elementAttributes?: Record<string, any>
+
+
+    // component?: ReactNode | FC<Type> | ComponentType<Type>;
+    // props?: Type;
+    // receiveProps?: Array<{ parentProps?: string[] } | keyof Type | any>;
+    // attrs?: Record<string, any>;
+    // mapProp?: keyof Type;
+    // data?: any;
+    // dynamicProps?: DynamicProp[];
+    // propConfig?: PropConfig<Type, ChildType>;
+    // conditionalClasses?: { className: Conditional[] }[] | { [key: string]: Conditional[] }[];
+    // conditional?: Conditional
+    // style?: Record<string, any>;
+    // canHaveChildren?: boolean;
+    // childrenTypes?: Array<FC<ChildType> | ReactNode | IComponentBase<Type, Partial<ChildType>>>;
+    // children?: IComponentBase<Type, ChildType>[] | React.ReactElement<{parentprops?: any}>[] | React.ReactElement<{parentprops?: any}>;
+    // requests?: DynamicRequest[];
+}
+
+export interface IComponent<Type = any, ChildType = any> {
+    name: string;
+    renderer?: 'server' | 'client';
+    attributes?: Record<string, any>;
+    variables?: CreateState;
+    states?: CreateState;
+    elementAttributes?: Record<string, any> | undefined
+    dynamic?: any;
+    receiveAttributes?: any;
+    passAttributes?: any;
+    children?: any;
+
+    // children?: IComponentBase<Type, ChildType>[] | React.ReactElement<{parentprops?: any}>[] | React.ReactElement<{parentprops?: any}>;
+
+
+    requests?: DynamicRequest[];
+}
+
+export type IComponentType = IComponentBase & IComponent
+/**
+ * Props for determining how to render a component.
+ */
+export interface DetermineRendererProps {
+    componentData: IComponentType;
+    parentType?: string;
+    parentUuid?: string;
+    parentProps?: unknown;
+    index?: string | number;
+}
+
+export enum  KnownConditions {
+    "===" = '===',
+    "!==" = "!==",
+    "<"  = "<",
+    "<=" = "<=",
+    ">"  = ">" ,
+    ">=" = ">="
+}
+
+export interface Condition {
+    firstParam: string | number | undefined | null;
+    secondParam: string | number | undefined | null;
+    condition: KnownConditions;
+    expectedValue?: string | number | undefined | null;
+    trueReturn?: string | number | undefined | null;
+    falseReturn?: string | number | undefined | null;
+}
+
+export interface Component<Type = any, ChildType = any> {
+    [key: string]: any;
+    uuid?: string;
+    type: KnownComponentType;
+    name?: string;
+    element?: KnownElementTag;
     component?: ReactNode | FC<Type> | ComponentType<Type>;
-    props?: Type;
+    attributes?: Type;
+    variables?: string;
+    elementAttributes?: Record<string, any>
+    conditions?: Conditional;
+
+
+
     receiveProps?: Array<{ parentProps?: string[] } | keyof Type | any>;
     attrs?: Record<string, any>;
     mapProp?: keyof Type;
@@ -55,18 +143,7 @@ export interface IComponent<Type = any, ChildType = any> {
     conditional?: Conditional
     style?: Record<string, any>;
     canHaveChildren?: boolean;
-    childrenTypes?: Array<FC<ChildType> | ReactNode | IComponent<Type, Partial<ChildType>>>;
-    children?: IComponent<Type, ChildType>[] | React.ReactElement<{parentprops?: any}>[] | React.ReactElement<{parentprops?: any}>;
+    childrenTypes?: Array<FC<ChildType> | ReactNode | IComponentBase<Type, Partial<ChildType>>>;
+    children?: IComponentBase<Type, ChildType>[] | React.ReactElement<{parentprops?: any}>[] | React.ReactElement<{parentprops?: any}>;
     requests?: DynamicRequest[];
-}
-
-/**
- * Props for determining how to render a component.
- */
-export interface DetermineRendererProps {
-    componentData: IComponent;
-    parentType: string;
-    parentUuid: string;
-    parentProps?: unknown;
-    index?: string | number;
 }

@@ -1,66 +1,56 @@
 import componentsMap from "@/utils/Collections/components";
-import {IComponent, DetermineRendererProps} from "@/types";
-import {prepareProps} from "@/utils/Renderer/propUtils";
+import {DetermineRendererProps, IComponentType} from "@/types";
+import {setState, useDynamicStates} from "@/utils/React/StateManager";
+import {replaceDynamicTargets} from "@/utils/Renderer/helpers";
+
 
 const Renderer: React.FC<DetermineRendererProps> = ({
-                                                              componentData,
-                                                              parentType,
-                                                              parentUuid,
-                                                              parentProps,
-                                                              index
-                                                          }) => {
+                                                        componentData,
+                                                        parentType,
+                                                        parentUuid,
+                                                        parentProps,
+                                                        index
+                                                    }) => {
     // Map existing components
     const Component = componentsMap[componentData.type];
+
     // Check if component exists
     if (!Component) {
         return <div>Error: Component not found</div>
     }
 
-    /** Prepares the props to be passed to a component by: merging, collecting, and filtering them.
-     *  merge with parent and other props
-     *  collect props from all definitions in order to determine witch ones should be passed
-     *  filter & pass through props only that should be received to the end child
-     */
-    const propsToPass = prepareProps(componentData, parentType, parentUuid, parentProps)
-
-    // For simplicity, extract only needed objects from definition
-    const {mapProp, children, uuid} = componentData;
-
-    // Render children with same renderer
-    const renderChildren = (props = {}) => (
-        children && (children as IComponent[]).map((child: IComponent, idx: number) => (
-            <Renderer
-                componentData={{...child, props: {...child.props}}}
-                parentType={parentType}
-                parentUuid={parentUuid}
-                key={`${child.uuid}-${idx}`}
-                index={idx}
-            />
-        ))
-    );
-
-    // If object has mapProp definition, get prop for mapping and render component with mapped props
-    if (mapProp) {
-        return propsToPass[mapProp].map((prop: any, idx: number) => {
-            const propsForChild = {...propsToPass, ...prop, index: idx};
-
-            return (
-                <Component
-                           componentData={{...componentData, props: propsForChild}} key={`${prop.uuid}-${idx}`} {...propsForChild}>
-                    {renderChildren(propsForChild)}
-                </Component>
-            );
-        });
-    } else {
-        // Finally render component
-        return (
-                <Component {...propsToPass}
-                           componentData={{...componentData, props: propsToPass}}
-                           key={`${componentData.uuid}-${index}`}>
-                    {renderChildren()}
-                </Component>
-        );
+    if (componentData.dynamic) {
+        componentData = replaceDynamicTargets<any, any>(componentData, componentData.dynamic)
     }
+
+    const [states, setStateByKey] = componentData.states ? useDynamicStates(componentData.states) : []
+
+    const merged = {...componentData, passAttributes: {...componentData.passAttributes}}
+
+    if (componentData.name === 'Slider') {
+        // setStateByKey('current', 1)
+        // setState(states.currentSetState, 1, () => {
+        //     setStateByKey('current', 1)
+        // })
+    }
+
+
+    return (
+        <Component {...merged.passAttributes}
+                   componentData={{...merged, passAttributes: {...merged.passAttributes}}}
+                   key={`${merged.uuid}-${index}`}
+        >
+
+            {merged.children && merged.children.map((child: IComponentType, index: number) => {
+                return <Renderer key={index}
+                                 componentData={{...child, passAttributes: {...merged.passAttributes[child.name], ...componentData.passAttributes[child.name], ...{current: states?.current}}}}
+                                 index={index}
+                                 parentType={merged.type}
+                                 parentUuid={merged.uuid}
+                />
+            })}
+        </Component>
+    );
 };
 
 export default Renderer;

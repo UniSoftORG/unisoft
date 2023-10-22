@@ -11,7 +11,7 @@ const DetermineRenderer: React.FC<DetermineRendererProps> = ({componentData, par
         parentProps: parentProps
     }
 
-    if (componentData.renderer === 'client') {
+    if (componentData.renderer === 'client' || componentData.states) {
         return <ClientRenderer {...props} key={`${componentData.uuid}-${index}`}/>
     } else {
         return <Renderer {...props} key={`${componentData.uuid}-${index}`}/>

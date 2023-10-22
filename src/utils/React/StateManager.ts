@@ -1,22 +1,63 @@
-import {CreateState, SetState} from "@/types/react";
-import React, {useState} from "react";
+"use client"
+import {Action, CreateState, SetState} from "@/types/react";
+import {useEffect, useReducer, useState} from "react";
+import {Helpers} from "unisoft-utils";
 
-export const createState = <T>({key, defaultValue}: CreateState<T>): [T, React.Dispatch<React.SetStateAction<T>>] => {
-    const initialState = defaultValue !== undefined ? defaultValue : (null as unknown as T);
-    return useState<T>(initialState);
-}
-
-export function setState<T>(setValue: SetState<T>, newState: T){
-    return setValue(newState);
-}
-
-export const getAllStateValues = (states: any) => {
-    const result: { [key: string]: any } = {};
-    for (let key in states) {
-        result[key] = states[key].value;
-    }
-    return result;
+export const createState = ({key, defaultValue}: CreateState): {
+    [key: string]: any
+} => {
+    const initialState = defaultValue !== undefined ? defaultValue : (null as unknown as typeof defaultValue);
+    const [state, setState] = useState<typeof defaultValue>(initialState);
+    return {
+        [key]: state,
+        [`${key}SetState`]: setState
+    };
 };
+
+function stateReducer(state: CreateState, action: Action) {
+    switch (action.type) {
+        case 'SET_STATE':
+            return {...state, [action.payload.key]: action.payload.value};
+        default:
+            return state;
+    }
+}
+
+export function useDynamicStates(initialStates: CreateState): [CreateState, (key: string, value: any) => void] {
+    const [state, dispatch] = useReducer(stateReducer, initialStates);
+
+    const setStateByKey = (key: string, value: any) => {
+        dispatch({ type: 'SET_STATE', payload: { key, value } });
+    };
+
+    return [state, setStateByKey];
+}
+
+export function setState<T>(setValue: SetState<T>, newState: T, triggerUpdate?: any) {
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            // setValue(newState);
+            triggerUpdate && triggerUpdate()
+        }, 2000)
+
+        return () => clearTimeout(timeoutId);
+    }, [])
+}
+
+export const getAllStates = (statesMap: any) => {
+    return Object.assign({}, ...statesMap);
+};
+
+export const createAllStates = (states: {
+    [key: string]: string
+}) => {
+    return Helpers.transformEntries(states, (key, defaultValue) => createState({key, defaultValue}))
+}
+
+export const generateStates = (states: CreateState) => {
+    return getAllStates(Helpers.transformEntries(states, (key, defaultValue) => createState({key, defaultValue})))
+}
 
 export const useNavigation = (currentState: number, maxState: number) => {
     const next = () => {

@@ -7,8 +7,7 @@
     "module": "CommonJS",
     "baseUrl": "./",
     "sourceMap": true,
-    "strict": true,
-    "declaration": true
+    "strict": true
   },
   "exclude": [
     "node_modules"
