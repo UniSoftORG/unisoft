@@ -55,7 +55,7 @@ export default class SingletonApiRequest {
     ): Promise<ApiResult<Type>> {
         try {
             const headers = await this.requestHeaders();
-            const response = await fetch(process.env.NEXT_LARAVEL_API_URL + endpoint, {
+            const response = await fetch(process.env.NEXT_API_URL + endpoint, {
                 method: method.toUpperCase(),
                 headers: headers,
                 body: payload ? JSON.stringify(payload) : undefined,

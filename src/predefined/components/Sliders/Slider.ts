@@ -16,14 +16,15 @@ export const Slider = createElement({
         ]
     },
     states: {
-        current: "0"
+        current: 0,
+        testState: 'Rade'
     },
     children: [
         createElement({
             name: 'SliderBackground',
             renderer: "client",
             elementAttributes: {
-                className: 'relative w-full bg-cover bg-center h-screen pl-8 pr-8 lg:pl-52 lg:pr-12 grid content-center',
+                className: 'relative w-full transition-opacity duration-500 bg-cover bg-center h-screen pl-8 pr-8 lg:pl-52 lg:pr-12 grid content-center',
                 style: {
                     backgroundImage: "linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.2) 80%), url(${passAttributes.slides.${passAttributes.current}.image})",
                     backgroundPosition: '60% center',
@@ -34,6 +35,14 @@ export const Slider = createElement({
                 slides: 'Slider.variables.slides',
                 current: "Slider.states.current"
             },
+            children: [
+                createElement({
+                    name: "SliderFooter",
+                    receiveAttributes: {
+                        title: 'Slider.states.testState'
+                    }
+                })
+            ],
             dynamic: ['elementAttributes.style.backgroundImage'],
         })
     ]

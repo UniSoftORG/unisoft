@@ -2,6 +2,7 @@ import {IComponentBase} from "@/types";
 import {v4} from "uuid";
 import {Creators, Getters, Setters, Transformers} from "unisoft-utils";
 
+
 export const replaceDynamicTargets = <T = any, R = any>(obj: T, targets: string[]): R | any => {
     const newObj = Creators.simpleDeepClone(obj);
     targets?.map((target) => {

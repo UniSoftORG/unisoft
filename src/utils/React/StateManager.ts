@@ -33,13 +33,13 @@ export function useDynamicStates(initialStates: CreateState): [CreateState, (key
     return [state, setStateByKey];
 }
 
-export function setState<T>(setValue: SetState<T>, newState: T, triggerUpdate?: any) {
-
+// test
+export function delaySetState<T>(setValue: SetState<T>, newState: T, triggerUpdate?: any) {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             // setValue(newState);
             triggerUpdate && triggerUpdate()
-        }, 2000)
+        }, 3000)
 
         return () => clearTimeout(timeoutId);
     }, [])

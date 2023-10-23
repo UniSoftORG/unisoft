@@ -7,7 +7,7 @@ import {setByDotNotation} from "../setters";
  *
  * @template T - The type of the object containing strings to replace.
  * @param {T} obj - The object containing targeted strings.
- * @param {string[]} targets - List of paths pointing to strings to be replaced within the object.
+ * @param {string[]} targets - List of imports pointing to strings to be replaced within the object.
  * @returns {T} - The modified object with targeted strings replaced.
  */
 export const replaceDynamicTargets = <T>(obj: T, targets: string[]): T | undefined => {

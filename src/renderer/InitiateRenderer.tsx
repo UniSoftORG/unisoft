@@ -1,11 +1,11 @@
-import {IComponentBase} from "@/types";
-import DetermineRenderer from "./DetermineRenderer";
-import {generatePassAttributes, replaceWithValuesFromMainObject} from "@/utils/Renderer/propUtils";
-import {Transformers} from "unisoft-utils";
+import {IComponentType} from "@/types";
+import PrepareRenderer from "@/renderer/PrepareRenderer";
 
 export default async function InitiateRenderer(template: any[]) {
-    return template.map(async (componentData: any, index: number) => {
-        let dynamicProps = {};
+    return template.map(async (componentData: IComponentType, index: number) => {
+        return PrepareRenderer(componentData, index, true);
+    });
+        // let dynamicProps = {};
 
         // if (componentData?.requests?.length) {
         //     const requestedData = componentData.requests ? await createRequest(componentData.requests) : undefined
@@ -18,16 +18,5 @@ export default async function InitiateRenderer(template: any[]) {
         //         return acc;
         //     }, {});
         // }
-        generatePassAttributes(componentData, componentData?.passAttributes)
-        replaceWithValuesFromMainObject(componentData, componentData.passAttributes)
-        // if (componentData.dynamic) dynamicProps = Transformers.replaceDynamicTargets(dynamicProps, dynamicProps.dynamic);
-
-        return <DetermineRenderer
-            componentData={componentData}
-            parentType={componentData.type}
-            parentUuid={componentData.uuid}
-            key={`${componentData.uuid}-${index}`}
-            index={index}
-        />
-    })
+    // })
 }
