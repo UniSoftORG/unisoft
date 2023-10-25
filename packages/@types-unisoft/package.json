@@ -11,7 +11,7 @@
     "build": "tsc",
     "watch": "tsc --watch"
   },
-  "devDependencies": {
+  "peerDependencies": {
     "typescript": "^5.2.2"
   },
   "author": "",

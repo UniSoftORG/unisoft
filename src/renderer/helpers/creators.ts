@@ -1,6 +1,6 @@
-import {IComponentBase, IComponent, KnownComponentType} from "@/types";
-import {generateComponentBase} from "@/renderer/helpers/generators";
-import {v4} from "uuid";
+import { IComponentBase, IComponent, KnownComponentType } from "@/types";
+import { generateComponentBase } from "@/renderer/helpers/generators";
+import { v4 } from "uuid";
 
 // export const createTextField = (name: string, props: object): IComponent => {
 //     return {
@@ -10,12 +10,15 @@ import {v4} from "uuid";
 //     }
 // }
 
-export const createElement = ({...props}: IComponent, type?: string): IComponentBase => {
-    const uniqueIdentity = v4();
-    return {
-        ...props,
-        uuid: uniqueIdentity,
-        type: KnownComponentType.Element,
-        element: type ?? 'div'
-    }
-}
+export const createElement = (
+  { ...props }: IComponent,
+  type?: string,
+): IComponentBase => {
+  const uniqueIdentity = v4();
+  return {
+    ...props,
+    uuid: uniqueIdentity,
+    type: KnownComponentType.Element,
+    element: type ?? "div",
+  };
+};

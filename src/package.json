@@ -8,7 +8,9 @@
     "dev": "next dev",
     "build": "npm run build:types && npm run build:utils && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write '**/*.{ts,tsx}' --ignore-path .prettierignore",
+    "check-format": "prettier --check src/**/*.ts"
   },
   "dependencies": {
     "react": "^18",
@@ -18,7 +20,6 @@
     "unisoft-utils": "workspace:^1.0.3"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/uuid": "^9.0.4",
@@ -27,7 +28,16 @@
     "autoprefixer": "^10",
     "postcss": "^8",
     "tailwindcss": "^3",
-    "eslint": "^8",
     "eslint-config-next": "13.5.4"
+  },
+  "peerDependencies": {
+    "@types/jest": "^29.5.4",
+    "jest": "^29.6.4",
+    "typescript": "^5.2.2",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "eslint": "^8.48.0",
+    "ts-jest": "^29.1.1",
+    "prettier": "^3.0.3"
   }
 }

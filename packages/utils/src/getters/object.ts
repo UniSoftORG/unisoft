@@ -7,6 +7,6 @@
  */
 export const getValue = <T>(obj: T, path: string): any => {
   return path.split(".").reduce((acc, part) => {
-    return acc && typeof acc === 'object' ? (acc as any)[part] : undefined;
+    return acc && typeof acc === "object" ? (acc as any)[part] : undefined;
   }, obj);
 };

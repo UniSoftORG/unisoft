@@ -1,4 +1,4 @@
-import {getValue} from "../getters";
+import { getValue } from "../getters";
 
 /**
  * Iteratively resolves placeholders in a template-like string using values from a provided object.
@@ -21,10 +21,13 @@ export const resolveTemplateString = (str: string, obj: any): string => {
 
     const value = getValue(obj, path);
 
-    if(typeof value === 'object'){
-      replacedStr = value
-    } else if (typeof value === 'string' && value.includes('${')) {
-      replacedStr = replacedStr.replace(fullMatch, resolveTemplateString(value, obj));
+    if (typeof value === "object") {
+      replacedStr = value;
+    } else if (typeof value === "string" && value.includes("${")) {
+      replacedStr = replacedStr.replace(
+        fullMatch,
+        resolveTemplateString(value, obj),
+      );
     } else {
       replacedStr = replacedStr.replace(fullMatch, value);
     }
@@ -32,8 +35,6 @@ export const resolveTemplateString = (str: string, obj: any): string => {
   }
   return replacedStr;
 };
-
-
 
 /**
  * Limits the length of a string to a specified number of characters, appending an ending if truncated.

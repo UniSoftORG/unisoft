@@ -1,6 +1,6 @@
-import {getValue} from "../getters";
-import {resolveTemplateString} from "./string";
-import {setByDotNotation} from "../setters";
+import { getValue } from "../getters";
+import { resolveTemplateString } from "./string";
+import { setByDotNotation } from "../setters";
 
 /**
  * Replaces specified targeted strings within an object using a provided list.
@@ -10,12 +10,15 @@ import {setByDotNotation} from "../setters";
  * @param {string[]} targets - List of imports pointing to strings to be replaced within the object.
  * @returns {T} - The modified object with targeted strings replaced.
  */
-export const replaceDynamicTargets = <T>(obj: T, targets: string[]): T | undefined => {
+export const replaceDynamicTargets = <T>(
+  obj: T,
+  targets: string[],
+): T | undefined => {
   targets?.map((target) => {
     const targetStr = getValue(obj, target);
     const replaced = resolveTemplateString(targetStr as string, obj);
-    setByDotNotation(obj, target, replaced)
-  })
+    setByDotNotation(obj, target, replaced);
+  });
   // for (let path of targets) {
   //   const targetStr = getValue(obj, path);
   //   const replaced = resolveTemplateString(targetStr as string, obj);
@@ -34,7 +37,7 @@ export const replaceDynamicTargets = <T>(obj: T, targets: string[]): T | undefin
 export const mergeObjects = (oldProps: any, newProps: any) => {
   return {
     ...oldProps,
-    ...newProps
+    ...newProps,
   };
 };
 

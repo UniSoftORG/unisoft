@@ -33,12 +33,11 @@ export function mapObjectValues<T, U>(
  *
  */
 export const transformEntries = <T>(
-    input: { [key: string]: any },
-    transformer: (key: string, value: any) => T
+  input: { [key: string]: any },
+  transformer: (key: string, value: any) => T,
 ): T[] => {
   return Object.entries(input).map(([key, value]) => transformer(key, value));
-}
-
+};
 
 /**
  * Maps the values of an array using a mapper function.

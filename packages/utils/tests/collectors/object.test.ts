@@ -1,4 +1,3 @@
-import {describe, it, expect} from '@jest/globals';
 import {efficientPluck} from "../../src/collectors";
 
 describe('Object Collector Module', () => {

@@ -1,5 +1,5 @@
 import { Conditional, ValueReplacement } from "../../@utils";
-import {createCondition, mapObjectValues} from "../helpers";
+import { createCondition, mapObjectValues } from "../helpers";
 import { evaluateReplacement } from "./string";
 import { getValue } from "../getters";
 import { setNestedValue } from "../setters";

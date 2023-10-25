@@ -30,9 +30,13 @@ export const setNestedValue = <T>(
  * @param {string} path - A dot-separated string representing the path to the nested key.
  * @param {K} value - The value to set for the nested key.
  */
-export const setByDotNotation = <T, K extends keyof any = keyof any>(obj: T, path: string, value: K): void => {
+export const setByDotNotation = <T, K extends keyof any = keyof any>(
+  obj: T,
+  path: string,
+  value: K,
+): void => {
   // Handle both dot and array notations and split the path.
-  const parts = path.replace(/\[/g, '.').replace(/\]/g, '').split('.');
+  const parts = path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
 
   parts.reduce((acc: any, part, index, array) => {
     // If it's the last part, set the value

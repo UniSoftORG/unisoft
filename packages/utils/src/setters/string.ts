@@ -145,3 +145,29 @@ export const substrReplace = (
   length: number,
 ): string =>
   subject.substr(0, start) + replacement + subject.substr(start + length);
+
+/**
+ * Processes a template string by replacing content between customizable delimiters with the result of a callback function.
+ *
+ * @param {string} input - The template string to process.
+ * @param {(value: string) => string} callback - A callback function that receives the content between the delimiters and returns a replacement string.
+ * @param {string} start - The starting delimiter. Special characters will be escaped.
+ * @param {string} end - The ending delimiter. Special characters will be escaped.
+ * @returns {string} - The processed string with content between the delimiters replaced by the result of the callback function.
+ *
+ * @example
+ * // Returns "Hello John!"
+ * processTemplateStrings("Hello ${name}!", name => "John", "${", "}")
+ */
+export const processTemplateStrings = (
+  input: string,
+  callback: (value: string) => string,
+  start: string,
+  end: string,
+): string => {
+  const escapedStart = start.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
+  const escapedEnd = end.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(`${escapedStart}(.*?)${escapedEnd}`, "g");
+
+  return input.replace(pattern, (match, content) => callback(content));
+};

@@ -1,23 +1,22 @@
-import {webRequest} from "@/utils/Request/singletonApiRequest";
-import {DynamicRequest} from "@/types";
+import { webRequest } from "@/utils/Request/singletonApiRequest";
+import { DynamicRequest } from "@/types";
 
 export const createRequest = async (endpoints: DynamicRequest[]) => {
-    const webReq = webRequest();
+  const webReq = webRequest();
 
-    const resultsArray = await Promise.all(endpoints.map(async (endpoint) => {
-        const {method, url, payload} = endpoint;
-        const mappedMethod = endpoint.method;
+  const resultsArray = await Promise.all(
+    endpoints.map(async (endpoint) => {
+      const { method, url, payload } = endpoint;
+      const mappedMethod = endpoint.method;
 
-        if (mappedMethod && typeof webReq[mappedMethod] === 'function') {
-            const result = await webReq[mappedMethod](url, payload);
-            return {key: endpoint.objKey, value: result};
-        } else {
-            return Promise.reject(new Error(`Unsupported method: ${method}`));
-        }
-    }));
+      if (mappedMethod && typeof webReq[mappedMethod] === "function") {
+        const result = await webReq[mappedMethod](url, payload);
+        return { key: endpoint.objKey, value: result };
+      } else {
+        return Promise.reject(new Error(`Unsupported method: ${method}`));
+      }
+    }),
+  );
 
-    return Object.fromEntries(
-        resultsArray.map(({key, value}) => [key, value])
-    );
+  return Object.fromEntries(resultsArray.map(({ key, value }) => [key, value]));
 };
-

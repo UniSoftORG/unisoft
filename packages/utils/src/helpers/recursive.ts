@@ -1,4 +1,5 @@
 import { Nested } from "../../@utils";
+import { getValue } from "../getters";
 
 /**
  * Recursively maps over an array of nested objects and applies a mapper function to each object.
@@ -18,15 +19,15 @@ export const mapRecursive = <T extends Nested<T>>(
     throw new Error("Input must be an array.");
   }
 
-  return data.map((item) => {
+  return data.map((item, key) => {
     const nestedValue = item[nestedKey];
     if (Array.isArray(nestedValue)) {
       return {
-        ...mapperFn(item),
+        ...mapperFn(item, key),
         [nestedKey]: mapRecursive(nestedValue, mapperFn, nestedKey),
       };
     }
-    return mapperFn(item);
+    return mapperFn(item, key);
   });
 };
 
@@ -117,4 +118,53 @@ export const forLoopRecursive = <T extends Record<string, any>>(
   }
 
   return result;
+};
+
+type AnyObject = { [key: string]: any };
+
+export const transformObject = (
+  obj: AnyObject,
+  shouldTransformByKey: string,
+  copyKeys: string[],
+  parent?: AnyObject,
+) => {
+  if (!obj || typeof obj !== "object") return;
+
+  if (
+    obj.hasOwnProperty(shouldTransformByKey) &&
+    typeof obj[shouldTransformByKey] === "string"
+  ) {
+    const pathParts = (obj[shouldTransformByKey] as unknown as string).split(
+      ".",
+    );
+    let valueToMap: any = parent;
+
+    for (let part of pathParts) {
+      if (valueToMap && valueToMap.hasOwnProperty(part)) {
+        valueToMap = valueToMap[part];
+      } else {
+        valueToMap = undefined;
+        break;
+      }
+    }
+
+    if (Array.isArray(valueToMap)) {
+      obj.children = valueToMap.map((subItem, index) => {
+        let newItem: AnyObject = { ...subItem, index: index };
+        for (const key of copyKeys) {
+          if (subItem.hasOwnProperty(key)) {
+            newItem[key] = subItem[key];
+          }
+        }
+        return newItem;
+      });
+      delete obj[shouldTransformByKey]; // Remove the shouldTransformByKey after processing
+    }
+  }
+
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key) && typeof obj[key] === "object") {
+      transformObject(obj[key], shouldTransformByKey, copyKeys, obj);
+    }
+  }
 };

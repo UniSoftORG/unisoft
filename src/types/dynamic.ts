@@ -1,7 +1,12 @@
-import {SupportedApiMethods} from "@/interfaces/api/generics";
+import { SupportedApiMethods } from "@/interfaces/api/generics";
 
 export interface DynamicProp {
-    [key: string]: Array<{ [key: string]: string }>;
+  [key: string]: Array<{ [key: string]: string }>;
 }
 
-export interface DynamicRequest { objKey: string; method: SupportedApiMethods; url: string; payload?: any }
+export interface DynamicRequest {
+  objKey: string;
+  method: SupportedApiMethods;
+  url: string;
+  payload?: any;
+}
