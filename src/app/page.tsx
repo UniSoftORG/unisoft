@@ -1,7 +1,43 @@
-import InitiateRenderer from "@/renderer/InitiateRenderer";
-import { Slider } from "@/predefined/components/Sliders/Slider";
-import { Creators } from "unisoft-utils";
+"use client"
+// import InitiateRenderer from "@/renderer/InitiateRenderer";
+// import {Slider} from "@/predefined/components/Sliders/Slider";
+// import {Creators} from "unisoft-utils";
 
-export default async function Home() {
-  return await InitiateRenderer(Creators.simpleDeepClone([Slider]));
+import {
+  executeFunctionConfigs,
+  registerFunction,
+  registerFunctionsFromModule, runFunctionTask
+} from "@/utils/Functions/DynamicFunctionLibrary";
+import * as Utils from "@/utils/Functions/generatedWrappers";
+import * as Base from "@/utils/Functions/Base/cyclicFunctions";
+export default function Home() {
+  const consoleLog = (attributes: any) => {
+    if (attributes.value) {
+      console.log(attributes.value);
+    }
+  };
+  // registerFunction('consoleLog', consoleLog);
+  // registerFunctionsFromModule(Utils);
+  // registerFunctionsFromModule(Base);
+
+
+
+  const functionTasks = [
+    {
+      name: "after",
+      attributes: {
+        subject: "Rade is pro",
+        search: "is"
+      },
+        callbacks: [{
+          name: "consoleLog",
+          attributes: {
+            value: "result"
+          }
+        }]
+    }
+  ];
+  functionTasks.forEach(runFunctionTask);
+
+  // return await InitiateRenderer(Creators.simpleDeepClone([Slider]))
 }

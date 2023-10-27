@@ -23,6 +23,27 @@ export const Slider = createElement(
       current: 0,
       testState: "Rade",
     },
+      functions: [
+          {
+              name: "cyclicIncrement",
+              attributes: {
+                  number: 0,
+                  max: 3,
+                  reset: true,
+                  callbacks: [{
+                      name: "consoleLog",
+                      attributes: {
+                          value: "cyclicIncrement.nextNumber"
+                      }
+                  }, {
+                      name: "consoleLog",
+                      attributes: {
+                          value: "cyclicIncrement.number"
+                      }
+                  }]
+              }
+          }
+      ],
     children: [
       createElement({
         name: "SliderBackground",

@@ -93,7 +93,7 @@ export interface IComponent<Type = any, ChildType = any> {
   mapByKey?: string;
   mappedComponent?: IComponentType[];
   mapAttributes?: any;
-
+  functions?: any;
   // children?: IComponentBase<Type, ChildType>[] | React.ReactElement<{parentprops?: any}>[] | React.ReactElement<{parentprops?: any}>;
 
   requests?: DynamicRequest[];
