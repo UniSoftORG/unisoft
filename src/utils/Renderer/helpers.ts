@@ -1,20 +1,20 @@
 import { IComponentBase } from "@/types";
 import { v4 } from "uuid";
-import { Creators, Getters, Setters, Transformers } from "unisoft-utils";
+import { getValue, simpleDeepClone, setByDotNotation, resolveTemplateString } from "unisoft-utils";
 
 export const replaceDynamicTargets = <T = any, R = any>(
   obj: T,
   targets: string[],
 ): R | any => {
-  const newObj = Creators.simpleDeepClone(obj);
+  const newObj = simpleDeepClone(obj);
 
   targets?.map((target) => {
-    const targetStr = Getters.getValue(newObj, target);
-    const replaced = Transformers.resolveTemplateString(
+    const targetStr = getValue(newObj, target);
+    const replaced = resolveTemplateString(
       targetStr as string,
       newObj,
     );
-    Setters.setByDotNotation(newObj, target, replaced);
+    setByDotNotation(newObj, target, replaced);
     return replaced;
   });
 

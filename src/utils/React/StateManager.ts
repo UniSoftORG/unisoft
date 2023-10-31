@@ -1,7 +1,7 @@
 "use client";
 import { Action, CreateState, SetState } from "@/types/react";
 import { useEffect, useReducer, useState } from "react";
-import { Helpers } from "unisoft-utils";
+import { transformEntries } from "unisoft-utils";
 
 export const createState = ({
   key,
@@ -62,14 +62,14 @@ export const getAllStates = (statesMap: any) => {
 };
 
 export const createAllStates = (states: { [key: string]: string }) => {
-  return Helpers.transformEntries(states, (key, defaultValue) =>
+  return transformEntries(states, (key, defaultValue) =>
     createState({ key, defaultValue }),
   );
 };
 
 export const generateStates = (states: CreateState) => {
   return getAllStates(
-    Helpers.transformEntries(states, (key, defaultValue) =>
+    transformEntries(states, (key, defaultValue) =>
       createState({ key, defaultValue }),
     ),
   );

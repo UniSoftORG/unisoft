@@ -1,4 +1,5 @@
-import {useFunction} from "@/utils/Functions/useFunctions";
+import functionsMap, {registerFunc} from "@/utils/Functions/useFunctions";
+import {simpleDeepClone, mapObjectValues} from "unisoft-utils";
 
 export interface CallbackConfig {
     name: string;
@@ -11,16 +12,36 @@ export type Attributes = {
 
 type FunctionSignature = (params: Attributes) => any;
 
-const functionMap: { [name: string]: FunctionSignature } = {};
 
 export function registerFunction(name: string, func: FunctionSignature) {
-    functionMap[name] = func;
+    functionsMap[name] = func;
 }
 
-export function invokeFunctionByName(name: string, attributes: Attributes): any {
-    useFunction(name)
-    if (!functionMap[name]) throw new Error(`Function ${name} not found`);
-    return functionMap[name](attributes);
+export function invokeFunctionByName(name: string, attributes: Attributes, inject?: any): any {
+    if (!functionsMap[name]) {
+        registerFunc(name)
+    }
+    return functionsMap[name](attributes);
+}
+
+export function runFunctionTask(task: any, inject?: any) {
+    const cloneFunction = simpleDeepClone(task)
+    const executeTask = (currentTask: any) => {
+        const result = invokeFunctionByName(currentTask.name, currentTask.attributes, inject);
+
+        if (currentTask.callbacks && currentTask.callbacks.length) {
+            currentTask.callbacks.forEach((callback: any) => {
+                const callbackAttributes = mapObjectValues(callback.attributes, (value: string) => {
+                    return value === 'parentReturn' ? result : value
+                })
+                executeTask({...callback, attributes: callbackAttributes});
+            });
+        }
+
+        return result;
+    };
+
+    return executeTask(cloneFunction);
 }
 
 export function invokeCallbacks(result: any, callbackConfigs?: CallbackConfig[]) {
@@ -31,29 +52,6 @@ export function invokeCallbacks(result: any, callbackConfigs?: CallbackConfig[])
     }
 }
 
-// Helper to wrap standalone functions
-export function wrapWithCallbacks(func: (...args: any[]) => any) {
-    return (attributes: Attributes) => {
-        const result = func(attributes);
-        invokeCallbacks(result, attributes.callbacks);
-        return result;
-    };
-}
-
-// Optional: To automatically register functions from imported modules
-export function registerFunctionsFromModule(module: { [key: string]: (...args: any[]) => any }) {
-    for (const [name, func] of Object.entries(module)) {
-        registerFunction(name, wrapWithCallbacks(func));
-    }
-}
-
-export function executeFunctionConfigs(functionConfigs: {name: string, [key: string]: any}[]) {
-    for (const funcConfig of functionConfigs) {
-        const { name, ...attributes } = funcConfig;
-        invokeFunctionByName(name, attributes);
-    }
-}
-
 export function wrapExternalFunction(func: (...args: any[]) => any, paramMapping: (attributes: Attributes) => any[]) {
     return (attributes: Attributes) => {
         const args = paramMapping(attributes);
@@ -61,29 +59,4 @@ export function wrapExternalFunction(func: (...args: any[]) => any, paramMapping
         invokeCallbacks(result, attributes.callbacks);
         return result;
     };
-}
-
-
-export function runFunctionTask(task: any) {
-    let result = invokeFunctionByName(task.name, task.attributes);
-
-    // Check if there are callbacks and execute them
-    if (task.callbacks && task.callbacks.length) {
-        task.callbacks.forEach((callback: any) => {
-            const callbackAttributes = { ...callback.attributes };
-
-            for (const key in callbackAttributes) {
-                if (callbackAttributes[key] === "result") {
-                    callbackAttributes[key] = result;
-                } else if (callbackAttributes[key].startsWith("result.")) {
-                    const splitKey = callbackAttributes[key].split(".")[1];
-                    callbackAttributes[key] = result[splitKey];
-                }
-            }
-
-            invokeFunctionByName(callback.name, callbackAttributes);
-        });
-    }
-
-    return result;
 }

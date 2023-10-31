@@ -1,47 +1,50 @@
-import {wrapExternalFunction} from "@/utils/Functions/DynamicFunctionLibrary";
-import {Getters} from "unisoft-utils";
+import { wrapExternalFunction} from "@/utils/Functions/DynamicFunctionLibrary";
+import {after, before, afterLast, ucsplit, beforeLast, wordCount, substrCount} from "unisoft-utils";
 
 export const wrappedAfter = wrapExternalFunction(
-    Getters.after,
+    after,
     attributes => [attributes.subject, attributes.search]
 );
 
 export const wrappedAfterLast = wrapExternalFunction(
-    Getters.afterLast,
+    afterLast,
     attributes => [attributes.subject, attributes.search]
 );
 
+
 export const wrappedBefore = wrapExternalFunction(
-    Getters.before,
+    before,
     attributes => [attributes.subject, attributes.search]
 );
 
 export const wrappedBeforeLast = wrapExternalFunction(
-    Getters.beforeLast,
+    beforeLast,
     attributes => [attributes.subject, attributes.search]
 );
 
-export const wrappedBetween = wrapExternalFunction(
-    Getters.between,
-    attributes => [attributes.subject, attributes.start, attributes.end, attributes.]
-);
-
-export const wrappedSubstr = wrapExternalFunction(
-    Getters.substr,
-    attributes => [attributes.subject, attributes.start, attributes.length?, attributes.]
-);
-
 export const wrappedWordCount = wrapExternalFunction(
-    Getters.wordCount,
+    wordCount,
     attributes => [attributes.subject]
 );
 
 export const wrappedUcsplit = wrapExternalFunction(
-    Getters.ucsplit,
+    ucsplit,
     attributes => [attributes.subject]
 );
+// registerFunction('ucsplit', wrappedUcsplit);
+
 
 export const wrappedSubstrCount = wrapExternalFunction(
-    Getters.substrCount,
+    substrCount,
     attributes => [attributes.subject, attributes.search]
+);
+
+
+export const consoleLog = wrapExternalFunction(
+    (value) => {
+        if (value) {
+            console.log(value);
+        }
+    },
+    attributes => [attributes.value]
 );

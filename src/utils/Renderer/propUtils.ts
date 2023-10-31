@@ -1,4 +1,4 @@
-import { Transformers, Getters, Creators } from "unisoft-utils";
+import { simpleDeepClone, get } from "unisoft-utils";
 import { IComponent } from "@/types";
 
 function checkChild(child: IComponent, parentName: string, passTo: any) {
@@ -25,7 +25,7 @@ export function replaceWithStateValues(
   mainObject: AnyObject,
   passAttributes: AnyObject,
 ): AnyObject {
-  const clonedPassAttributes = Creators.simpleDeepClone(passAttributes);
+  const clonedPassAttributes = simpleDeepClone(passAttributes);
 
   for (const key in clonedPassAttributes) {
     if (typeof clonedPassAttributes[key] === "object") {
@@ -84,7 +84,7 @@ export function replaceWithValuesFromMainObject(
       let currentValue: any = mainObject;
       if (paths[0] === currentValue.name) {
         try {
-          const newVal = Getters.get(
+          const newVal = get(
             mainObject,
             passAttributes[key].replace(currentValue.name + ".", ""),
           );
@@ -118,10 +118,11 @@ export function generatePassAttributes(
   node.passAttributes = { ...node.passAttributes, ...passAttributes };
   // If parentAttributes contains a key matching the node's name, use it
   if (parentAttributes && parentAttributes[node.name]) {
-    node.passAttributes = Transformers.deepMerge(
-      passAttributes,
-      parentAttributes,
-    );
+    node.passAttributes = parentAttributes[node.name]
+    // node.passAttributes = Transformers.deepMerge(
+    //   passAttributes,
+    //   parentAttributes,
+    // );
   }
 
   if (node.children) {

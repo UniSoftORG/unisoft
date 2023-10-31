@@ -1,43 +1,40 @@
-"use client"
-// import InitiateRenderer from "@/renderer/InitiateRenderer";
-// import {Slider} from "@/predefined/components/Sliders/Slider";
-// import {Creators} from "unisoft-utils";
+import InitiateRenderer from "@/renderer/InitiateRenderer";
+import {Slider} from "@/predefined/components/Sliders/Slider";
+// import {
+//     runFunctionTask, wrapExternalFunction
+// } from "@/utils/Functions/DynamicFunctionLibrary";
 
-import {
-  executeFunctionConfigs,
-  registerFunction,
-  registerFunctionsFromModule, runFunctionTask
-} from "@/utils/Functions/DynamicFunctionLibrary";
-import * as Utils from "@/utils/Functions/generatedWrappers";
-import * as Base from "@/utils/Functions/Base/cyclicFunctions";
-export default function Home() {
-  const consoleLog = (attributes: any) => {
-    if (attributes.value) {
-      console.log(attributes.value);
-    }
-  };
-  // registerFunction('consoleLog', consoleLog);
-  // registerFunctionsFromModule(Utils);
-  // registerFunctionsFromModule(Base);
+const wrappedFunctions: { [key: string]: (...args: any[]) => any } = {};
+
+// const functionConfig = [
+//     {
+//         exportName: 'Getters',
+//         functionName: 'after',
+//         params: ['subject', 'search'],
+//     }
+// ];
+
+// function capitalize(str: string): string {
+//     return str.charAt(0).toUpperCase() + str.slice(1);
+// }
+
+// async function wrapFunctions() {
+//     for (const config of functionConfig) {
+//         const imMod = (await import('unisoft-utils')) as any;
+//         const func = config.functionName === 'default' ? imMod.default : imMod[config.functionName];
+//
+//         wrappedFunctions[`wrapped${capitalize(config.functionName)}`] = wrapExternalFunction(
+//             func,
+//             attributes => config.params.map(param => attributes[param])
+//         );
+//     }
+// }
 
 
+export default async function Home() {
+// Initially call wrapFunctions to set up the wrappers
+    // return  <pre>{JSON.stringify(initiate, null, 4)}</pre>
+    // functionTasks.forEach(runFunctionTask);
 
-  const functionTasks = [
-    {
-      name: "after",
-      attributes: {
-        subject: "Rade is pro",
-        search: "is"
-      },
-        callbacks: [{
-          name: "consoleLog",
-          attributes: {
-            value: "result"
-          }
-        }]
-    }
-  ];
-  functionTasks.forEach(runFunctionTask);
-
-  // return await InitiateRenderer(Creators.simpleDeepClone([Slider]))
+    return await InitiateRenderer([Slider])
 }

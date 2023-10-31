@@ -2,6 +2,7 @@
 import Renderer from "@/renderer/Render";
 import componentsMaps from "@/renderer/imports/components";
 import { delaySetState, useDynamicStates } from "@/utils/React/StateManager";
+import {useInterval} from "@/utils/React/TimeManager";
 
 const ClientRenderer: React.FC<{ componentProps: any; index: number }> = ({
   componentProps,
@@ -15,10 +16,9 @@ const ClientRenderer: React.FC<{ componentProps: any; index: number }> = ({
     : [];
 
   if (componentProps.name === "Slider" && states && setStateByKey) {
-    // setStateByKey('current', 1)
-    delaySetState(states.currentSetState, 1, () => {
-      setStateByKey("current", 1);
-    });
+    useInterval(['current'], () => {
+      setStateByKey("current", states['current'] === 0 ? 1 : 0);
+    }, states, 4000)
   }
 
   return (

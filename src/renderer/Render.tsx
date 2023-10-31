@@ -1,9 +1,10 @@
 import { IComponentType } from "@/types";
 import PrepareRenderer from "@/renderer/PrepareRenderer";
+import {runFunctionTask} from "@/utils/Functions/DynamicFunctionLibrary";
 
 const Renderer: React.FC<{
   Component: any;
-  componentProps: any;
+  componentProps: IComponentType;
   index: number;
   passFromParent?: any;
 }> = ({ Component, componentProps, index, passFromParent }) => {
@@ -11,6 +12,8 @@ const Renderer: React.FC<{
     ...componentProps,
     passAttributes: { ...componentProps.passAttributes },
   };
+
+  componentProps.functions && componentProps.functions.forEach(runFunctionTask);
 
   return (
     <Component

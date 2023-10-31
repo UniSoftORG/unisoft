@@ -4,7 +4,7 @@ import {
   replaceWithValuesFromMainObject,
 } from "@/utils/Renderer/propUtils";
 import { IComponentType } from "@/types";
-import { Getters } from "unisoft-utils";
+import { getValue } from "unisoft-utils";
 
 function transformObject(
   obj: IComponentType,
@@ -16,7 +16,7 @@ function transformObject(
       child.hasOwnProperty(shouldTransformByKey) &&
       child[shouldTransformByKey].startsWith(obj.name)
     ) {
-      const parentValue = Getters.getValue(
+      const parentValue = getValue(
         obj,
         child[shouldTransformByKey]?.replace(`${obj.name}.`, ""),
       );

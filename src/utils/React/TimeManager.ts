@@ -1,5 +1,27 @@
 import { useEffect, useRef } from "react";
 
+
+export const useInterval = (
+    watchKeys: string[],
+    executeFn: () => void,
+    states: any,
+    delay: any
+) => {
+  useEffect(
+      () => {
+        const tick = () => {
+          executeFn();
+        };
+
+        if (delay !== null) {
+          const id = setInterval(tick, delay);
+          return () => clearInterval(id);
+        }
+      },
+      watchKeys.map((key) => states[key]),
+  );
+};
+
 export const useTimeout = (callback: () => void, delay: number) => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -13,7 +35,7 @@ export const useTimeout = (callback: () => void, delay: number) => {
   }, [callback, delay]);
 };
 
-export const useInterval = (callback: () => void, delay: number) => {
+export const useIntervals = (callback: () => void, delay: number) => {
   const callbackRef = useRef(callback);
 
   // Remember the latest callback.
