@@ -1,4 +1,4 @@
-import functionsMap, {registerFunc} from "@/utils/Functions/useFunctions";
+import functionsMap, {registerFunc, registerReactFunction} from "@/utils/Functions/useFunctions";
 import {simpleDeepClone, mapObjectValues} from "unisoft-utils";
 
 export interface CallbackConfig {
@@ -25,6 +25,21 @@ export function invokeFunctionByName(name: string, attributes: Attributes, injec
 }
 
 export function runFunctionTask(task: any, inject?: any) {
+    task.forEach((fTask: any) => {
+        if(fTask.name === 'useInterval'){
+            functionsMap[fTask.name](
+                ['current'],
+                () => {
+                    console.log('test')
+                },
+                inject,
+                2000
+            )
+        }
+    })
+}
+
+export function runFunctionTasks(task: any, inject?: any) {
     const cloneFunction = simpleDeepClone(task)
     const executeTask = (currentTask: any) => {
         const result = invokeFunctionByName(currentTask.name, currentTask.attributes, inject);
@@ -42,6 +57,14 @@ export function runFunctionTask(task: any, inject?: any) {
     };
 
     return executeTask(cloneFunction);
+}
+
+export function executeFunctions(functions: any, inject?: any) {
+    const cloneFunction = simpleDeepClone(functions)
+    Object.keys(inject).map((value) => {
+        return registerReactFunction(value, inject[value])
+    })
+
 }
 
 export function invokeCallbacks(result: any, callbackConfigs?: CallbackConfig[]) {

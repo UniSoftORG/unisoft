@@ -15,18 +15,18 @@ const ClientRenderer: React.FC<{ componentProps: any; index: number }> = ({
     ? useDynamicStates(componentProps.states)
     : [];
 
-  if (componentProps.name === "Slider" && states && setStateByKey) {
-    useInterval(['current'], () => {
-      setStateByKey("current", states['current'] === 0 ? 1 : 0);
-    }, states, 4000)
-  }
+  // if (componentProps.name === "Slider" && states && setStateByKey) {
+  //   useInterval(['current'], () => {
+  //     setStateByKey("current", states['current'] === 0 ? 1 : 0);
+  //   }, states, 4000)
+  // }
 
   return (
     <Renderer
       Component={Component}
       componentProps={{
         ...componentProps,
-        passAttributes: { ...componentProps.passAttributes, ...states },
+        passAttributes: { ...componentProps.passAttributes, states: states, reactActions: {states: [states, setStateByKey], setState: setStateByKey, useInterval: useInterval} },
       }}
       index={index}
       passFromParent={{ ...states }}

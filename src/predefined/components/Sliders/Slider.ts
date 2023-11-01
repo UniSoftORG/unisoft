@@ -3,30 +3,47 @@ import {createElement} from "@/renderer/helpers/creators";
 
 const functionTasks = [
     {
-        name: "after",
+        name: "useInterval",
         attributes: {
-            subject: "parentReturn",
-            search: "pa"
-        },
-        callbacks: [
-            {
-                name: "before",
+            watchKeys: ["current"],
+            executeFn: {
+                name: "consoleLog",
                 attributes: {
-                    subject: "parentReturn",
-                    search: "rn"
-                },
-                callbacks: [
-                    {
-                        name: "consoleLog",
-                        attributes: {
-                            value: "parentReturn",
-                        }
-                    }
-                ]
-            }
-        ]
+                    value: "test"
+                }
+            },
+            states: "states",
+            delay: 5000
+        }
     }
 ];
+
+// const functionTasks = [
+//     {
+//         name: "after",
+//         attributes: {
+//             subject: "parentReturn",
+//             search: "pa"
+//         },
+//         callbacks: [
+//             {
+//                 name: "before",
+//                 attributes: {
+//                     subject: "parentReturn",
+//                     search: "rn"
+//                 },
+//                 callbacks: [
+//                     {
+//                         name: "consoleLog",
+//                         attributes: {
+//                             value: "parentReturn",
+//                         }
+//                     }
+//                 ]
+//             }
+//         ]
+//     }
+// ];
 
 export const Slider = createElement(
     {
@@ -47,6 +64,7 @@ export const Slider = createElement(
                 }
             ],
         },
+        functions: functionTasks,
         states: {
             current: 0,
             testState: "Rade",
@@ -62,7 +80,6 @@ export const Slider = createElement(
                 name: "SliderBackground",
                 renderer: "client",
                 mapByKey: "Slider.variables.slides",
-                functions: functionTasks,
                 elementAttributes: {
                     className:
                         "absolute w-full bg-cover bg-center h-full pl-8 pr-8 lg:pl-52 lg:pr-12 grid content-center transition duration-500 #{${passAttributes.index} === ${passAttributes.current} ? opacity-100 : opacity-0}",
@@ -80,8 +97,7 @@ export const Slider = createElement(
                 },
                 dynamic: [
                     "elementAttributes.style.backgroundImage",
-                    "elementAttributes.className",
-                    "functions.0.attributes.value",
+                    "elementAttributes.className"
                 ],
                 conditions: ["elementAttributes.className"],
             }),

@@ -1,6 +1,6 @@
 import { IComponentType } from "@/types";
 import PrepareRenderer from "@/renderer/PrepareRenderer";
-import {runFunctionTask} from "@/utils/Functions/DynamicFunctionLibrary";
+import {executeFunctions, runFunctionTask} from "@/utils/Functions/DynamicFunctionLibrary";
 
 const Renderer: React.FC<{
   Component: any;
@@ -12,9 +12,18 @@ const Renderer: React.FC<{
     ...componentProps,
     passAttributes: { ...componentProps.passAttributes },
   };
+  const {states, reactActions} = componentProps.passAttributes;
 
-  componentProps.functions && componentProps.functions.forEach(runFunctionTask);
+  if (componentProps.name === "Slider" && states && reactActions) {
+    reactActions.useInterval(['current'], () => {
+      reactActions.setState("current", states['current'] === 0 ? 1 : 0);
+    }, states, 4000)
+  }
 
+  // componentProps.functions && componentProps.functions.forEach(runFunctionTask);
+  componentProps.functions && executeFunctions(componentProps.functions, reactActions);
+  componentProps.functions && runFunctionTask(componentProps.functions, states)
+  // componentProps.functions && componentProps.functions.forEach(runFunctionTask);
   return (
     <Component
       {...componentProps}
