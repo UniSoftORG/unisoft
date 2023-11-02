@@ -14,11 +14,11 @@ const Renderer: React.FC<{
   };
   const {states, reactActions} = componentProps.passAttributes;
 
-  // if (componentProps.name === "Slider" && states && reactActions) {
-  //   reactActions.useInterval(['current'], () => {
-  //     reactActions.setState("current", states['current'] === 0 ? 1 : 0);
-  //   }, states, 4000)
-  // }
+  if (componentProps.name === "Slider" && states && reactActions) {
+    reactActions.useInterval(['current'], () => {
+      reactActions.setState("current", states['current'] === 0 ? 1 : 0);
+    }, states, 4000)
+  }
 
   // componentProps.functions && componentProps.functions.forEach(runFunctionTask);
   componentProps.functions && executeFunctions(componentProps.functions, reactActions);

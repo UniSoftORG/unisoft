@@ -1,6 +1,17 @@
 import {createElement} from "@/renderer/helpers/creators";
 
 
+const functionTaskss = [
+    {
+        name: "setState",
+        attributes: {
+            key: "current",
+            value: "#{${states.current} === 1 ? '0' : 1}"
+        }
+    },
+
+];
+
 const functionTasks = [
     {
         name: "useInterval",
@@ -8,15 +19,18 @@ const functionTasks = [
             watchKeys: ["current"],
             delay: 1500
         },
-        callbacks: [{
-            name: "consoleLog",
-            attributes: {
-                value: "test"
+        callbacks: [
+            {
+                name: "setState",
+                attributes: {
+                    key: "current",
+                    value: "#{${states.current} === 1 ? '0' : 1}"
+                }
             }
-        }],
+        ]
     }
 ];
-
+//
 // const functionTasks = [
 //     {
 //         name: "after",
@@ -68,19 +82,8 @@ export const Slider = createElement(
             current: 0,
             testState: "Rade",
         },
-        useEffects: [
-            {
-                functions: [
-                    {
-                        name: 'consoleLog',
-                        attributes: {
-                            value: 'tesss'
-                        }
-                    }
-                ],
-                dependencies: ['states.current']
-            }
-        ],
+        dynamic: ['functions.0.callbacks.1.attributes.value', 'functions.0.callbacks.0.attributes.value'],
+        conditions: ['functions.0.callbacks.0.attributes.value'],
         children: [
             createElement({
                 name: "SliderBackground",

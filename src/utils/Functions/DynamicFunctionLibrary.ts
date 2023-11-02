@@ -36,31 +36,36 @@ export function runFunctionTask(tasks: any, inject?: any) {
                 task.attributes.delay
             )
         }
+
+        if(task.name === 'setState'){
+            console.log(task)
+        }
     })
 }
 
 export function runFunctionTasks(task: any, inject?: any) {
     const cloneFunction = simpleDeepClone(task)
+
     const executeTask = (currentTask: any) => {
-        const result = invokeFunctionByName(currentTask.name, currentTask.attributes, inject);
+            const result = invokeFunctionByName(currentTask.name, currentTask.attributes, inject);
 
-        if (currentTask.callbacks && currentTask.callbacks.length) {
-            currentTask.callbacks.forEach((callback: any) => {
-                const callbackAttributes = mapObjectValues(callback.attributes, (value: string) => {
-                    return value === 'parentReturn' ? result : value
-                })
-                executeTask({...callback, attributes: callbackAttributes});
-            });
-        }
+            if (currentTask.callbacks && currentTask.callbacks.length) {
+                currentTask.callbacks.forEach((callback: any) => {
+                    const callbackAttributes = mapObjectValues(callback.attributes, (value: string) => {
+                        return value === 'parentReturn' ? result : value
+                    })
+                    executeTask({...callback, attributes: callbackAttributes});
+                });
+            }
 
-        return result;
+            return result;
     };
 
     return executeTask(cloneFunction);
 }
 
 export function executeFunctions(functions: any, inject?: any) {
-    const cloneFunction = simpleDeepClone(functions)
+    // const cloneFunction = simpleDeepClone(functions)
     Object.keys(inject).map((value) => {
         return registerReactFunction(value, inject[value])
     })

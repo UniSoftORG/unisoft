@@ -26,7 +26,15 @@ const ClientRenderer: React.FC<{ componentProps: any; index: number }> = ({
       Component={Component}
       componentProps={{
         ...componentProps,
-        passAttributes: { ...componentProps.passAttributes, states: states, reactActions: {states: [states, setStateByKey], setState: setStateByKey, useInterval: useInterval} },
+        passAttributes: {
+            ...componentProps.passAttributes,
+            states: states,
+            reactActions: {
+                states: [states, setStateByKey],
+                setState: setStateByKey,
+                useInterval: useInterval
+            }
+        },
       }}
       index={index}
       passFromParent={{ ...states }}
