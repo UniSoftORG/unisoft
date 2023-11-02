@@ -24,16 +24,16 @@ export function invokeFunctionByName(name: string, attributes: Attributes, injec
     return functionsMap[name](attributes);
 }
 
-export function runFunctionTask(task: any, inject?: any) {
-    task.forEach((fTask: any) => {
-        if(fTask.name === 'useInterval'){
-            functionsMap[fTask.name](
-                ['current'],
+export function runFunctionTask(tasks: any, inject?: any) {
+    tasks.forEach((task: any) => {
+        if(task.name === 'useInterval'){
+            functionsMap[task.name](
+                task.attributes.watchKeys,
                 () => {
-                    console.log('test')
+                    task.callbacks && task.callbacks.forEach(runFunctionTasks)
                 },
                 inject,
-                2000
+                task.attributes.delay
             )
         }
     })

@@ -6,15 +6,14 @@ const functionTasks = [
         name: "useInterval",
         attributes: {
             watchKeys: ["current"],
-            executeFn: {
-                name: "consoleLog",
-                attributes: {
-                    value: "test"
-                }
-            },
-            states: "states",
-            delay: 5000
-        }
+            delay: 1500
+        },
+        callbacks: [{
+            name: "consoleLog",
+            attributes: {
+                value: "test"
+            }
+        }],
     }
 ];
 
@@ -71,7 +70,14 @@ export const Slider = createElement(
         },
         useEffects: [
             {
-                functions: [],
+                functions: [
+                    {
+                        name: 'consoleLog',
+                        attributes: {
+                            value: 'tesss'
+                        }
+                    }
+                ],
                 dependencies: ['states.current']
             }
         ],

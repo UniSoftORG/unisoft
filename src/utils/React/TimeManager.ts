@@ -34,23 +34,3 @@ export const useTimeout = (callback: () => void, delay: number) => {
     };
   }, [callback, delay]);
 };
-
-export const useIntervals = (callback: () => void, delay: number) => {
-  const callbackRef = useRef(callback);
-
-  // Remember the latest callback.
-  useEffect(() => {
-    callbackRef.current = callback;
-  }, [callback]);
-
-  // Setup the interval.
-  useEffect(() => {
-    const tick = () => {
-      callbackRef.current();
-    };
-    if (delay !== null) {
-      const id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-};
