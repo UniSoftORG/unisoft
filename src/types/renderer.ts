@@ -86,14 +86,17 @@ export interface IComponent<Type = any, ChildType = any> {
   states?: CreateState;
   elementAttributes?: Record<string, any> | undefined;
   dynamic?: any;
+  rendererDynamic?: any;
   receiveAttributes?: any;
   passAttributes?: any;
   children?: any;
   conditions?: string[];
+  rendererConditions?: string[];
   mapByKey?: string;
   mappedComponent?: IComponentType[];
   mapAttributes?: any;
-
+  functions?: any;
+  useEffects?: any;
   // children?: IComponentBase<Type, ChildType>[] | React.ReactElement<{parentprops?: any}>[] | React.ReactElement<{parentprops?: any}>;
 
   requests?: DynamicRequest[];

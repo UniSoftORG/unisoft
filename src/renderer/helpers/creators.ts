@@ -1,5 +1,4 @@
 import { IComponentBase, IComponent, KnownComponentType } from "@/types";
-import { generateComponentBase } from "@/renderer/helpers/generators";
 import { v4 } from "uuid";
 
 // export const createTextField = (name: string, props: object): IComponent => {

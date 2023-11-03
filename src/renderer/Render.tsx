@@ -1,23 +1,24 @@
 import { IComponentType } from "@/types";
 import PrepareRenderer from "@/renderer/PrepareRenderer";
+import { runMappedFunctions } from "@/utils/Functions/DynamicFunctionLibrary";
+import { processReactClientData } from "@/utils/Renderer/helpers";
 
 const Renderer: React.FC<{
   Component: any;
-  componentProps: any;
+  componentProps: IComponentType;
   index: number;
   passFromParent?: any;
-}> = ({ Component, componentProps, index, passFromParent }) => {
-  const merged = {
-    ...componentProps,
-    passAttributes: { ...componentProps.passAttributes },
-  };
+  fromClient?: boolean;
+}> = ({ Component, componentProps, index, passFromParent, fromClient }) => {
+  if (fromClient) componentProps = processReactClientData(componentProps);
+  if (componentProps.functions) runMappedFunctions(componentProps.functions);
 
   return (
     <Component
       {...componentProps}
       componentData={{
-        ...merged,
-        passAttributes: { ...merged.passAttributes },
+        ...componentProps,
+        passAttributes: { ...componentProps.passAttributes },
       }}
       key={`${componentProps.uuid}-${index}`}
     >

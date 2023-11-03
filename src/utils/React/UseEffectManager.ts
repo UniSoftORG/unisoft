@@ -9,6 +9,6 @@ export const useCustomEffect = (
     () => {
       executeFn();
     },
-    watchKeys.map((key) => states[key].value),
+    watchKeys.map((key) => states[key]),
   );
 };

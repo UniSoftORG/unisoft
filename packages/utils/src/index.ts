@@ -1,9 +1,9 @@
-export * as Setters from "./setters";
-export * as Getters from "./getters";
-export * as Creators from "./creators";
-export * as Collectors from "./collectors";
-export * as Transformers from "./transformers";
-export * as Helpers from "./helpers";
-export * as Evaluators from "./evaluators";
-export * as Checkers from "./checkers";
-export * as Filters from "./filters";
+export * from "./setters";
+export * from "./getters";
+export * from "./creators";
+export * from "./collectors";
+export * from "./transformers";
+export * from "./helpers";
+export * from "./evaluators";
+export * from "./checkers";
+export * from "./filters";

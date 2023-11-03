@@ -1,5 +1,52 @@
 import { createElement } from "@/renderer/helpers/creators";
 
+const functionTsasks = [
+  {
+    name: "after",
+    attributes: {
+      subject: "Something nice",
+      search: "So",
+    },
+    callbacks: [
+      {
+        name: "before",
+        attributes: {
+          subject: "parentReturn",
+          search: "ni",
+        },
+        callbacks: [
+          {
+            name: "consoleLog",
+            attributes: {
+              value: "parentReturn",
+            },
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const functionTasks = [
+  {
+    name: "useInterval",
+    attributes: {
+      watchKeys: ["current"],
+      executeFn: [
+        {
+          name: "setState",
+          attributes: {
+            key: "current",
+            value: "#{${states.current} === 1 ? 0 : 1}",
+          },
+          callbacks: functionTsasks,
+        },
+      ],
+      delay: 1500,
+    },
+  },
+];
+
 export const Slider = createElement(
   {
     name: "Slider",
@@ -14,15 +61,18 @@ export const Slider = createElement(
           href: "/",
         },
         {
-          image: "/images/slider/bg-test2.webp",
+          image: "/images/slider/bg-test3.webp",
           href: "/",
         },
       ],
     },
+    functions: functionTasks,
     states: {
       current: 0,
       testState: "Rade",
     },
+    rendererDynamic: ["functions.0.attributes.executeFn.0.attributes.value"],
+    rendererConditions: ["functions.0.attributes.executeFn.0.attributes.value"],
     children: [
       createElement({
         name: "SliderBackground",
@@ -41,6 +91,7 @@ export const Slider = createElement(
         receiveAttributes: {
           slides: "Slider.variables.slides",
           current: "Slider.states.current",
+          parent: "Slider.name",
         },
         dynamic: [
           "elementAttributes.style.backgroundImage",

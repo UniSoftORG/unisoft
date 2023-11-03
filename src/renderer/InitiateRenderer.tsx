@@ -18,5 +18,4 @@ export default async function InitiateRenderer(template: any[]) {
   //         return acc;
   //     }, {});
   // }
-  // })
 }
