@@ -1,4 +1,4 @@
-import { Attributes } from '../DynamicFunctionLibrary';
+import { Attributes } from "../DynamicFunctionLibrary";
 //
 // export function cyclicIncrement({ number, max = Infinity, min = 0, reset = false, callbacks = [] }: Attributes): Result {
 //     const nextNumber = number + 1;
@@ -11,9 +11,8 @@ import { Attributes } from '../DynamicFunctionLibrary';
 //     return pos === -1 ? "" : subject.slice(pos + search.length);
 // };
 
-
 export function consoleLog({ value }: Attributes): void {
-    console.log(value);
+  console.log(value);
 }
 
 // Add any other functions here as needed...

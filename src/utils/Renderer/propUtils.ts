@@ -112,17 +112,13 @@ export function generatePassAttributes(
       checkChild(child, node.name, passAttributes);
     }
   }
-  node.passAttributes = passAttributes;
 
   // Merge with existing passAttributes
   node.passAttributes = { ...node.passAttributes, ...passAttributes };
+
   // If parentAttributes contains a key matching the node's name, use it
   if (parentAttributes && parentAttributes[node.name]) {
-    node.passAttributes = parentAttributes[node.name]
-    // node.passAttributes = Transformers.deepMerge(
-    //   passAttributes,
-    //   parentAttributes,
-    // );
+    node.passAttributes = parentAttributes[node.name];
   }
 
   if (node.children) {

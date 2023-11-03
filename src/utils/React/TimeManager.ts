@@ -1,24 +1,23 @@
 import { useEffect, useRef } from "react";
 
-
 export const useInterval = (
-    watchKeys: string[],
-    executeFn: () => void,
-    states: any,
-    delay: any
+  watchKeys: string[],
+  executeFn: () => void,
+  states: any,
+  delay: any,
 ) => {
   useEffect(
-      () => {
-        const tick = () => {
-          executeFn();
-        };
+    () => {
+      const tick = () => {
+        executeFn();
+      };
 
-        if (delay !== null) {
-          const id = setInterval(tick, delay);
-          return () => clearInterval(id);
-        }
-      },
-      watchKeys.map((key) => states[key]),
+      if (delay !== null) {
+        const id = setInterval(tick, delay);
+        return () => clearInterval(id);
+      }
+    },
+    watchKeys.map((key) => states[key]),
   );
 };
 

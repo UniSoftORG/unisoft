@@ -1,8 +1,8 @@
 "use client";
 import Renderer from "@/renderer/Render";
 import componentsMaps from "@/renderer/imports/components";
-import { delaySetState, useDynamicStates } from "@/utils/React/StateManager";
-import {useInterval} from "@/utils/React/TimeManager";
+import { useDynamicStates } from "@/utils/React/StateManager";
+import { useInterval } from "@/utils/React/TimeManager";
 
 const ClientRenderer: React.FC<{ componentProps: any; index: number }> = ({
   componentProps,
@@ -15,29 +15,26 @@ const ClientRenderer: React.FC<{ componentProps: any; index: number }> = ({
     ? useDynamicStates(componentProps.states)
     : [];
 
-  // if (componentProps.name === "Slider" && states && setStateByKey) {
-  //   useInterval(['current'], () => {
-  //     setStateByKey("current", states['current'] === 0 ? 1 : 0);
-  //   }, states, 4000)
-  // }
-
   return (
     <Renderer
       Component={Component}
       componentProps={{
         ...componentProps,
+        states: states,
         passAttributes: {
-            ...componentProps.passAttributes,
-            states: states,
+          ...{
             reactActions: {
-                states: [states, setStateByKey],
-                setState: setStateByKey,
-                useInterval: useInterval
-            }
+              states: [states, setStateByKey],
+              setState: setStateByKey,
+              useInterval: (watchKeys: any, executeFn: any, delay: any) =>
+                executeFn && useInterval(watchKeys, executeFn, states, delay),
+            },
+          },
         },
       }}
       index={index}
       passFromParent={{ ...states }}
+      fromClient={true}
     />
   );
 };

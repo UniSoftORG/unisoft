@@ -1,35 +1,24 @@
 import { IComponentType } from "@/types";
 import PrepareRenderer from "@/renderer/PrepareRenderer";
-import {executeFunctions, runFunctionTask} from "@/utils/Functions/DynamicFunctionLibrary";
+import { runMappedFunctions } from "@/utils/Functions/DynamicFunctionLibrary";
+import { processReactClientData } from "@/utils/Renderer/helpers";
 
 const Renderer: React.FC<{
   Component: any;
   componentProps: IComponentType;
   index: number;
   passFromParent?: any;
-}> = ({ Component, componentProps, index, passFromParent }) => {
-  const merged = {
-    ...componentProps,
-    passAttributes: { ...componentProps.passAttributes },
-  };
-  const {states, reactActions} = componentProps.passAttributes;
+  fromClient?: boolean;
+}> = ({ Component, componentProps, index, passFromParent, fromClient }) => {
+  if (fromClient) componentProps = processReactClientData(componentProps);
+  if (componentProps.functions) runMappedFunctions(componentProps.functions);
 
-  if (componentProps.name === "Slider" && states && reactActions) {
-    reactActions.useInterval(['current'], () => {
-      reactActions.setState("current", states['current'] === 0 ? 1 : 0);
-    }, states, 4000)
-  }
-
-  // componentProps.functions && componentProps.functions.forEach(runFunctionTask);
-  componentProps.functions && executeFunctions(componentProps.functions, reactActions);
-  componentProps.functions && runFunctionTask(componentProps.functions, states)
-  // componentProps.functions && componentProps.functions.forEach(runFunctionTask);
   return (
     <Component
       {...componentProps}
       componentData={{
-        ...merged,
-        passAttributes: { ...merged.passAttributes },
+        ...componentProps,
+        passAttributes: { ...componentProps.passAttributes },
       }}
       key={`${componentProps.uuid}-${index}`}
     >

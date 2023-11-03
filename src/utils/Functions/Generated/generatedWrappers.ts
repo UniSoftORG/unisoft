@@ -1,50 +1,54 @@
-import { wrapExternalFunction} from "@/utils/Functions/DynamicFunctionLibrary";
-import {after, before, afterLast, ucsplit, beforeLast, wordCount, substrCount} from "unisoft-utils";
+import { wrapExternalFunction } from "@/utils/Functions/DynamicFunctionLibrary";
+import {
+  after,
+  before,
+  afterLast,
+  ucsplit,
+  beforeLast,
+  wordCount,
+  substrCount,
+} from "unisoft-utils";
 
-export const wrappedAfter = wrapExternalFunction(
-    after,
-    attributes => [attributes.subject, attributes.search]
-);
+export const wrappedAfter = wrapExternalFunction(after, (attributes) => [
+  attributes.subject,
+  attributes.search,
+]);
 
 export const wrappedAfterLast = wrapExternalFunction(
-    afterLast,
-    attributes => [attributes.subject, attributes.search]
+  afterLast,
+  (attributes) => [attributes.subject, attributes.search],
 );
 
-
-export const wrappedBefore = wrapExternalFunction(
-    before,
-    attributes => [attributes.subject, attributes.search]
-);
+export const wrappedBefore = wrapExternalFunction(before, (attributes) => [
+  attributes.subject,
+  attributes.search,
+]);
 
 export const wrappedBeforeLast = wrapExternalFunction(
-    beforeLast,
-    attributes => [attributes.subject, attributes.search]
+  beforeLast,
+  (attributes) => [attributes.subject, attributes.search],
 );
 
 export const wrappedWordCount = wrapExternalFunction(
-    wordCount,
-    attributes => [attributes.subject]
+  wordCount,
+  (attributes) => [attributes.subject],
 );
 
-export const wrappedUcsplit = wrapExternalFunction(
-    ucsplit,
-    attributes => [attributes.subject]
-);
+export const wrappedUcsplit = wrapExternalFunction(ucsplit, (attributes) => [
+  attributes.subject,
+]);
 // registerFunction('ucsplit', wrappedUcsplit);
 
-
 export const wrappedSubstrCount = wrapExternalFunction(
-    substrCount,
-    attributes => [attributes.subject, attributes.search]
+  substrCount,
+  (attributes) => [attributes.subject, attributes.search],
 );
 
-
 export const consoleLog = wrapExternalFunction(
-    (value) => {
-        if (value) {
-            console.log(value);
-        }
-    },
-    attributes => [attributes.value]
+  (value) => {
+    if (value) {
+      console.log(value);
+    }
+  },
+  (attributes) => [attributes.value],
 );
