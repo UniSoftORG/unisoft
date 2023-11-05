@@ -10,3 +10,16 @@ export interface DynamicRequest {
   url: string;
   payload?: any;
 }
+
+export enum Operators {
+  NullishCoalescing = "??",
+  LogicalOr = "||",
+  LogicalAnd = "&&",
+  NotStrictEqual = "!==",
+  StrictEqual = "===",
+  Equal = "==",
+  GreaterThan = ">",
+  LessThan = "<",
+  GreaterThanOrEqual = ">=",
+  LessThanOrEqual = "<=",
+}

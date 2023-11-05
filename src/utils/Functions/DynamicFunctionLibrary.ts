@@ -3,7 +3,7 @@ import functionsMap, {
   registerReactHook,
 } from "@/utils/Functions/useFunctions";
 import { simpleDeepClone, mapObjectValues } from "unisoft-utils";
-import { initiateTimeOut, setReactState } from "@/utils/React/ReactInitiator";
+import { setState, useTimeEffect } from "@/utils/React/Initiator";
 
 export interface CallbackConfig {
   name: string;
@@ -36,7 +36,7 @@ export function invokeFunctionByName(
 export function runMappedFunctions(tasks: any) {
   tasks.forEach((task: any) => {
     if (task.name === "useInterval" && functionsMap[task.name]) {
-      initiateTimeOut(task);
+      useTimeEffect(task);
       return;
     }
     return runFunction(task);
@@ -47,7 +47,7 @@ export function runFunction(task: any) {
   const executeTask = (currentTask: any) => {
     const result =
       currentTask.name === "setState"
-        ? setReactState(currentTask)
+        ? setState(currentTask)
         : invokeFunctionByName(currentTask.name, currentTask.attributes);
 
     if (currentTask.callbacks && currentTask.callbacks.length) {

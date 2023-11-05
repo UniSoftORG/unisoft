@@ -1,8 +1,8 @@
 "use client";
 import Renderer from "@/renderer/Render";
 import componentsMaps from "@/renderer/imports/components";
-import { useDynamicStates } from "@/utils/React/StateManager";
-import { useInterval } from "@/utils/React/TimeManager";
+import { useDynamicStates } from "@/utils/React/Managers/StateManager";
+import { useInterval } from "@/utils/React/Managers/TimeManager";
 
 const ClientRenderer: React.FC<{ componentProps: any; index: number }> = ({
   componentProps,
@@ -24,7 +24,6 @@ const ClientRenderer: React.FC<{ componentProps: any; index: number }> = ({
         passAttributes: {
           ...{
             reactActions: {
-              states: [states, setStateByKey],
               setState: setStateByKey,
               useInterval: (watchKeys: any, executeFn: any, delay: any) =>
                 executeFn && useInterval(watchKeys, executeFn, states, delay),

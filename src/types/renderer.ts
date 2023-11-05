@@ -54,37 +54,39 @@ type KnownComponent =
  * Represents data for components.
  */
 export interface IComponentBase<Type = any, ChildType = any> {
-  [key: string]: any;
-
+  name: string;
   uuid: string;
   type: KnownComponent;
-  element?: string;
+  element?: KnownElementTag;
   elementAttributes?: Record<string, any>;
-
-  // component?: ReactNode | FC<Type> | ComponentType<Type>;
-  // props?: Type;
-  // receiveProps?: Array<{ parentProps?: string[] } | keyof Type | any>;
-  // attrs?: Record<string, any>;
-  // mapProp?: keyof Type;
-  // data?: any;
-  // dynamicProps?: DynamicProp[];
-  // propConfig?: PropConfig<Type, ChildType>;
-  // conditionalClasses?: { className: Conditional[] }[] | { [key: string]: Conditional[] }[];
-  // conditional?: Conditional
-  // style?: Record<string, any>;
-  // canHaveChildren?: boolean;
-  // childrenTypes?: Array<FC<ChildType> | ReactNode | IComponentBase<Type, Partial<ChildType>>>;
-  // children?: IComponentBase<Type, ChildType>[] | React.ReactElement<{parentprops?: any}>[] | React.ReactElement<{parentprops?: any}>;
-  // requests?: DynamicRequest[];
 }
 
-export interface IComponent<Type = any, ChildType = any> {
+export interface IGenerateComponent<Type = any> {
+  variables?: CreateState;
+  states?: CreateState;
+  elementAttributes?: React.HTMLAttributes<Type>;
+  dynamic?: any;
+  rendererDynamic?: any;
+  receiveAttributes?: any;
+  passAttributes?: any;
+  children?: any;
+  conditions?: string[];
+  rendererConditions?: string[];
+  mapByKey?: string;
+  mappedComponent?: IComponentType[];
+  mapAttributes?: any;
+  functions?: any;
+  useEffects?: any;
+  requests?: DynamicRequest[];
+}
+
+export interface IComponent<Type = any> {
   name: string;
   renderer?: "server" | "client";
   attributes?: Record<string, any>;
   variables?: CreateState;
   states?: CreateState;
-  elementAttributes?: Record<string, any> | undefined;
+  elementAttributes?: React.HTMLAttributes<Type>;
   dynamic?: any;
   rendererDynamic?: any;
   receiveAttributes?: any;
