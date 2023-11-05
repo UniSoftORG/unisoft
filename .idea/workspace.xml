@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4de5ff2d-65c7-4e59-9578-c458a4438147" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/packages/utils/@utils/enums.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/@utils/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/@utils/interfaces.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/@utils/types.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/checkers/array.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/checkers/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/checkers/string.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/collectors/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/collectors/object.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/collectors/recursive.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/creators/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/creators/object.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/creators/recursive.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/creators/string.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/evaluators/advanced.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/evaluators/array.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/evaluators/condition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/evaluators/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/evaluators/recursive.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/evaluators/string.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/filters/array.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/filters/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/filters/object.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/filters/recursive.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/getters/array.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/getters/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/getters/object.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/getters/recursive.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/getters/string.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/helpers/array.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/helpers/condition.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/helpers/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/helpers/object.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/helpers/recursive.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/setters/array.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/setters/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/setters/object.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/setters/recursive.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/setters/string.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/transformers/array.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/transformers/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/transformers/object.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/utils/src/transformers/string.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/tsconfig.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2WjWxrpsCBJF7u7EfdJNC2nkjow" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "test",
+    "javascript.nodejs.core.library.configured.version": "20.8.0",
+    "javascript.nodejs.core.library.typings.version": "20.8.0",
+    "last_opened_file_path": "C:/Users/radei/Desktop/unisoft",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.typescriptcompiler",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\radei\Desktop\unisoft" />
+      <recent name="C:\Users\radei\Desktop\unisoft\src\website\pages" />
+      <recent name="C:\Users\radei\Desktop\unisoft\src\utils" />
+      <recent name="C:\Users\radei\Desktop\unisoft\src\utils\Functions\UniSoftUtils" />
+      <recent name="C:\Users\radei\Desktop\unisoft\src\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\radei\Desktop\unisoft\src" />
+      <recent name="C:\Users\radei\Desktop\unisoft\src\types" />
+      <recent name="C:\Users\radei\Desktop\unisoft" />
+      <recent name="C:\Users\radei\Desktop\unisoft\src\utils" />
+      <recent name="C:\Users\radei\Desktop\unisoft\src\types\generated" />
+    </key>
+    <key name="es6.move.members.recent.items">
+      <recent name="C:\Users\radei\Desktop\unisoft\src\types\generated\utilsTypes.ts" />
+      <recent name="C:\Users\radei\Desktop\unisoft\src\types\functions.ts" />
+      <recent name="C:\Users\radei\Desktop\unisoft\src\renderer\definitions\creators.ts" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="1" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="GenerateFunctions.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/GenerateFunctions.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.GenerateFunctions.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4de5ff2d-65c7-4e59-9578-c458a4438147" name="Changes" comment="" />
+      <created>1697246719353</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1697246719353</updated>
+      <workItem from="1697246720493" duration="1862000" />
+      <workItem from="1697442742268" duration="62000" />
+      <workItem from="1697480753874" duration="140999000" />
+      <workItem from="1698226921476" duration="23140000" />
+      <workItem from="1698370427762" duration="96402000" />
+      <workItem from="1699035445757" duration="40430000" />
+      <workItem from="1699080387838" duration="3076000" />
+      <workItem from="1699193628713" duration="20000" />
+      <workItem from="1699193705713" duration="5505000" />
+      <workItem from="1699208560130" duration="307000" />
+      <workItem from="1699208905486" duration="2097000" />
+      <workItem from="1699211389490" duration="1110000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/packages/utils/@utils/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/setters/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/setters/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/setters/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/setters/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/setters/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/advanced.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/condition.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/getters/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/getters/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/getters/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/getters/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/getters/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/transformers/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/transformers/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/transformers/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/transformers/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/collectors/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/collectors/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/collectors/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/helpers/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/helpers/condition.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/helpers/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/helpers/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/helpers/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/checkers/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/checkers/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/checkers/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/creators/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/creators/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/creators/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/creators/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/filters/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/filters/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/filters/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/filters/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/@utils/enums.js" />
+        <option value="$PROJECT_DIR$/packages/utils/@utils/types.js" />
+        <option value="$PROJECT_DIR$/packages/utils/@utils/interfaces.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/transformers/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/transformers/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/transformers/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/transformers/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/filters/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/filters/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/filters/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/filters/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/helpers/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/helpers/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/helpers/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/helpers/condition.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/helpers/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/condition.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/evaluators/advanced.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/collectors/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/collectors/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/collectors/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/creators/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/creators/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/creators/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/creators/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/@utils/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/@utils/interfaces.js" />
+        <option value="$PROJECT_DIR$/packages/utils/@utils/types.js" />
+        <option value="$PROJECT_DIR$/packages/utils/@utils/enums.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/getters/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/getters/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/getters/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/getters/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/getters/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/setters/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/setters/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/setters/array.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/setters/recursive.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/setters/object.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/checkers/string.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/checkers/index.js" />
+        <option value="$PROJECT_DIR$/packages/utils/src/checkers/array.js" />
+      </list>
+    </option>
+  </component>
+</project>
