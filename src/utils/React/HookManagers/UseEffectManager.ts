@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const useCustomEffect = (
+export const useReactEffect = (
   watchKeys: string[],
   executeFn: () => void,
   states: any,

@@ -1,4 +1,4 @@
-import {FunctionNames} from "@/types/uni-imports/uniFunctionNames";
+import {FunctionNames} from "@/types/uniFunctionNames";
 import {
     addAfterAttributes,
     addBeforeAttributes,
@@ -119,7 +119,7 @@ import {
     upperAttributes,
     wordCountAttributes,
     wordWrapAttributes
-} from "@/types/uni-imports/utilsInterfaces";
+} from "@/types/utilsInterfaces";
 import {ISetState} from "@/types/functions";
 
 export type FunctionAttributesMap = {

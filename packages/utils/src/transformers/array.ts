@@ -48,7 +48,7 @@ export const separateKeysAndValues = <T>(
  * Generates a query string from an object.
  *
  * @throws {Error} Input must be an object.
- * @return {string} The generated query string.
+ * @return {string} The uni-imports query string.
  * @param params
  */
 export const createQueryString = (

@@ -4,7 +4,7 @@ import { MapOption } from "@utils";
  * Generates an object from an array of map options.
  *
  * @param {MapOption[]} mapOptions - The array of map options.
- * @return {Record<string, any>} The object generated from the map options.
+ * @return {Record<string, any>} The object uni-imports from the map options.
  */
 export const createObjectFromMapOptions = (mapOptions: MapOption[]) => {
   return mapOptions.reduce(

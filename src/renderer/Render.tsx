@@ -28,7 +28,7 @@ const Renderer: React.FC<{
             {
               ...child,
               passAttributes: {
-                ...componentProps.passAttributes[child.name],
+                ...componentProps.passAttributes[child.name as string],
                 ...passFromParent,
               },
             },

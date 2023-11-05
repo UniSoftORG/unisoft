@@ -1,4 +1,4 @@
-import { Attributes } from "./DynamicFunctionLibrary";
+import {Attributes} from "@/types/functions";
 
 export const cyclicIncrement: (params: Attributes) => any = ({
   number,

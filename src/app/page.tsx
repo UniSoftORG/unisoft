@@ -1,6 +1,9 @@
 import InitiateRenderer from "@/renderer/InitiateRenderer";
-import { Slider } from "@/predefined/components/Sliders/Slider";
+import { HomePage } from "@/website/pageRouter"
 
 export default async function Home() {
-  return await InitiateRenderer([Slider]);
+  return <>
+  a
+    {await InitiateRenderer(HomePage)}
+  </>
 }

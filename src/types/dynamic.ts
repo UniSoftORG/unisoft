@@ -10,3 +10,4 @@ export interface DynamicRequest {
   url: string;
   payload?: any;
 }
+

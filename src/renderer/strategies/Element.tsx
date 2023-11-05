@@ -1,12 +1,8 @@
 import React, { createElement, Suspense } from "react";
-import { IComponentBase, IComponentType } from "@/types";
+import { IComponentBase } from "@/types";
 import ChildRenderer from "../renderers/ChildRenderer";
 
-// const Element: React.FC<{ children: any, componentData: IComponentBase }> = ({
-//                                                                                 children,
-//                                                                                 componentData,
-//                                                                                 ...parentProps
-//                                                                             }) => {
+
 const Element: React.FC<{ children: any; componentData: IComponentBase }> = ({
   children,
   componentData,

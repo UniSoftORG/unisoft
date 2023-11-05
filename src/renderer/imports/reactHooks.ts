@@ -1,13 +1,13 @@
 import { ReactHooks } from "@/types";
-import { useDynamicStates } from "@/utils/React/StateManager";
-import { useCustomEffect } from "@/utils/React/UseEffectManager";
-import { useCustomCallback } from "@/utils/React/CallBackManager";
-import { useInterval, useTimeout } from "@/utils/React/TimeManager";
+import { useDynamicStates } from "@/utils/React/HookManagers/StateManager";
+import { useReactEffect } from "@/utils/React/HookManagers/UseEffectManager";
+import { useCallback } from "@/utils/React/HookManagers/CallBackManager";
+import { useInterval, useTimeout } from "@/utils/React/HookManagers/TimeManager";
 
 const reactHooksMap: any = {
   [ReactHooks.useState]: useDynamicStates,
-  [ReactHooks.useEffect]: useCustomEffect,
-  [ReactHooks.useCallback]: useCustomCallback,
+  [ReactHooks.useEffect]: useReactEffect,
+  [ReactHooks.useCallback]: useCallback,
   [ReactHooks.useTimeOut]: useTimeout,
   [ReactHooks.useInterval]: useInterval,
 };

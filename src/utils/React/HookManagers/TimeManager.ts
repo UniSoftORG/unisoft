@@ -8,12 +8,8 @@ export const useInterval = (
 ) => {
   useEffect(
     () => {
-      const tick = () => {
-        executeFn();
-      };
-
       if (delay !== null) {
-        const id = setInterval(tick, delay);
+        const id = setInterval(executeFn, delay);
         return () => clearInterval(id);
       }
     },
@@ -21,15 +17,21 @@ export const useInterval = (
   );
 };
 
-export const useTimeout = (callback: () => void, delay: number) => {
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+export const useTimeout = (
+    watchKeys: string[],
+    executeFn: () => void,
+    states: any,
+    delay: any,
+) => {
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  useEffect(() => {
-    timeoutRef.current = setTimeout(callback, delay);
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [callback, delay]);
+    useEffect(() => {
+        timeoutRef.current = setTimeout(executeFn, delay);
+
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
+    }, watchKeys.map((key) => states[key]));
 };

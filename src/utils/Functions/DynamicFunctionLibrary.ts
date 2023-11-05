@@ -1,20 +1,7 @@
-import functionsMap, {
-  registerFunc,
-  registerReactHook,
-} from "@/utils/Functions/useFunctions";
-import { simpleDeepClone, mapObjectValues } from "unisoft-utils";
-import { initiateTimeOut, setReactState } from "@/utils/React/ReactInitiator";
-
-export interface CallbackConfig {
-  name: string;
-  attributes: Attributes;
-}
-
-export type Attributes = {
-  [key: string]: any;
-};
-
-type FunctionSignature = (params: Attributes) => any;
+import functionsMap, {registerFunc, registerReactHook,} from "@/utils/Functions/useFunctions";
+import {mapObjectValues, simpleDeepClone} from "unisoft-utils";
+import {setState, useTimeEffect} from "@/utils/React/Initiator";
+import {Attributes, IFunction, FunctionSignature} from "@/types/functions";
 
 export function registerFunction(name: string, func: FunctionSignature) {
   functionsMap[name] = func;
@@ -36,7 +23,7 @@ export function invokeFunctionByName(
 export function runMappedFunctions(tasks: any) {
   tasks.forEach((task: any) => {
     if (task.name === "useInterval" && functionsMap[task.name]) {
-      initiateTimeOut(task);
+      useTimeEffect(task);
       return;
     }
     return runFunction(task);
@@ -47,7 +34,7 @@ export function runFunction(task: any) {
   const executeTask = (currentTask: any) => {
     const result =
       currentTask.name === "setState"
-        ? setReactState(currentTask)
+        ? setState(currentTask)
         : invokeFunctionByName(currentTask.name, currentTask.attributes);
 
     if (currentTask.callbacks && currentTask.callbacks.length) {
@@ -77,7 +64,7 @@ export function importReactHooks(injectHook: any) {
 
 export function invokeCallbacks(
   result: any,
-  callbackConfigs?: CallbackConfig[],
+  callbackConfigs?: IFunction[],
 ) {
   if (!callbackConfigs) return;
   for (const config of callbackConfigs) {

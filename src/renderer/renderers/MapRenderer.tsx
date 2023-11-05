@@ -30,7 +30,7 @@ export default function MapRenderer(component: IComponentType) {
           elementAttributes: {
             ...childComponent.elementAttributes,
             className: processTemplateStrings(
-              childComponent?.elementAttributes?.className,
+              childComponent?.elementAttributes?.className as string,
               (value: string) => {
                 return evaluate(value);
               },

@@ -84,7 +84,7 @@ export interface IComponent<Type = any, ChildType = any> {
   attributes?: Record<string, any>;
   variables?: CreateState;
   states?: CreateState;
-  elementAttributes?: Record<string, any> | undefined;
+  elementAttributes?: React.HTMLAttributes<Type>;
   dynamic?: any;
   rendererDynamic?: any;
   receiveAttributes?: any;

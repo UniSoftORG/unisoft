@@ -75,6 +75,7 @@ function parseExpression(str: string): any {
     ">=",
     "<=",
   ];
+
   for (const operator of operators) {
     const parts = splitByOperator(str, operator);
     if (parts && parts.length === 2) {

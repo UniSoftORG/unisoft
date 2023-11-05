@@ -2,7 +2,7 @@
  * Generates a random password with the specified length.
  *
  * @param {number} length - The length of the password.
- * @return {string} - The generated password.
+ * @return {string} - The uni-imports password.
  */
 export const generateRandomPassword = (length: number): string =>
   generateRandomString(
@@ -15,7 +15,7 @@ export const generateRandomPassword = (length: number): string =>
  *
  * @param {number} length - The length of the random string.
  * @param allowedChars
- * @return {string} - The randomly generated string.
+ * @return {string} - The randomly uni-imports string.
  */
 export const generateRandomString = (
   length: number,

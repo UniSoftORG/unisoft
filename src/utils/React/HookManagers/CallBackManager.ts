@@ -1,11 +1,11 @@
-import { useCallback } from "react";
+import { useCallback as reactCallBack } from "react";
 
-export const useCustomCallback = (
+export const useCallback = (
   fn: () => void,
   watchKeys: string[],
   states: any,
 ) => {
-  return useCallback(
+  return reactCallBack(
     fn,
     watchKeys.map((key) => states[key].value),
   );

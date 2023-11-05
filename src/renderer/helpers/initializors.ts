@@ -1,4 +1,3 @@
-"use server";
 import {
   generatePassAttributes,
   replaceWithValuesFromMainObject,
