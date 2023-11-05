@@ -1,4 +1,4 @@
-export interface Nested<T> {
+  export interface Nested<T> {
   [key: string]: T | Nested<T> | undefined;
 }
 
