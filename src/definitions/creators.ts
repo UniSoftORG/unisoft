@@ -1,4 +1,3 @@
-"use server"
 import {IComponent, IComponentBase, KnownComponentType} from "@/types";
 import {v4} from "uuid";
 

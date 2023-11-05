@@ -1,4 +1,4 @@
-import {Operators} from "unisoft";
+import {Operators} from "@/types";
 
 export const getValueByDotNation = (key: string) => key;
 export const getVariable = (key: string) => '${variables.' + {key} + '}'
