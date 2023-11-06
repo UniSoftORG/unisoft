@@ -2,12 +2,12 @@ import { useEffect } from "react";
 
 export const useCustomEffect = (
   watchKeys: string[],
-  executeFn: () => void,
+  callbacks: () => void,
   states: any,
 ) => {
   useEffect(
     () => {
-      executeFn();
+      callbacks();
     },
     watchKeys.map((key) => states[key]),
   );

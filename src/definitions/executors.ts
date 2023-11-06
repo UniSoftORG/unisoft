@@ -1,31 +1,33 @@
-import {ISetState, IUseEffect} from "@/types/functions";
+import {IFunction, IUseEffect} from "@/types/functions";
 import {FunctionNames} from "@/types/uniFunctions";
 import {FunctionAttributesMap} from "@/types/uniTypes";
 
-export const useUniFunction = <T extends FunctionNames>(
+export const useFunction = <T extends FunctionNames>(
     name: T,
-    attributes: FunctionAttributesMap[T]
+    attributes: FunctionAttributesMap[T],
+    callbacks?: IFunction<T>[]
 ) => ({
     name,
     attributes,
+    callbacks
 });
 
 
-export const useInterval = <T extends FunctionNames[]>(
+export const useInterval = <T extends FunctionNames>(
     watchKeys: string[],
-    executeFn: { name: T[number], attributes: FunctionAttributesMap[T[number]] }[],
+    callbacks: IFunction<T>[],
     delay: number
 ): IUseEffect => ({
     name: "useInterval",
     attributes: {
         watchKeys,
-        executeFn,
+        callbacks,
         delay,
     }
 });
 
 
-export const setState = (key: string, value: any): { name: FunctionNames.setState, attributes: ISetState } => ({
+export const setState = (key: string, value: any): IFunction<FunctionNames.setState> => ({
     name: FunctionNames.setState,
     attributes: {
         key,

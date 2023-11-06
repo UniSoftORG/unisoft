@@ -1,4 +1,5 @@
 export enum FunctionNames {
+  consoleLog = "consoleLog",
   setState = "setState",
   isAccessible = "isAccessible",
   hasKey = "hasKey",

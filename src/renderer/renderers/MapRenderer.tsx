@@ -23,22 +23,18 @@ export default function MapRenderer(component: IComponentType) {
       return PrepareRenderer(
         {
           ...childComponent,
-          passAttributes: {
-            ...component.passAttributes,
-            ...child.passAttributes,
-          },
           elementAttributes: {
             ...childComponent.elementAttributes,
-            className: processTemplateStrings(
-              childComponent?.elementAttributes?.className,
-              (value: string) => {
-                return evaluate(value);
-              },
-              "#{",
-              "}",
-            ),
-          },
-          mappedComponent: undefined,
+            ...(childComponent?.elementAttributes?.className && { className: processTemplateStrings(
+                  childComponent?.elementAttributes?.className,
+                  (value: string) => {
+                    return evaluate(value);
+                  },
+                  "#{",
+                  "}",
+              )}),
+
+          }
         },
         cIndex,
       );

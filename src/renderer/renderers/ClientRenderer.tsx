@@ -1,41 +1,36 @@
 "use client";
 import Renderer from "@/renderer/Render";
-import componentsMaps from "@/renderer/imports/components";
-import { useDynamicStates } from "@/utils/React/Managers/StateManager";
-import { useInterval } from "@/utils/React/Managers/TimeManager";
+import {useDynamicStates} from "@/utils/React/Managers/StateManager";
+import {useInterval} from "@/utils/React/Managers/TimeManager";
+import {IComponentType} from "@/types";
 
-const ClientRenderer: React.FC<{ componentProps: any; index: number }> = ({
-  componentProps,
-  index,
-}) => {
-  const Component = componentsMaps[componentProps.type];
-  if (!Component) throw new Error("Component does not exists!");
+const ClientRenderer: React.FC<{ component: IComponentType; index: number }> = ({
+                                                                         component,
+                                                                         index,
+                                                                     }) => {
+    const [states, setStateByKey] = component.states
+        ? useDynamicStates(component.states)
+        : [];
 
-  const [states, setStateByKey] = componentProps.states
-    ? useDynamicStates(componentProps.states)
-    : [];
-
-  return (
-    <Renderer
-      Component={Component}
-      componentProps={{
-        ...componentProps,
-        states: states,
-        passAttributes: {
-          ...{
-            reactActions: {
-              setState: setStateByKey,
-              useInterval: (watchKeys: any, executeFn: any, delay: any) =>
-                executeFn && useInterval(watchKeys, executeFn, states, delay),
-            },
-          },
-        },
-      }}
-      index={index}
-      passFromParent={{ ...states }}
-      fromClient={true}
-    />
-  );
+    return (
+        <Renderer
+            component={{
+                ...component,
+                states: states,
+                passAttributes: {
+                    ...component.passAttributes,
+                    reactActions: {
+                        setState: setStateByKey,
+                        useInterval: (watchKeys: any, callbacks: any, delay: any) =>
+                            callbacks && useInterval(watchKeys, callbacks, states, delay),
+                    },
+                },
+            }}
+            index={index}
+            passFromParent={{...states}}
+            fromClient={true}
+        />
+    );
 };
 
 export default ClientRenderer;

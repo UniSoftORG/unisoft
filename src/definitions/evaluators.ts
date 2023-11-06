@@ -4,9 +4,9 @@ export const customCondition = (value: string) => `#{${value}}`
 
 export const ternaryCondition = (
     evaluate: {
-        value1: string,
+        value1: string | number,
         operator?: Operators,
-        value2?: string
+        value2?: string | number
     },
     trueReturn: string | number,
     falseReturn: string | number

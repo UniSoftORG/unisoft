@@ -2,14 +2,14 @@ import { useEffect, useRef } from "react";
 
 export const useInterval = (
   watchKeys: string[],
-  executeFn: () => void,
+  callbacks: () => void,
   states: any,
   delay: any,
 ) => {
   useEffect(
     () => {
       if (delay !== null) {
-        const id = setInterval(executeFn, delay);
+        const id = setInterval(callbacks, delay);
         return () => clearInterval(id);
       }
     },
@@ -19,7 +19,7 @@ export const useInterval = (
 
 export const useTimeout = (
   watchKeys: string[],
-  executeFn: () => void,
+  callbacks: () => void,
   states: any,
   delay: any,
 ) => {
@@ -27,7 +27,7 @@ export const useTimeout = (
 
   useEffect(
     () => {
-      timeoutRef.current = setTimeout(executeFn, delay);
+      timeoutRef.current = setTimeout(callbacks, delay);
 
       return () => {
         if (timeoutRef.current) {

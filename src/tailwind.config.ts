@@ -40,7 +40,7 @@ module.exports = {
                 },
             },
             animation: {
-                fadeIn: "fadeIn 3s ease-in forwards",
+                fadeIn: "fadeIn 1s ease-in forwards",
                 fadeOut: "fadeOut 0.3s ease-in forwards",
                 slideIn: 'slideIn 1s ease-in-out forwards',
                 slideOut: 'slideOut 1s ease-in-out forwards',

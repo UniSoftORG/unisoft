@@ -1,5 +1,5 @@
 import {
-  IComponentBase,
+  IComponentBase, IComponentType,
   IGenerateComponent,
   KnownComponentType,
   KnownElementTag,
@@ -10,13 +10,26 @@ export const generateElement: any = (
   name: string,
   { ...props }: IGenerateComponent,
   type?: KnownElementTag,
-): IComponentBase => {
+): IComponentType => {
   const uniqueIdentity = v4();
   return {
     name,
     uuid: uniqueIdentity,
     type: KnownComponentType.Element,
     element: type ?? KnownElementTag.Div,
+    ...props,
+  };
+};
+
+export const generateTextField: any = (
+    name: string,
+    { ...props }: IGenerateComponent
+): IComponentBase => {
+  const uniqueIdentity = v4();
+  return {
+    name,
+    uuid: uniqueIdentity,
+    type: KnownComponentType.Text,
     ...props,
   };
 };

@@ -6,7 +6,7 @@ export const setState = (task: any) =>
 
 export function useEffect(task: any) {
   functionsMap[task.name](task.attributes.watchKeys, () => {
-    task.attributes.executeFn.forEach((value: any) => runFunction(value));
+    task.attributes.callbacks.forEach((value: any) => runFunction(value));
   });
 }
 
@@ -14,7 +14,7 @@ export function useTimeEffect(task: any) {
   functionsMap[task.name](
     task.attributes.watchKeys,
     () => {
-      task.attributes.executeFn.forEach((value: any) => runFunction(value));
+      task.attributes.callbacks.forEach((value: any) => runFunction(value));
     },
     task.attributes.delay,
   );

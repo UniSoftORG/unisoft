@@ -1,8 +1,8 @@
-import { KnownElementTag, Operators } from "@/types";
-import { generateElement } from "@/definitions/generators";
-import { setState, useInterval } from "@/definitions/executors";
-import { getAttribute, getState } from "@/definitions/getters";
-import { customCondition, ternaryCondition } from "@/definitions/evaluators";
+import {KnownElementTag, Operators} from "@/types";
+import {generateElement} from "@/definitions/generators";
+import {setState, useInterval} from "@/definitions/executors";
+import {getAttribute, getState} from "@/definitions/getters";
+import {ternaryCondition} from "@/definitions/evaluators";
 
 export const Slider = generateElement(
     "Slider",
@@ -19,7 +19,7 @@ export const Slider = generateElement(
                 {
                     image: "/images/slider/bg-test3.webp",
                     href: "/",
-                },
+                }
             ],
         },
         functions: [
@@ -28,18 +28,26 @@ export const Slider = generateElement(
                 [
                     setState(
                         "activeSlide",
-                        customCondition(`${getState("activeSlide")} === 1 ? 0 : 1`),
+                        ternaryCondition(
+                            {
+                                value1: getState("activeSlide"),
+                                operator: Operators.StrictEqual,
+                                value2: 1,
+                            },
+                            0,
+                            1,
+                        )
                     ),
                 ],
-                1000,
+                5000,
             ),
         ],
         states: {
             activeSlide: 0,
             loading: true,
         },
-        rendererDynamic: ["functions.0.attributes.executeFn.0.attributes.value"],
-        rendererConditions: ["functions.0.attributes.executeFn.0.attributes.value"],
+        rendererDynamic: ["functions.0.attributes.callbacks.0.attributes.value"],
+        rendererConditions: ["functions.0.attributes.callbacks.0.attributes.value"],
         children: [
             generateElement("SliderBackground", {
                 mapByKey: "Slider.variables.slides",
@@ -57,15 +65,14 @@ export const Slider = generateElement(
                             `,
                     style: {
                         backgroundImage:
-                            "linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.2) 100%), url(${passAttributes.image})",
+                            `linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.2) 100%), url(${getAttribute('image')})`,
                         backgroundPosition: "60% center",
                         backgroundRepeat: "no-repeat",
                     },
                 },
                 receiveAttributes: {
                     slides: "Slider.variables.slides",
-                    activeSlide: "Slider.states.activeSlide",
-                    parent: "Slider.name",
+                    activeSlide: "Slider.states.activeSlide"
                 },
                 dynamic: [
                     "elementAttributes.style.backgroundImage",

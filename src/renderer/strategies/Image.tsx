@@ -1,8 +1,8 @@
-import { IComponentBase } from "@/types";
+import {IComponentType} from "@/types";
 import Image from "next/image";
 import { handleEvents } from "@/utils/Renderer/events";
 
-const ImageRenderer: React.FC<IComponentBase> = ({
+const ImageRenderer: React.FC<any> = ({
   children,
   componentData,
   events,

@@ -120,9 +120,10 @@ import {
   wordCountAttributes,
   wordWrapAttributes,
 } from "@/types/uniInterfaces";
-import { ISetState } from "@/types/functions";
+import {IConsoleLog, ISetState} from "@/types/functions";
 
 export type FunctionAttributesMap = {
+  [FunctionNames.consoleLog]: IConsoleLog;
   [FunctionNames.setState]: ISetState;
   [FunctionNames.isAccessible]: isAccessibleAttributes;
   [FunctionNames.hasKey]: hasKeyAttributes;

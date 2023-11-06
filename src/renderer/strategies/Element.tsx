@@ -2,24 +2,18 @@ import React, { createElement, Suspense } from "react";
 import { IComponentBase, IComponentType } from "@/types";
 import ChildRenderer from "../renderers/ChildRenderer";
 
-// const Element: React.FC<{ children: any, componentData: IComponentBase }> = ({
-//                                                                                 children,
-//                                                                                 componentData,
-//                                                                                 ...parentProps
-//                                                                             }) => {
-const Element: React.FC<{ children: any; componentData: IComponentBase }> = ({
+const Element: React.FC<{ children: any; componentData: IComponentType }> = ({
   children,
-  componentData,
-  ...parentProps
+  componentData
 }) => {
   return createElement(
     componentData.element as string,
     {
       ...componentData.elementAttributes,
-      key: componentData.uuid,
+        key: componentData.passAttributes.index ? `${componentData.uuid}-${componentData.passAttributes.index}` : componentData.uuid
     },
     <Suspense>
-      <ChildRenderer passProps={componentData}>{children}</ChildRenderer>
+      <ChildRenderer>{children}</ChildRenderer>
     </Suspense>,
   );
 };
