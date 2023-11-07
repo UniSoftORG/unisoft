@@ -1,0 +1,243 @@
+{
+  "name": "Nav",
+  "uuid": "a0374705-c5d5-4b92-8bca-599651bd0a63",
+  "type": "Element",
+  "element": "aside",
+  "variables": {
+    "links": [
+      {
+        "name": "Home",
+        "href": "/"
+      },
+      {
+        "name": "Games",
+        "href": "/gameserver",
+        "subText": "Need a game server? This is a place for you!"
+      },
+      {
+        "name": "Forum",
+        "href": "/forum",
+        "subText": "Wanna hang out? That's the place!"
+      }
+    ]
+  },
+  "children": [
+    {
+      "name": "Logo",
+      "uuid": "0b84af8c-dfe9-4bba-bdc8-4291d50d01cf",
+      "type": "Element",
+      "element": "div",
+
+      "children": [
+        {
+          "name": "Logo",
+          "uuid": "c9e3b852-4223-44e6-93d7-e25ff4197efe",
+          "type": "Image",
+          "passAttributes": {}
+        }
+      ],
+      "passAttributes": {}
+    },
+    {
+      "name": "VerticalNavigation",
+      "uuid": "8880c88e-7f15-47ae-b978-d6a522678d1b",
+      "type": "Element",
+      "element": "nav",
+      "children": [
+        {
+          "name": "Profile",
+          "uuid": "2ef4eeba-fea5-4bcf-8af5-c9a429e2b3a1",
+          "type": "Element",
+          "element": "nav",
+          "children": [
+            {
+              "name": "Logo",
+              "uuid": "97c67510-e98a-4c37-8bdd-d50999eb00e1",
+              "type": "Image",
+              "passAttributes": {}
+            }
+          ],
+          "passAttributes": {}
+        },
+        {
+          "name": "NavLinks",
+          "uuid": "db42f7d0-617f-4991-9ba9-294182ed1a5e",
+          "type": "Element",
+          "element": "nav",
+          "children": [
+            {
+              "name": "Links",
+              "uuid": "b65c204d-a92b-4f87-8c09-1663763fe93b",
+              "type": "Element",
+              "element": "ul",
+              "children": [
+                {
+                  "name": "NavLink",
+                  "uuid": "642c226f-6562-452e-aed8-64dbe88a74f2",
+                  "type": "Element",
+                  "element": "li",
+                  "renderer": "client",
+                  "mapByKey": "Nav.variables.links",
+                  "states": {
+                    "hovered": "as"
+                  },
+                  "rendererDynamic": [
+                    "functions.0.attributes.callbacks.1.attributes.value"
+                  ],
+                  "children": [
+                    {
+                      "name": "Link",
+                      "uuid": "db374d79-71cd-4ae0-8411-ebfe0c58a645",
+                      "type": "Element",
+                      "element": "div",
+                      "children": [
+                        {
+                          "name": "LinkButton",
+                          "uuid": "d289546d-dd3e-429c-afb5-9a9fda213d78",
+                          "type": "Element",
+                          "element": "button",
+                          "children": [
+                            {
+                              "name": "Logo",
+                              "uuid": "08b74672-f953-4b78-bed8-1d7c2fe97aec",
+                              "type": "Image",
+                              "passAttributes": {}
+                            }
+                          ],
+                          "passAttributes": {}
+                        }
+                      ],
+                      "passAttributes": {
+                        "LinkButton": {}
+                      }
+                    },
+                    {
+                      "name": "NavLinkHover",
+                      "uuid": "f1cf25d4-fd5d-49bb-ab5d-4ab6d51d2659",
+                      "type": "Element",
+                      "element": "div",
+                      "receiveAttributes": {
+                        "hovered": "NavLink.states.hovered"
+                      },
+                      "rendererDynamic": [
+                        "elementAttributes.className"
+                      ],
+                      "children": [
+                        {
+                          "name": "TitleText",
+                          "uuid": "b1bdfef2-adde-4f82-bb50-3baabed5be99",
+                          "type": "Element",
+                          "element": "span",
+                          "children": [
+                            {
+                              "name": "Title",
+                              "uuid": "9bff3bb7-5c08-47c2-bb86-2bc65f235af7",
+                              "type": "Text",
+                              "passAttributes": {
+                                "text": "test"
+                              }
+                            }
+                          ],
+                          "passAttributes": {}
+                        },
+                        {
+                          "name": "TitleText",
+                          "uuid": "9ee2692c-8bf2-4838-a786-7d3841a4dbcd",
+                          "type": "Element",
+                          "element": "p",
+                          "children": [
+                            {
+                              "name": "Title",
+                              "uuid": "4bd0399c-ec23-4f2a-84d1-bb44771e1906",
+                              "type": "Text",
+                              "passAttributes": {
+                                "text": "test"
+                              }
+                            }
+                          ],
+                          "passAttributes": {}
+                        }
+                      ],
+                      "passAttributes": {
+                        "hovered": "NavLink.states.hovered",
+                        "TitleText": {}
+                      }
+                    }
+                  ],
+                  "passAttributes": {
+                    "Link": {
+                      "LinkButton": {}
+                    },
+                    "NavLinkHover": {
+                      "hovered": "NavLink.states.hovered",
+                      "TitleText": {}
+                    }
+                  }
+                }
+              ],
+              "passAttributes": {
+                "NavLink": {
+                  "Link": {
+                    "LinkButton": {}
+                  },
+                  "NavLinkHover": {
+                    "hovered": "NavLink.states.hovered",
+                    "TitleText": {}
+                  }
+                }
+              }
+            }
+          ],
+          "passAttributes": {
+            "Links": {
+              "NavLink": {
+                "Link": {
+                  "LinkButton": {}
+                },
+                "NavLinkHover": {
+                  "hovered": "NavLink.states.hovered",
+                  "TitleText": {}
+                }
+              }
+            }
+          }
+        }
+      ],
+      "passAttributes": {
+        "Profile": {},
+        "NavLinks": {
+          "Links": {
+            "NavLink": {
+              "Link": {
+                "LinkButton": {}
+              },
+              "NavLinkHover": {
+                "hovered": "NavLink.states.hovered",
+                "TitleText": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "passAttributes": {
+    "Logo": {},
+    "VerticalNavigation": {
+      "Profile": {},
+      "NavLinks": {
+        "Links": {
+          "NavLink": {
+            "Link": {
+              "LinkButton": {}
+            },
+            "NavLinkHover": {
+              "hovered": "NavLink.states.hovered",
+              "TitleText": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

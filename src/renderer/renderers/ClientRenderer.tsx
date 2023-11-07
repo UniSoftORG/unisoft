@@ -1,34 +1,22 @@
 "use client";
 import Renderer from "@/renderer/Render";
-import {useDynamicStates} from "@/utils/React/Managers/StateManager";
-import {useInterval} from "@/utils/React/Managers/TimeManager";
 import {IComponentType} from "@/types";
+import StateRenderer from "@/renderer/renderers/StateRenderer";
 
-const ClientRenderer: React.FC<{ component: IComponentType; index: number }> = ({
-                                                                         component,
-                                                                         index,
-                                                                     }) => {
-    const [states, setStateByKey] = component.states
-        ? useDynamicStates(component.states)
-        : [];
+const ClientRenderer: React.FC<{ component: IComponentType; index: number; passFromParent?: any }> = ({
+                                                                                                          component,
+                                                                                                          index,
+                                                                                                          passFromParent
+                                                                                                      }) => {
+    if(component.states && !component.passAttributes.reactActions){
+        return <StateRenderer component={component} index={index} passFromParent={passFromParent} />
+    }
 
     return (
         <Renderer
-            component={{
-                ...component,
-                states: states,
-                passAttributes: {
-                    ...component.passAttributes,
-                    reactActions: {
-                        setState: setStateByKey,
-                        useInterval: (watchKeys: any, callbacks: any, delay: any) =>
-                            callbacks && useInterval(watchKeys, callbacks, states, delay),
-                    },
-                },
-            }}
+            component={component}
             index={index}
-            passFromParent={{...states}}
-            fromClient={true}
+            passFromParent={passFromParent}
         />
     );
 };

@@ -1,5 +1,5 @@
 import { ReactHooks } from "@/types";
-import { useDynamicStates } from "@/utils/React/Managers/StateManager";
+import useDynamicStates from "@/utils/React/Managers/StateManager";
 import { useCustomEffect } from "@/utils/React/Managers/UseEffectManager";
 import { useCustomCallback } from "@/utils/React/Managers/CallBackManager";
 import { useInterval, useTimeout } from "@/utils/React/Managers/TimeManager";

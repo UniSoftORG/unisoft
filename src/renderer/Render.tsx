@@ -1,8 +1,10 @@
 import {IComponentType} from "@/types";
-import PrepareRenderer from "@/renderer/PrepareRenderer";
-import {runMappedFunctions} from "@/utils/Functions/DynamicFunctionLibrary";
-import {processReactClientData} from "@/utils/Renderer/helpers";
+import {PrepareRenderer} from "@/renderer/PrepareRenderer";
+import {
+    processRenderer
+} from "@/utils/Renderer/helpers";
 import componentsMaps from "@/renderer/imports/components";
+import {afterLast, before} from "unisoft-utils";
 
 const Renderer: React.FC<{
     component: IComponentType;
@@ -13,10 +15,7 @@ const Renderer: React.FC<{
     const Component = componentsMaps[component.type];
     if (!Component) throw new Error("Component does not exists!");
 
-    if (fromClient) component = processReactClientData(component);
-    if (component.functions) runMappedFunctions(component.functions);
-
-    delete component.receiveAttributes
+    component = processRenderer(component, fromClient)
 
     return (
         <Component
@@ -25,26 +24,28 @@ const Renderer: React.FC<{
                 ...component,
                 passAttributes: {...component.passAttributes}
             }}
-            key={`${component.uuid}-${index}`}
         >
             {component.children &&
                 component.children.map((child: IComponentType, cIndex: number) => {
-                    child.receiveAttributes && Object.keys(child.receiveAttributes).map((objKey) => {
-                        return child.passAttributes[objKey] = passFromParent[objKey]
+                    child.receiveAttributes && child.passAttributes && Object.keys(child.receiveAttributes).map((objKey) => {
+                        if (before(child.receiveAttributes[objKey], '.') === component.name) {
+                            return child.passAttributes[objKey] = passFromParent[afterLast(child.receiveAttributes[objKey], '.')] ?? component.passAttributes[afterLast(child.receiveAttributes[objKey], '.')]
+                        }
                     })
-                    delete child.receiveAttributes
-                    return PrepareRenderer(
-                        {
+
+                    return <PrepareRenderer
+                        component={{
                             ...child,
-                            // passAttributes: {
-                            //     ...child.passAttributes,
-                            //     ...component.passAttributes[child.name as string],
-                            //     ...passFromParent,
-                            // }
-                        },
-                        cIndex,
-                    );
-                })}
+                            passAttributes: {
+                                ...component.passAttributes[child.name as string],
+                                ...passFromParent,
+                                ...child.passAttributes
+                            }
+                        }}
+                        key={`${child.uuid}-${cIndex}`}
+                        index={cIndex}
+
+/>                })}
         </Component>
     );
 };

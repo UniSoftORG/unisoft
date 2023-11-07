@@ -17,11 +17,11 @@ const ImageRenderer: React.FC<any> = ({
 
   return (
     <Image
-      src={componentData.props.image ?? componentData.attrs.src}
-      alt={componentData.props.alt ?? ""}
-      width={componentData.attrs.width}
-      height={componentData.attrs.height}
-      className={componentData.attrs.className}
+      src={componentData.passAttributes.image ?? componentData.elementAttributes.src}
+      alt={componentData.elementAttributes.alt ?? ""}
+      width={componentData.elementAttributes.width}
+      height={componentData.elementAttributes.height}
+      className={componentData.elementAttributes.className}
       loading={"eager"}
       priority
       {...handleEvents(componentData, { customPrefix: "executeOn" })}

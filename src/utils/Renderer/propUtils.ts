@@ -1,22 +1,36 @@
 import { simpleDeepClone, get } from "unisoft-utils";
-import { IComponent } from "@/types";
+import {IComponentType} from "@/types";
 
-function checkChild(child: IComponent, parentName: string, passTo: any) {
+function checkChild(child: IComponentType, parentName: string, passTo: any) {
   if (child.receiveAttributes) {
+    let hasAttributesToPass = false;
+    const childPassAttributes: any = {};
+
     for (const key in child.receiveAttributes) {
       const attrValue = child.receiveAttributes[key];
       if (attrValue.startsWith(parentName)) {
-        passTo[child.name] = passTo[child.name] || {};
-        passTo[child.name][key] = attrValue;
+        hasAttributesToPass = true;
+        childPassAttributes[key] = attrValue;
       }
+    }
+
+    // Only create an attribute object if there are attributes to pass
+    if (hasAttributesToPass) {
+      passTo[child.name] = childPassAttributes;
     }
   }
 
-  if (child.children) {
-    child.children.forEach((grandChild: IComponent) => {
-      passTo[child.name] = passTo[child.name] || {};
-      checkChild(grandChild, parentName, passTo[child.name]);
+  // Proceed to check children of the child, if any
+  if (child.children && child.children.length > 0) {
+    // Initialize only if the child has further children to check
+    const grandChildPassAttributes = passTo[child.name] || {};
+    child.children.forEach((grandChild: IComponentType) => {
+      checkChild(grandChild, parentName, grandChildPassAttributes);
     });
+    // Only assign back to passTo if something was added
+    if (Object.keys(grandChildPassAttributes).length > 0) {
+      passTo[child.name] = grandChildPassAttributes;
+    }
   }
 }
 
@@ -102,7 +116,7 @@ export function replaceWithValuesFromMainObject(
 }
 
 export function generatePassAttributes(
-  node: IComponent,
+  node: IComponentType,
   parentAttributes?: any,
 ) {
   const passAttributes: any = {};
@@ -114,8 +128,9 @@ export function generatePassAttributes(
   }
 
   // Merge with existing passAttributes
-  node.passAttributes = { ...node.passAttributes, ...passAttributes };
-
+  if (Object.keys(passAttributes).length > 0) {
+    node.passAttributes = { ...node.passAttributes, ...passAttributes };
+  }
   // If parentAttributes contains a key matching the node's name, use it
   if (parentAttributes && parentAttributes[node.name]) {
     node.passAttributes = parentAttributes[node.name];

@@ -1,8 +1,10 @@
 import {KnownElementTag, Operators} from "@/types";
-import {generateElement} from "@/definitions/generators";
+import {generateElement, generateImage} from "@/definitions/generators";
 import {setState, useInterval} from "@/definitions/executors";
-import {getAttribute, getState} from "@/definitions/getters";
+import {getState} from "@/definitions/getters";
 import {ternaryCondition} from "@/definitions/evaluators";
+import {ActiveSlide} from "@/predefined/components/Sliders/Slide";
+import {Navigation} from "@/predefined/components/Sliders/Navigation";
 
 export const Slider = generateElement(
     "Slider",
@@ -12,22 +14,14 @@ export const Slider = generateElement(
         },
         variables: {
             slides: [
-                {
-                    image: "/images/slider/bg-test.webp",
-                    href: "/",
-                },
-                {
-                    image: "/images/slider/bg-test3.webp",
-                    href: "/",
-                }
+                {image: "/images/slider/bg-test.webp", href: "/", text: 'Counter Strike: Global Offensive',  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'},
+                {image: "/images/slider/bg-test3.webp", href: "/", text: 'Minecraft', description: 'Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}
             ],
         },
         functions: [
-            useInterval(
-                ["activeSlide"],
+            useInterval(["activeSlide"],
                 [
-                    setState(
-                        "activeSlide",
+                    setState("activeSlide",
                         ternaryCondition(
                             {
                                 value1: getState("activeSlide"),
@@ -38,48 +32,22 @@ export const Slider = generateElement(
                             1,
                         )
                     ),
-                ],
-                5000,
+                ], 5000,
             ),
         ],
         states: {
-            activeSlide: 0,
-            loading: true,
+            activeSlide: 0
         },
         rendererDynamic: ["functions.0.attributes.callbacks.0.attributes.value"],
         rendererConditions: ["functions.0.attributes.callbacks.0.attributes.value"],
         children: [
-            generateElement("SliderBackground", {
-                mapByKey: "Slider.variables.slides",
-                elementAttributes: {
-                    className: `absolute w-full bg-cover bg-center h-full pl-8 pr-8 lg:pl-52 lg:pr-12 grid content-center transition duration-500 
-              ${ternaryCondition(
-                        {
-                            value1: getAttribute("index"),
-                            operator: Operators.StrictEqual,
-                            value2: getAttribute("activeSlide"),
-                        },
-                        "opacity-100",
-                        "opacity-0",
-                    )}
-                            `,
-                    style: {
-                        backgroundImage:
-                            `linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.2) 100%), url(${getAttribute('image')})`,
-                        backgroundPosition: "60% center",
-                        backgroundRepeat: "no-repeat",
-                    },
-                },
-                receiveAttributes: {
-                    slides: "Slider.variables.slides",
-                    activeSlide: "Slider.states.activeSlide"
-                },
-                dynamic: [
-                    "elementAttributes.style.backgroundImage",
-                    "elementAttributes.className",
-                ],
-                conditions: ["elementAttributes.className"],
-            }),
+            // generateElement('Wrap', {
+            //     elementAttributes: {
+            //         className: "flex flex-col lg:grid lg:grid-cols-6 lg:content-center lg:justify-items-end w-full",
+            //     },
+            // }),
+            ActiveSlide,
+            Navigation
         ],
     },
     KnownElementTag.Section,

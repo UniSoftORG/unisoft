@@ -69,7 +69,7 @@ export function runFunction(task: any) {
   return executeTask(simpleDeepClone(task));
 }
 
-export function importReactHooks(injectHook: any) {
+export function importReactHooks(name: string, injectHook: any) {
   Object.keys(injectHook).map((value) => {
     return registerReactHook(value, injectHook[value]);
   });

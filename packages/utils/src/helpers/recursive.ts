@@ -158,7 +158,7 @@ export const transformObject = (
         }
         return newItem;
       });
-      delete obj[shouldTransformByKey]; // Remove the shouldTransformByKey after processing
+      // delete obj[shouldTransformByKey]; // Remove the shouldTransformByKey after processing
     }
   }
 

@@ -1,8 +1,9 @@
 import functionsMap from "@/utils/Functions/useFunctions";
 import { runFunction } from "@/utils/Functions/DynamicFunctionLibrary";
 
-export const setState = (task: any) =>
+export const setState = (task: any) => {
   functionsMap.setState(task.attributes.key, task.attributes.value);
+}
 
 export function useEffect(task: any) {
   functionsMap[task.name](task.attributes.watchKeys, () => {
@@ -11,7 +12,7 @@ export function useEffect(task: any) {
 }
 
 export function useTimeEffect(task: any) {
-  functionsMap[task.name](
+  functionsMap.useInterval(
     task.attributes.watchKeys,
     () => {
       task.attributes.callbacks.forEach((value: any) => runFunction(value));

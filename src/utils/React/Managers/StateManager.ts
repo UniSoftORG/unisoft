@@ -1,24 +1,6 @@
 "use client";
-import { Action, CreateState, SetState } from "@/types/react";
-import { useEffect, useReducer, useState } from "react";
-import { transformEntries } from "unisoft-utils";
-
-export const createState = ({
-  key,
-  defaultValue,
-}: CreateState): {
-  [key: string]: any;
-} => {
-  const initialState =
-    defaultValue !== undefined
-      ? defaultValue
-      : (null as unknown as typeof defaultValue);
-  const [state, setState] = useState<typeof defaultValue>(initialState);
-  return {
-    [key]: state,
-    [`${key}SetState`]: setState,
-  };
-};
+import { Action, CreateState } from "@/types/react";
+import { useReducer } from "react";
 
 function stateReducer(state: CreateState, action: Action) {
   switch (action.type) {
@@ -29,11 +11,12 @@ function stateReducer(state: CreateState, action: Action) {
   }
 }
 
-export function useDynamicStates(
+export default function useDynamicStates(
   initialStates: CreateState,
+  component: any
 ): [CreateState, (key: string, value: any) => void] {
+  console.log(initialStates, 'recreating stats', component)
   const [state, dispatch] = useReducer(stateReducer, initialStates);
-
   const setStateByKey = (key: string, value: any) => {
     dispatch({ type: "SET_STATE", payload: { key, value } });
   };
@@ -41,56 +24,8 @@ export function useDynamicStates(
   return [state, setStateByKey];
 }
 
-// test
-export function delaySetState<T>(
-  setValue: SetState<T>,
-  newState: T,
-  triggerUpdate?: any,
-) {
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      // setValue(newState);
-      triggerUpdate && triggerUpdate();
-    }, 3000);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
-}
-
 export const getAllStates = (statesMap: any) => {
   return Object.assign({}, ...statesMap);
-};
-
-export const createAllStates = (states: { [key: string]: string }) => {
-  return transformEntries(states, (key, defaultValue) =>
-    createState({ key, defaultValue }),
-  );
-};
-
-export const generateStates = (states: CreateState) => {
-  return getAllStates(
-    transformEntries(states, (key, defaultValue) =>
-      createState({ key, defaultValue }),
-    ),
-  );
-};
-
-export const useNavigation = (currentState: number, maxState: number) => {
-  const next = () => {
-    if (currentState < maxState - 1) {
-      return currentState + 1;
-    }
-    return currentState;
-  };
-
-  const prev = () => {
-    if (currentState > 0) {
-      return currentState - 1;
-    }
-    return currentState;
-  };
-
-  return { next, prev };
 };
 
 export const appendToObjectState = <T extends object>(

@@ -11,13 +11,9 @@ const functionsMap: { [key: string]: (...args: any[]) => any } = {
   consoleLog: Functions.consoleLog,
 };
 
-export function useFunction(name: string) {
-  registerFunction(name, functionsMap[name]);
-}
 
 export function registerReactHook(name: string, passFunction?: any) {
   if (typeof passFunction === "function") {
-    // const attrs = between(String(passFunction), '(', ')').trim().split(', ')
     functionsMap[name] = passFunction;
     return functionsMap;
   }

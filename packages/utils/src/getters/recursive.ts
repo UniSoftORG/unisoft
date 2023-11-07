@@ -1,4 +1,4 @@
-import { forRecursive } from "../helpers";
+import {forRecursive} from "../helpers";
 
 /**
  * Finds an object in an array of objects by searching for a specific value in a specified key.
@@ -44,3 +44,4 @@ export const findObjectByValue = async <T extends Record<string, any>>(
 
   return foundObject;
 };
+

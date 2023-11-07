@@ -1,9 +1,11 @@
 import { replaceDynamicTargets } from "@/utils/Renderer/helpers";
 import { evaluate, processTemplateStrings } from "unisoft-utils";
 import { IComponentType } from "@/types";
-import PrepareRenderer from "@/renderer/PrepareRenderer";
+import {PrepareRenderer} from "@/renderer/PrepareRenderer";
 
-export default function MapRenderer(component: IComponentType) {
+export const MapRenderer: React.FC<{
+    component: IComponentType,
+}> = ({component}) => {
   if (component.mappedComponent) {
     return component.mappedComponent.map((child, cIndex) => {
       let childComponent = {
@@ -20,8 +22,8 @@ export default function MapRenderer(component: IComponentType) {
         childComponent.dynamic,
       );
 
-      return PrepareRenderer(
-        {
+      return <PrepareRenderer
+        component={{
           ...childComponent,
           elementAttributes: {
             ...childComponent.elementAttributes,
@@ -35,9 +37,10 @@ export default function MapRenderer(component: IComponentType) {
               )}),
 
           }
-        },
-        cIndex,
-      );
+        }}
+        index={cIndex}
+      key={`${childComponent.uuid}-${cIndex}`}
+      />
     });
   }
 }

@@ -12,26 +12,33 @@ function transformObject(
   shouldTransformByKey: string,
   copyKeys: string[],
 ) {
-  if(obj.children) {
-    obj.children.forEach((child: any, key: any) => {
-      if (
-          child.hasOwnProperty(shouldTransformByKey) &&
-          child[shouldTransformByKey].startsWith(obj.name)
-      ) {
-        const parentValue = getValue(
-            obj,
-            child[shouldTransformByKey]?.replace(`${obj.name}.`, ""),
-        );
-        child.mappedComponent = [];
 
-        parentValue.forEach((data: any, vKey: number) => {
-          child.mappedComponent.push({
-            passAttributes: {...data, index: vKey},
-          });
+    function checkAll(checkObj: IComponentType) {
+      if(checkObj.children) {
+        checkObj.children.forEach((child: any, key: any) => {
+          if (
+              (child.hasOwnProperty(shouldTransformByKey)) &&
+              (child[shouldTransformByKey].startsWith(obj.name))
+          ) {
+            const parentValue = getValue(
+                obj,
+                child[shouldTransformByKey]?.replace(`${obj.name}.`, ""),
+            );
+
+
+            child.mappedComponent = [];
+
+            parentValue.forEach((data: any, vKey: number) => {
+              child.mappedComponent.push({
+                passAttributes: {...data, index: vKey},
+              });
+            });
+          }
+          checkAll(child)
         });
       }
-    });
-  }
+    }
+    checkAll(obj)
 }
 export const prepareProps = (componentData: IComponentType) => {
   generatePassAttributes(componentData, componentData?.passAttributes);

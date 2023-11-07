@@ -7,6 +7,10 @@ module.exports = {
     ],
     theme: {
         extend: {
+            colors: {
+                'primary': '#E23F33',
+                'neural-dark': '#0F1114',
+            },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic":
@@ -38,6 +42,14 @@ module.exports = {
                     '0%': {boxShadow: "inset 0 0 0 0 rgba(0,0,0,0)", opacity: '1'},
                     '100%': {boxShadow: "inset 0 0 100vh 100vh rgba(0,0,0,1)", opacity: '0'},
                 },
+                zoomIn: {
+                    '0%': { transform: 'scale(0, 0)' },
+                    '100%': { transform: 'scale(1, 1)' },
+                },
+                zoomOut: {
+                    '0%': { transform: 'scale(1, 1)' },
+                    '100%': { transform: 'scale(0, 0)' },
+                }
             },
             animation: {
                 fadeIn: "fadeIn 1s ease-in forwards",
@@ -46,6 +58,8 @@ module.exports = {
                 slideOut: 'slideOut 1s ease-in-out forwards',
                 shadowBlinkIn: 'shadowBlinkIn 2.5s ease-in-out forwards',
                 shadowBlinkOut: 'shadowBlinkOut 1.5s ease-in-out forwards',
+                zoomIn: 'zoomIn 0.6s ease forwards',
+                zoomOut: 'zoomOut 0.6s ease forwards'
             },
         },
     },
