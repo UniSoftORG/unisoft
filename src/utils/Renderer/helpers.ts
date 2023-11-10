@@ -27,7 +27,7 @@ export const replaceDynamicTargets = <T = any, R = any>(
 };
 
 export const processRenderer = (component: IComponentType, fromClient?: boolean) => {
-    if (fromClient) importReactHooks(component.name, component.passAttributes.reactActions[component.name]);
+    if (fromClient && component.passAttributes.reactActions) importReactHooks(component.passAttributes.reactActions);
     if (component.rendererDynamic) component = replaceDynamicTargets(component, component.rendererDynamic);
     if (component.rendererConditions) component.rendererConditions.forEach((keyPath: string) => {
         return setByDotNotation(

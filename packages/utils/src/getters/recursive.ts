@@ -10,7 +10,7 @@ import {forRecursive} from "../helpers";
  * @param {keyof T} [nestedKey="children"] - The key of the nested objects within the objects.
  * @returns {Promise<{ object: T, parent?: T, index?: number } | undefined>} - The found object, its parent object (if provided), and its index (if applicable).
  */
-export const findObjectByValue = async <T extends Record<string, any>>(
+export const findObjectByValueAsync = async <T extends Record<string, any>>(
   data: T[],
   value: any,
   key: keyof T,
@@ -43,5 +43,33 @@ export const findObjectByValue = async <T extends Record<string, any>>(
   );
 
   return foundObject;
+};
+
+export const findObjectByValue = <T extends Record<string, any>>(
+    data: T[],
+    value: any,
+    key: keyof T,
+    parent?: T,
+    nestedKey: keyof T = "children",
+): { object: T; parent?: T; index?: number } | undefined => {
+    let foundObject:
+        | {
+        object: T;
+        parent?: T;
+        index?: number;
+    }
+        | undefined;
+
+    forRecursive(
+        data,
+        async (item: T, index: number, parent?: T) => {
+            if (item[key] === value) {
+                foundObject = { object: item, parent, index };
+            }
+        },
+        nestedKey,
+    );
+
+    return foundObject;
 };
 

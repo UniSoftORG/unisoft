@@ -19,24 +19,24 @@ export const Slider = generateElement(
             ],
         },
         functions: [
-            useInterval(["activeSlide"],
+            useInterval([],
                 [
                     setState("activeSlide",
                         ternaryCondition(
                             {
                                 value1: getState("activeSlide"),
                                 operator: Operators.StrictEqual,
-                                value2: 1,
+                                value2: '1',
                             },
-                            0,
-                            1,
+                            '0',
+                            '1',
                         )
                     ),
-                ], 5000,
+                ], 1000,
             ),
         ],
         states: {
-            activeSlide: 0
+            activeSlide: 0,
         },
         rendererDynamic: ["functions.0.attributes.callbacks.0.attributes.value"],
         rendererConditions: ["functions.0.attributes.callbacks.0.attributes.value"],

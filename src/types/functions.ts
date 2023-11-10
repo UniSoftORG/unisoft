@@ -26,7 +26,7 @@ export interface IUseEffect {
   attributes: {
     watchKeys: string[];
     callbacks: any;
-    delay: number;
+    delay?: number;
   };
 }
 

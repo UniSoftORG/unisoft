@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useEffect as useFromReact } from 'react'
 
-export const useCustomEffect = (
+export const useEffect = (
   watchKeys: string[],
   callbacks: () => void,
-  states: any,
+  states: any
 ) => {
-  useEffect(
+    useFromReact(
     () => {
-      callbacks();
+        if(callbacks){
+            callbacks()
+        }
     },
-    watchKeys.map((key) => states[key]),
-  );
-};
+    watchKeys.map((key) => states[key])
+  )
+}

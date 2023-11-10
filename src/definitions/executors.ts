@@ -2,6 +2,7 @@ import {IFunction, IUseEffect} from "@/types/functions";
 import {FunctionNames} from "@/types/uniFunctions";
 import {FunctionAttributesMap} from "@/types/uniTypes";
 import {Events} from "@/types/events";
+import {statesMap} from "@/utils/React/Managers/StateManager";
 
 export const useFunction = <T extends FunctionNames>(
     name: T,
@@ -26,13 +27,27 @@ export const useInterval = <T extends FunctionNames>(
     }
 });
 
-export const setState = (key: string, value: any): IFunction<FunctionNames.setState> => ({
-    name: FunctionNames.setState,
+export const useEffect = <T extends FunctionNames>(
+    watchKeys: string[],
+    callbacks: IFunction<T>[],
+): IUseEffect => ({
+    name: "useEffect",
     attributes: {
-        key,
-        value
+        watchKeys,
+        callbacks
     }
-})
+});
+
+
+export const setState = (key: string, value: any): IFunction<FunctionNames.setState> => {
+    return {
+        name: FunctionNames.setState,
+            attributes: {
+        key,
+            value
+    }
+    }
+}
 
 export const createEvent = <T extends Events, F extends FunctionNames>(
     name: T,

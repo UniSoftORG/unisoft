@@ -3,7 +3,7 @@ import functionsMap, {
   registerReactHook,
 } from "@/utils/Functions/useFunctions";
 import { simpleDeepClone, mapObjectValues } from "unisoft-utils";
-import { setState, useTimeEffect } from "@/utils/React/Initiator";
+import { setState, useTimeEffect, useEffect } from "@/utils/React/Initiator";
 
 export interface CallbackConfig {
   name: string;
@@ -39,6 +39,10 @@ export function runMappedFunctions(tasks: any) {
       useTimeEffect(task);
       return;
     }
+    if (task.name === "useEffect" && functionsMap[task.name]) {
+      useEffect(task);
+      return;
+    }
     return runFunction(task);
   });
 }
@@ -69,7 +73,7 @@ export function runFunction(task: any) {
   return executeTask(simpleDeepClone(task));
 }
 
-export function importReactHooks(name: string, injectHook: any) {
+export function importReactHooks(injectHook: any) {
   Object.keys(injectHook).map((value) => {
     return registerReactHook(value, injectHook[value]);
   });

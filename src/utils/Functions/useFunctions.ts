@@ -14,6 +14,11 @@ const functionsMap: { [key: string]: (...args: any[]) => any } = {
 
 export function registerReactHook(name: string, passFunction?: any) {
   if (typeof passFunction === "function") {
+    if(functionsMap[name]){
+      return functionsMap;
+    }
+    console.log('reg', name)
+
     functionsMap[name] = passFunction;
     return functionsMap;
   }
@@ -23,7 +28,6 @@ export function registerFunc(name: string) {
   if (name !== "consoleLog") {
     const imMod = require("unisoft-utils")[name];
     const attrs = between(String(imMod), "(", ")").trim().split(", ");
-
     functionsMap[name] = wrapExternalFunction(imMod, (attributes) =>
       attrs.map((attr) => attributes[attr]),
     );

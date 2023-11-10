@@ -1,5 +1,5 @@
 import {IComponentType} from "@/types";
-import {PrepareRenderer} from "@/renderer/PrepareRenderer";
+import PrepareRenderer from "@/renderer/PrepareRenderer";
 import {
     processRenderer
 } from "@/utils/Renderer/helpers";
@@ -24,6 +24,7 @@ const Renderer: React.FC<{
                 ...component,
                 passAttributes: {...component.passAttributes}
             }}
+            key={`${component.uuid}-${index}`}
         >
             {component.children &&
                 component.children.map((child: IComponentType, cIndex: number) => {
@@ -33,19 +34,18 @@ const Renderer: React.FC<{
                         }
                     })
 
-                    return <PrepareRenderer
-                        component={{
+                    return PrepareRenderer(
+                        {
                             ...child,
                             passAttributes: {
                                 ...component.passAttributes[child.name as string],
                                 ...passFromParent,
                                 ...child.passAttributes
                             }
-                        }}
-                        key={`${child.uuid}-${cIndex}`}
-                        index={cIndex}
-
-/>                })}
+                        },
+                        cIndex,
+                    );
+                })}
         </Component>
     );
 };

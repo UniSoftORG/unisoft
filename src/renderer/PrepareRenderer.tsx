@@ -1,33 +1,43 @@
 import { IComponentType } from "@/types";
 import { prepareProps } from "@/renderer/helpers/initializors";
 import ClientRenderer from "@/renderer/renderers/ClientRenderer";
+// import { replaceDynamicTargets } from "@/utils/Renderer/helpers";
 import { Suspense } from "react";
-import {MapRenderer} from "@/renderer/renderers/MapRenderer";
+import MapRenderer from "@/renderer/renderers/MapRenderer";
 import Renderer from "@/renderer/Render";
 
-
-export const PrepareRenderer: React.FC<{
+export default function PrepareRenderer(
   component: IComponentType,
   index?: number,
-  generateProps?: boolean,
-}> = ({component, index, generateProps}) => {
-  if (generateProps) prepareProps(component)
-
-  if (component.mappedComponent?.length) return <MapRenderer component={component} />
+  generateProps: boolean = false,
+): any {
+  if (generateProps) {
+    prepareProps(component);
+  }
+  // if (!component.mapByKey && component.dynamic) component = replaceDynamicTargets<any, any>(component, component.dynamic);
+  if (component.mappedComponent?.length) return MapRenderer(component);
   if (
     component.renderer === "client" ||
     typeof component.states !== "undefined"
   ) {
     return (
-      <Suspense>
-        <ClientRenderer component={component} index={index as number} passFromParent={component.passAttributes}/>
+      <Suspense key={`${component.uuid}-${index}`}>
+        <ClientRenderer
+          component={component}
+          index={index as number}
+          passFromParent={component.passAttributes}
+          key={`${component.uuid}-${index}`}
+        />
       </Suspense>
     );
   }
 
-  return <Renderer
+  return (
+    <Renderer
       component={component}
       passFromParent={component.passAttributes}
       index={index ? index : 0}
-  />
+      key={`${component.uuid}-${index}`}
+    />
+  );
 }

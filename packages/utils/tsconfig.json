@@ -6,7 +6,7 @@
     "outDir": "./dist/",
     "module": "CommonJS",
     "baseUrl": "./",
-    "sourceMap": true,
+    "declaration": true,
     "strict": true
   },
   "exclude": [

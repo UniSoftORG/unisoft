@@ -30,7 +30,7 @@ export const handleEvents = (
 
   componentData?.onEvents.map((customEvent: any) => {
     handlers['on'+customEvent.name] = (event: any) => {
-      customEvent.callbacks.forEach((value: any) => runFunction(value));
+      customEvent.callbacks.forEach((value: any) => runFunction(value, componentData.name));
     }
   })
   // const { onEvents } = componentData;
