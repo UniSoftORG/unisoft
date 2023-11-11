@@ -1,13 +1,18 @@
-import { KnownComponentType } from "@/types";
-import Element from "@/renderer/strategies/Element";
-// import Image from "@/renderer/strategies/Image"
-// import Text from "@/renderer/strategies/Text"
+import { KnownComponentType } from '@/types';
+import Element from '@/renderer/strategies/Element';
+// import Image from '@/test/strategies/Image';
+// import Text from '@/test/strategies/Text';
+import dynamic from 'next/dynamic';
 // import Translation from "@/renderer/strategies/Translation"
 
 const componentsMaps: any = {
   [KnownComponentType.Element]: Element,
-  // [KnownComponentType.Image]: Image,
-  // [KnownComponentType.Text]: Text,
+  [KnownComponentType.Image]: dynamic(
+    () => import('@/renderer/strategies/Image')
+  ),
+  [KnownComponentType.Text]: dynamic(
+    () => import('@/renderer/strategies/Text')
+  ),
   // [KnownComponentType.Translation]: Translation,
 };
 

@@ -1,41 +1,20 @@
-"use client";
-import Renderer from "@/renderer/Render";
-import componentsMaps from "@/renderer/imports/components";
-import { useDynamicStates } from "@/utils/React/StateManager";
-import { useInterval } from "@/utils/React/TimeManager";
+'use client';
+import { IComponentType } from '@/types';
+import StateRenderer from '@/renderer/renderers/StateRenderer';
+import Renderer from '@/renderer/Render';
+import { Suspense } from 'react';
 
-const ClientRenderer: React.FC<{ componentProps: any; index: number }> = ({
-  componentProps,
-  index,
-}) => {
-  const Component = componentsMaps[componentProps.type];
-  if (!Component) throw new Error("Component does not exists!");
-
-  const [states, setStateByKey] = componentProps.states
-    ? useDynamicStates(componentProps.states)
-    : [];
+const ClientRenderer: React.FC<{
+  component: IComponentType;
+}> = ({ component }) => {
+  if (component.states) {
+    return <StateRenderer component={component} key={component.uuid} />;
+  }
 
   return (
-    <Renderer
-      Component={Component}
-      componentProps={{
-        ...componentProps,
-        states: states,
-        passAttributes: {
-          ...{
-            reactActions: {
-              states: [states, setStateByKey],
-              setState: setStateByKey,
-              useInterval: (watchKeys: any, executeFn: any, delay: any) =>
-                executeFn && useInterval(watchKeys, executeFn, states, delay),
-            },
-          },
-        },
-      }}
-      index={index}
-      passFromParent={{ ...states }}
-      fromClient={true}
-    />
+    <Suspense>
+      <Renderer component={component} fromClient={true} key={component.uuid} />
+    </Suspense>
   );
 };
 

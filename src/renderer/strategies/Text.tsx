@@ -1,10 +1,14 @@
-import { IComponentBase } from "@/types";
+import { IComponentType } from '@/types';
 
-const Text: React.FC<{ componentData: IComponentBase; events?: any }> = ({
+const Text: React.FC<{ componentData: IComponentType; events?: any }> = ({
   componentData,
   events,
 }) => {
-  return componentData.props.text;
+  return (
+    <span className={componentData.elementAttributes?.className}>
+      {componentData.passAttributes.text}
+    </span>
+  );
 };
 
 export default Text;

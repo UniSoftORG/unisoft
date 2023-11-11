@@ -1,6 +1,18 @@
-import InitiateRenderer from "@/renderer/InitiateRenderer";
-import { Slider } from "@/predefined/components/Sliders/Slider";
+import { IComponentType } from '@/types';
+import { generateComponentForRendering } from '@/renderer/helpers/initializors';
+import { PrepareRenderer } from '@/renderer/PrepareRenderer';
+import { Slider } from '@/predefined/components/Sliders/Slider';
 
 export default async function Home() {
-  return await InitiateRenderer([Slider]);
+  return [Slider].map(async (componentData: IComponentType, index: number) => {
+    await generateComponentForRendering(componentData);
+
+    return (
+      <PrepareRenderer
+        component={componentData}
+        key={`${componentData.uuid}-${index}`}
+        fromClient={false}
+      />
+    );
+  });
 }

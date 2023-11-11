@@ -25,3 +25,15 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.nav-bg {
+  background: rgba(246, 248, 251, 0.05);
+  backdrop-filter: blur(32px);
+}
+.blue-purple {
+  background: linear-gradient(208.24deg, rgba(47, 51, 59, 0.5) 14.04%, rgba(29, 32, 38, 0) 79.77%),
+  linear-gradient(90deg, #6291F0 0%, #53267F 100%);
+}
+
+.slider-button-hover {
+  background: linear-gradient(270deg, rgba(246, 248, 251, 0.25) 0%, rgba(246, 248, 251, 0) 87.5%, rgba(246, 248, 251, 0) 100%);
+}

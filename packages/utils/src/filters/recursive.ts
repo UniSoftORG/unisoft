@@ -1,6 +1,6 @@
-import { FilterOptions } from "@utils";
-import { mapRecursive } from "../helpers";
-import { assignProp } from "../setters";
+import { FilterOptions } from '@utils';
+import { mapRecursive } from '../helpers';
+import { assignProp } from '../setters';
 
 /**
  * Filters properties from the given object based on the received properties and options.
@@ -13,7 +13,7 @@ import { assignProp } from "../setters";
 export const sanitizeObjectKeysRecursive = <T extends Record<any, any>>(
   allKeys: T,
   receiveKeys: any,
-  options?: FilterOptions,
+  options?: FilterOptions
 ): any => {
   const result: Partial<T> = {};
 

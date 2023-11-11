@@ -1,9 +1,9 @@
-import { KnownComponentType } from "@/types";
-import { v4 } from "uuid";
+import { KnownComponentType } from '@/types';
+import { v4 } from 'uuid';
 
 export const generateComponentBase = (
   name: string,
-  type: KnownComponentType,
+  type: KnownComponentType
 ) => {
   return {
     uuid: v4(),

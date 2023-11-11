@@ -1,32 +1,25 @@
-import { IComponentType } from "@/types";
-import { prepareProps } from "@/renderer/helpers/initializors";
-import ServerRenderer from "@/renderer/renderers/ServerRenderer";
-import ClientRenderer from "@/renderer/renderers/ClientRenderer";
-import { replaceDynamicTargets } from "@/utils/Renderer/helpers";
-import { Suspense } from "react";
-import MapRenderer from "@/renderer/renderers/MapRenderer";
+import { IComponentType } from '@/types';
+import Renderer from '@/renderer/Render';
+import { Suspense } from 'react';
+import ClientRenderer from '@/renderer/renderers/ClientRenderer';
 
-export default function PrepareRenderer(
-  component: IComponentType,
-  index?: number,
-  generateProps: boolean = false,
-): any {
-  if (generateProps) prepareProps(component);
-  if (!component.mapByKey && component.dynamic)
-    component = replaceDynamicTargets<any, any>(component, component.dynamic);
-
-  if (component.mappedComponent?.length) return MapRenderer(component);
-
-  if (
-    component.renderer === "client" ||
-    typeof component.states !== "undefined"
-  ) {
+export const PrepareRenderer: React.FC<{
+  component: IComponentType;
+  fromClient?: boolean;
+}> = ({ component, fromClient }) => {
+  if (component.states) {
     return (
-      <Suspense key={`${component.uuid}-${index}`}>
-        <ClientRenderer componentProps={component} index={index as number} />
+      <Suspense>
+        <ClientRenderer key={component.uuid} component={component} />
       </Suspense>
     );
   }
 
-  return ServerRenderer(component, index ? index : 0);
-}
+  return (
+    <Renderer
+      component={component}
+      key={component.uuid}
+      fromClient={fromClient}
+    />
+  );
+};

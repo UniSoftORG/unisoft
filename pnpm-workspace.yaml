@@ -1,3 +1,5 @@
 packages:
   - "packages/*"
   - "src"
+  - "!**/test/**"
+  - "!**/__tests__/**"

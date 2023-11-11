@@ -1,4 +1,4 @@
-import { FlexibleObj, ExtractOptions } from "@utils";
+import { FlexibleObj, ExtractOptions } from '@utils';
 
 /**
  * Recursively collects keys from an object based on the specified criteria.
@@ -13,12 +13,12 @@ export function recursiveKeyCollection<
 >(
   obj: FlexibleObj<ObjectType, KeyType>,
   collectKeys: KeyType | KeyType[],
-  childrenKey: KeyType = "children" as KeyType,
-  options?: ExtractOptions<KeyType>,
+  childrenKey: KeyType = 'children' as KeyType,
+  options?: ExtractOptions<KeyType>
 ): KeyType[] {
   const keysSet = new Set([
     ...((options?.additionalProps as any[]) ?? []),
-    ...(typeof collectKeys === "string"
+    ...(typeof collectKeys === 'string'
       ? (obj[collectKeys] as KeyType[]) ?? []
       : collectKeys),
   ]);
@@ -26,9 +26,9 @@ export function recursiveKeyCollection<
   (obj[childrenKey] as FlexibleObj<ObjectType, KeyType>[])?.forEach(
     (child: FlexibleObj<ObjectType, KeyType>) => {
       recursiveKeyCollection(child, collectKeys, childrenKey).forEach((p) =>
-        keysSet.add(p),
+        keysSet.add(p)
       );
-    },
+    }
   );
 
   return Array.from(keysSet) as KeyType[];

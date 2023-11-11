@@ -1,4 +1,4 @@
-import { SupportedApiMethods } from "@/interfaces/api/generics";
+import { SupportedApiMethods } from '@/interfaces/api/generics';
 
 export interface DynamicProp {
   [key: string]: Array<{ [key: string]: string }>;
@@ -9,4 +9,17 @@ export interface DynamicRequest {
   method: SupportedApiMethods;
   url: string;
   payload?: any;
+}
+
+export enum Operators {
+  NullishCoalescing = '??',
+  LogicalOr = '||',
+  LogicalAnd = '&&',
+  NotStrictEqual = '!==',
+  StrictEqual = '===',
+  Equal = '==',
+  GreaterThan = '>',
+  LessThan = '<',
+  GreaterThanOrEqual = '>=',
+  LessThanOrEqual = '<=',
 }

@@ -5,7 +5,7 @@
  * @return {string | number} The most frequent value in the array.
  */
 export const findMostFrequent = (
-  data: (string | number)[],
+  data: (string | number)[]
 ): string | number | undefined => {
   if (data.length === 0) return undefined;
 

@@ -1,4 +1,5 @@
-import { IComponentBase } from "@/types";
+import { IComponentType } from '@/types';
+import { runFunction } from '@/utils/Functions/DynamicFunctionLibrary';
 
 type EventConfig = {
   function: string;
@@ -7,56 +8,33 @@ type EventConfig = {
 };
 
 const events = [
-  "Click",
-  "MouseOver",
-  "MouseEnter",
-  "MouseDown",
-  "MouseUp",
-  "MouseMove",
-  "MouseOut",
-  "Blur",
-  "Focus",
-  "Change",
-  "Submit",
+  'Click',
+  'MouseOver',
+  'MouseEnter',
+  'MouseDown',
+  'MouseUp',
+  'MouseMove',
+  'MouseOut',
+  'Blur',
+  'Focus',
+  'Change',
+  'Submit',
 ];
 
 export const handleEvents = (
-  componentData: IComponentBase,
-  options: { customPrefix?: string },
+  componentData: IComponentType,
+  options: { customPrefix?: string }
 ) => {
-  if (!componentData || !componentData.props) return {};
-
-  const { props } = componentData;
-  const { parentProps } = props;
-
+  if (!componentData || !componentData.onEvents) return {};
   const handlers: { [key: string]: any } = {};
 
-  for (const event of events) {
-    const eventConfigName = `${options?.customPrefix}${event}`;
-    const eventConfig: EventConfig | undefined = props[eventConfigName];
-
-    if (!eventConfig) continue;
-
-    const { function: functionName, props: functionProps, from } = eventConfig;
-    const functionSource = from === "parent" ? parentProps : props;
-
-    const functionToExecute = functionSource[functionName];
-    if (!functionToExecute) continue;
-
-    const eventName = `on${event}`;
-
-    if (!functionProps) {
-      handlers[eventName] = functionToExecute;
-    } else {
-      handlers[eventName] = () => {
-        const args = functionProps.map((propInfo) => {
-          const propSource = propInfo.from === "parent" ? parentProps : props;
-          return propSource[propInfo.name];
-        });
-        functionToExecute(...args);
-      };
-    }
-  }
+  componentData?.onEvents.map((customEvent: any) => {
+    handlers['on' + customEvent.name] = (event: any) => {
+      customEvent.callbacks.forEach((value: any) =>
+        runFunction(value, componentData.uuid)
+      );
+    };
+  });
 
   return handlers;
 };

@@ -1,42 +1,20 @@
-import { IComponentType } from "@/types";
-import PrepareRenderer from "@/renderer/PrepareRenderer";
-import { runMappedFunctions } from "@/utils/Functions/DynamicFunctionLibrary";
-import { processReactClientData } from "@/utils/Renderer/helpers";
+import { IComponentType } from '@/types';
+import componentsMaps from '@/renderer/imports/components';
+import { replaceDynamicTargets } from '@/renderer/helpers/replacers';
+import { processRenderer } from '@/utils/Renderer/helpers';
 
 const Renderer: React.FC<{
-  Component: any;
-  componentProps: IComponentType;
-  index: number;
+  component: IComponentType;
   passFromParent?: any;
   fromClient?: boolean;
-}> = ({ Component, componentProps, index, passFromParent, fromClient }) => {
-  if (fromClient) componentProps = processReactClientData(componentProps);
-  if (componentProps.functions) runMappedFunctions(componentProps.functions);
+}> = ({ component, passFromParent, fromClient }) => {
+  const Component = componentsMaps[component.type];
+  if (!Component) throw new Error(`Component does not exists!`);
+  if (component.dynamic)
+    component = replaceDynamicTargets(component, component.dynamic);
+  component = processRenderer(component, fromClient);
 
-  return (
-    <Component
-      {...componentProps}
-      componentData={{
-        ...componentProps,
-        passAttributes: { ...componentProps.passAttributes },
-      }}
-      key={`${componentProps.uuid}-${index}`}
-    >
-      {componentProps.children &&
-        componentProps.children.map((child: IComponentType, cIndex: number) => {
-          return PrepareRenderer(
-            {
-              ...child,
-              passAttributes: {
-                ...componentProps.passAttributes[child.name],
-                ...passFromParent,
-              },
-            },
-            cIndex,
-          );
-        })}
-    </Component>
-  );
+  return <Component {...component} componentData={component} />;
 };
 
 export default Renderer;
