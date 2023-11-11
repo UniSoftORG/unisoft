@@ -9,7 +9,6 @@ tokens = (
 
 
 # Lexer Rules
-t_GEN_CHILD = r'@child'
 t_GEN_ELEMENT = r'@gen:Element'
 t_GEN_END = r'@gen:end'
 t_LCURLY = r'\{'
@@ -21,9 +20,12 @@ t_RPAREN = r'\)'
 t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
 t_COMMA = r','
-t_TEXT = r'[a-zA-Z_][a-zA-Z_0-9]*'
+t_TEXT = r'@child|[a-zA-Z_][a-zA-Z_0-9]*'
 t_ignore = ' \t'
 
+def t_GEN_CHILD(t):
+    r'@child\([\'"].*?[\'"]\)'
+    return t
 
 def t_VARIABLE(t):
     r'@variable'
@@ -52,7 +54,8 @@ def generate_uuid():
     
 lexer = lex.lex()
 
-    
+
+
 # Parser Rules
 def p_program(p):
     '''program : program gen_element
@@ -61,14 +64,6 @@ def p_program(p):
         p[0] = p[1] + [p[2]]
     else:
         p[0] = [p[1]]
-
-def p_statements(p):
-    '''statements : statements statement
-                  | statement'''
-    if len(p) == 3:
-        p[0] = {**p[1], **{p[2][0]: p[2][1]}}
-    else:
-        p[0] = {p[1][0]: p[1][1]}
 
 def p_gen_element(p):
     '''gen_element : GEN_ELEMENT LPAREN gen_params RPAREN COLON statements children GEN_END'''
@@ -106,13 +101,10 @@ def p_children(p):
         p[0] = []
 
 def p_child(p):
-    'child : GEN_CHILD LPAREN TEXT RPAREN'
-    p[0] = {"child_name": p[3]}
-
-def p_statement_variable(p):
-    'statement : VARIABLE TEXT EQUALS item'
-    p[0] = (p[2], p[4])
-
+    'child : GEN_CHILD'
+    # Extract the name from the token value
+    extracted_name = p[1][8:-2]  # Assuming the format @child("name")
+    p[0] = {"child_name": extracted_name}
 
 def p_item(p):
     '''item : object
@@ -167,7 +159,7 @@ def p_error(p):
     else:
         print("Syntax error at EOF")
 
-parser = yacc.yacc(start='program', debug=True)
+parser = yacc.yacc(start='program')
 
 # File Handling
 try:

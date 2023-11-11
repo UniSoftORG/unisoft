@@ -98,7 +98,7 @@ export class PrepareComponent {
 
     try {
       const path = value.replace(`${mainObject.name}.`, '');
-      const newValue = get<any, string>(mainObject, path);
+      const newValue = get(mainObject, path);
       if (newValue !== undefined) {
         passAttributes[key] = newValue;
       }

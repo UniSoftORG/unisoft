@@ -1,5 +1,4 @@
 import { generateElement, generateImage } from '@/definitions/generators';
-import User from '@/public/icons/user.svg';
 
 export const Profile = generateElement('Profile', {
   elementAttributes: {
@@ -9,7 +8,9 @@ export const Profile = generateElement('Profile', {
   children: [
     generateImage('Avatar', {
       elementAttributes: {
-        ['src' as any]: User,
+        ['src' as any]: '/icons/user.svg',
+        ['width' as any]: 100,
+        ['height' as any]: 100,
         className:
           'rounded-full aspect-square object-cover w-12 h-12 border-2 border-gray-700 p-1.5',
       },

@@ -1,1 +1,1 @@
-declare module 'unisoft-templates';
+export * from './kgb-gg';

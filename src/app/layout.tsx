@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { NavWithLogo } from '@/predefined/components/Navigations/NavWithLogo';
+import Logo from '@/public/kgb.png';
+import { Slider, VerticalNavigation } from 'unisoft-templates';
 import { PrepareRenderer } from '@/renderer/PrepareRenderer';
 import { generateComponentForRendering } from '@/renderer/helpers/initializors';
 
@@ -14,16 +15,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  await generateComponentForRendering(NavWithLogo);
+  const Navi = VerticalNavigation({ Logo });
+  await generateComponentForRendering(Navi);
 
   return (
     <html lang='en'>
       <body>
-        <PrepareRenderer
-          component={NavWithLogo}
-          key={NavWithLogo.uuid}
-          fromClient={false}
-        />
+        <PrepareRenderer component={Navi} key={Navi.uuid} fromClient={false} />
         {children}
       </body>
     </html>

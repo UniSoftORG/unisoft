@@ -1,7 +1,7 @@
 import { KnownElementTag } from '@/types';
 import { generateElement } from '@/definitions/generators';
-import { Profile } from '@/predefined/components/User/Profile';
-import { NavLinks } from '@/predefined/components/Navigations/NavLinks';
+import { Profile } from '@/kgb-gg/components/User/Profile';
+import { NavLinks } from '@/kgb-gg/components/Navigations/NavLinks';
 
 export const Vertical = generateElement(
   'VerticalNavigation',

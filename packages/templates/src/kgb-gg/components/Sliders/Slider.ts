@@ -3,8 +3,8 @@ import { generateElement } from '@/definitions/generators';
 import { setState, useInterval } from '@/definitions/executors';
 import { getState } from '@/definitions/getters';
 import { ternaryCondition } from '@/definitions/evaluators';
-import { ActiveSlide } from '@/predefined/components/Sliders/Slide';
-import { Navigation } from '@/predefined/components/Sliders/Navigation';
+import { ActiveSlide } from './Slide';
+import { Navigation } from './Navigation';
 
 export const Slider = generateElement(
   'Slider',

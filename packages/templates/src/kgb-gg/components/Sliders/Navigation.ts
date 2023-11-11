@@ -1,5 +1,5 @@
 import { generateElement } from '@/definitions/generators';
-import { NavItem } from '@/predefined/components/Sliders/NavItem';
+import { NavItem } from './NavItem';
 
 export const Navigation = generateElement('Navigation', {
   elementAttributes: {

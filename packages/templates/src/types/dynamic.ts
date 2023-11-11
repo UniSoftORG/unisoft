@@ -1,4 +1,4 @@
-import { SupportedApiMethods } from '@/interfaces/api/generics';
+import { SupportedApiMethods } from '@/types/interfaces/api/generics';
 
 export interface DynamicProp {
   [key: string]: Array<{ [key: string]: string }>;

@@ -1,4 +1,4 @@
-import { IBreadcrumbs, IHead, IMeta } from '@/interfaces/api/breadCrumbs';
+import { IBreadcrumbs, IHead, IMeta } from '@/types/interfaces/api/breadCrumbs';
 
 export interface ApiResult<Type> extends IGenericApiError {
   data: Type;

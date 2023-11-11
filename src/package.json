@@ -18,6 +18,7 @@
     "next": "14.0.2",
     "uuid": "^9.0.1",
     "unisoft-utils": "workspace:^1.0.3",
+    "unisoft-templates": "workspace:^0.0.1",
     "lodash": "^4.17.21",
     "fuse.js": "^7.0.0"
   },

@@ -1,6 +1,6 @@
 import { KnownElementTag } from '@/types';
 import { generateElement } from '@/definitions/generators';
-import { Link } from '@/predefined/components/Navigations/Link';
+import { Link } from './Link';
 
 export const NavLinks = generateElement('NavLinks', {
   elementAttributes: {

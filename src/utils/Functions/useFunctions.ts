@@ -21,7 +21,7 @@ export function registerFunc(name: string) {
     const attrs = between(String(imMod), '(', ')').trim().split(', ');
 
     functionsMap[name] = wrapExternalFunction(imMod, (attributes) =>
-      attrs.map((attr) => attributes[attr])
+      attrs.map((attr: string) => attributes[attr])
     );
   }
   return functionsMap;
