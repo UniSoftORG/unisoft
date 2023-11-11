@@ -33,9 +33,9 @@
     "url": "https://github.com/UniSoftORG/utils.git"
   },
   "devDependencies": {
-    "ts-loader": "^9.4.4",
+    "ts-loader": "^9.5.0",
     "tsup": "^7.2.0",
-    "typedoc": "^0.25.1"
+    "typedoc": "^0.25.3"
   },
   "peerDependencies": {
     "@types/jest": "^29.5.4",

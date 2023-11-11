@@ -1,12 +1,7 @@
-import {IComponentType} from "@/types";
-import Image from "next/image";
-import { handleEvents } from "@/utils/Renderer/events";
+import Image from 'next/image';
+import { handleEvents } from '@/utils/Renderer/events';
 
-const ImageRenderer: React.FC<any> = ({
-  children,
-  componentData,
-  events,
-}) => {
+const ImageRenderer: React.FC<any> = ({ children, componentData, events }) => {
   // let src;
   // const data = componentData.dynamicAttributes ? replaceDynamic(componentData, 'attrs', 'dynamicAttributes') : componentData
   // if(data.src?.includes('false')){
@@ -17,14 +12,17 @@ const ImageRenderer: React.FC<any> = ({
 
   return (
     <Image
-      src={componentData.passAttributes.image ?? componentData.elementAttributes.src}
-      alt={componentData.elementAttributes.alt ?? ""}
+      src={
+        componentData.elementAttributes.src ??
+        componentData.passAttributes.image
+      }
+      alt={componentData.elementAttributes.alt ?? ''}
       width={componentData.elementAttributes.width}
       height={componentData.elementAttributes.height}
       className={componentData.elementAttributes.className}
-      loading={"eager"}
+      loading={'eager'}
       priority
-      {...handleEvents(componentData, { customPrefix: "executeOn" })}
+      {...handleEvents(componentData, { customPrefix: 'executeOn' })}
     />
   );
 };

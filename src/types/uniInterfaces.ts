@@ -5,7 +5,7 @@ import {
   MapOption,
   Nested,
   ValueReplacement,
-} from "unisoft";
+} from 'unisoft';
 
 // Generated TypeScript definitions
 // Enums and Interfaces uni-imports from checkers\array.ts

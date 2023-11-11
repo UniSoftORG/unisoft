@@ -1,33 +1,25 @@
-import { IComponentType } from "@/types";
-import { prepareProps } from "@/renderer/helpers/initializors";
-import ClientRenderer from "@/renderer/renderers/ClientRenderer";
-import { Suspense } from "react";
-import {MapRenderer} from "@/renderer/renderers/MapRenderer";
-import Renderer from "@/renderer/Render";
-
+import { IComponentType } from '@/types';
+import Renderer from '@/renderer/Render';
+import { Suspense } from 'react';
+import ClientRenderer from '@/renderer/renderers/ClientRenderer';
 
 export const PrepareRenderer: React.FC<{
-  component: IComponentType,
-  index?: number,
-  generateProps?: boolean,
-}> = ({component, index, generateProps}) => {
-  if (generateProps) prepareProps(component)
-
-  if (component.mappedComponent?.length) return <MapRenderer component={component} />
-  if (
-    component.renderer === "client" ||
-    typeof component.states !== "undefined"
-  ) {
+  component: IComponentType;
+  fromClient?: boolean;
+}> = ({ component, fromClient }) => {
+  if (component.states) {
     return (
       <Suspense>
-        <ClientRenderer component={component} index={index as number} passFromParent={component.passAttributes}/>
+        <ClientRenderer key={component.uuid} component={component} />
       </Suspense>
     );
   }
 
-  return <Renderer
+  return (
+    <Renderer
       component={component}
-      passFromParent={component.passAttributes}
-      index={index ? index : 0}
-  />
-}
+      key={component.uuid}
+      fromClient={fromClient}
+    />
+  );
+};

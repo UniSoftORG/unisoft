@@ -1,22 +1,21 @@
-import React, { createElement, Suspense } from "react";
-import { IComponentBase, IComponentType } from "@/types";
-import ChildRenderer from "../renderers/ChildRenderer";
-import {handleEvents} from "@/utils/Renderer/events";
+import { createElement } from 'react';
+import ChildRenderer from '@/renderer/renderers/ChildRenderer';
+import { IComponentType } from '@/types';
+import { handleEvents } from '@/utils/Renderer/events';
 
-const Element: React.FC<{ children: any; componentData: IComponentType }> = ({
-  children,
-  componentData
-}) => {
+const Element: React.FC<{
+  children?: IComponentType[] | string;
+  componentData: IComponentType;
+}> = ({ children, componentData }) => {
   return createElement(
     componentData.element as string,
     {
-      ...handleEvents(componentData, {customPrefix: 'executeOn'}),
-        ...componentData.elementAttributes,
-        key: componentData.passAttributes.index ? `${componentData.uuid}-${componentData.passAttributes.index}` : componentData.uuid
+      ...handleEvents(componentData, { customPrefix: 'executeOn' }),
+      ...componentData.elementAttributes,
     },
-    <Suspense>
-      <ChildRenderer>{children}</ChildRenderer>
-    </Suspense>,
+    children ? (
+      <ChildRenderer parentData={componentData}>{children}</ChildRenderer>
+    ) : undefined
   );
 };
 

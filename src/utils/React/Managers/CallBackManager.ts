@@ -1,12 +1,12 @@
-import { useCallback } from "react";
+import { useCallback } from 'react';
 
 export const useCustomCallback = (
   fn: () => void,
   watchKeys: string[],
-  states: any,
+  states: any
 ) => {
   return useCallback(
     fn,
-    watchKeys.map((key) => states[key].value),
+    watchKeys.map((key) => states[key].value)
   );
 };

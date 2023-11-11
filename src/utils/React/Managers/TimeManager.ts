@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 export const useInterval = (
   watchKeys: string[],
   callbacks: () => void,
   states: any,
-  delay: any,
+  delay: any
 ) => {
   useEffect(
     () => {
@@ -13,7 +13,7 @@ export const useInterval = (
         return () => clearInterval(id);
       }
     },
-    watchKeys.map((key) => states[key]),
+    watchKeys.map((key) => states[key])
   );
 };
 
@@ -21,7 +21,7 @@ export const useTimeout = (
   watchKeys: string[],
   callbacks: () => void,
   states: any,
-  delay: any,
+  delay: any
 ) => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -35,6 +35,6 @@ export const useTimeout = (
         }
       };
     },
-    watchKeys.map((key) => states[key]),
+    watchKeys.map((key) => states[key])
   );
 };

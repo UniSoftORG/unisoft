@@ -1,15 +1,16 @@
 import {
   IComponent,
-  IComponentBase, IComponentType,
+  IComponentBase,
+  IComponentType,
   KnownComponentType,
   KnownElementTag,
-} from "@/types";
-import { v4 } from "uuid";
+} from '@/types';
+import { v4 } from 'uuid';
 
 export const generateElement = (
   name: string,
   props: IComponent,
-  type?: KnownElementTag,
+  type?: KnownElementTag
 ): IComponent & IComponentBase => {
   const uniqueIdentity = v4();
   return {
@@ -22,9 +23,9 @@ export const generateElement = (
 };
 
 export const generateImage = (
-    name: string,
-    { ...props }: IComponent,
-    squared?: number
+  name: string,
+  { ...props }: IComponent,
+  squared?: number
 ): IComponentType => {
   const uniqueIdentity = v4();
   return {
@@ -35,14 +36,14 @@ export const generateImage = (
     elementAttributes: {
       ...props.elementAttributes,
       ['alt' as any]: (props.elementAttributes as any)?.alt ?? '',
-      ...(squared !== undefined && {width: squared, height: squared}),
+      ...(squared !== undefined && { width: squared, height: squared }),
     },
   };
 };
 
 export const generateTextField: any = (
-    name: string,
-    { ...props }: IComponent
+  name: string,
+  { ...props }: IComponent
 ): IComponentBase => {
   const uniqueIdentity = v4();
   return {

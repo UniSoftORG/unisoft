@@ -1,6 +1,6 @@
-"use client";
-import { IComponentBase } from "@/types";
-import Element from "./Element";
+'use client';
+import { IComponentBase } from '@/types';
+import Element from './Element';
 // import {replaceDynamic} from "@/Builder/utils/replacerUtils";
 // import {useTranslations} from "next-intl";
 
@@ -15,13 +15,11 @@ const Translation: React.FC<{
     <Element
       componentData={componentData}
       {...{
-        type: "Translation",
+        type: 'Translation',
         uuid: componentData.uuid,
       }}
-      key={componentData.uuid}
-    >
+      key={componentData.uuid}>
       Test
-      {/*{t(`${createDynamic?.parentUuid}.${createDynamic?.text}`) as any}*/}
     </Element>
   );
 };

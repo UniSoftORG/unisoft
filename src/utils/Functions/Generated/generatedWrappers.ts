@@ -1,13 +1,13 @@
-import { wrapExternalFunction } from "@/utils/Functions/DynamicFunctionLibrary";
+import { wrapExternalFunction } from '@/utils/Functions/DynamicFunctionLibrary';
 import {
   after,
-  before,
   afterLast,
-  ucsplit,
+  before,
   beforeLast,
-  wordCount,
   substrCount,
-} from "unisoft-utils";
+  ucsplit,
+  wordCount,
+} from 'unisoft-utils';
 
 export const wrappedAfter = wrapExternalFunction(after, (attributes) => [
   attributes.subject,
@@ -16,7 +16,7 @@ export const wrappedAfter = wrapExternalFunction(after, (attributes) => [
 
 export const wrappedAfterLast = wrapExternalFunction(
   afterLast,
-  (attributes) => [attributes.subject, attributes.search],
+  (attributes) => [attributes.subject, attributes.search]
 );
 
 export const wrappedBefore = wrapExternalFunction(before, (attributes) => [
@@ -26,12 +26,12 @@ export const wrappedBefore = wrapExternalFunction(before, (attributes) => [
 
 export const wrappedBeforeLast = wrapExternalFunction(
   beforeLast,
-  (attributes) => [attributes.subject, attributes.search],
+  (attributes) => [attributes.subject, attributes.search]
 );
 
 export const wrappedWordCount = wrapExternalFunction(
   wordCount,
-  (attributes) => [attributes.subject],
+  (attributes) => [attributes.subject]
 );
 
 export const wrappedUcsplit = wrapExternalFunction(ucsplit, (attributes) => [
@@ -41,7 +41,7 @@ export const wrappedUcsplit = wrapExternalFunction(ucsplit, (attributes) => [
 
 export const wrappedSubstrCount = wrapExternalFunction(
   substrCount,
-  (attributes) => [attributes.subject, attributes.search],
+  (attributes) => [attributes.subject, attributes.search]
 );
 
 export const consoleLog = wrapExternalFunction(
@@ -50,5 +50,5 @@ export const consoleLog = wrapExternalFunction(
       console.log(value);
     }
   },
-  (attributes) => [attributes.value],
+  (attributes) => [attributes.value]
 );

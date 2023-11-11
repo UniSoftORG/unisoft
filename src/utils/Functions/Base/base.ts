@@ -1,4 +1,4 @@
-import { Attributes } from "../DynamicFunctionLibrary";
+import { Attributes } from '../DynamicFunctionLibrary';
 
 export const cyclicIncrement: (params: Attributes) => any = ({
   number,
@@ -14,7 +14,7 @@ export const cyclicIncrement: (params: Attributes) => any = ({
 
 export const after = (subject: string, search: string): string => {
   const pos = subject.indexOf(search);
-  return pos === -1 ? "" : subject.slice(pos + search.length);
+  return pos === -1 ? '' : subject.slice(pos + search.length);
 };
 
 export const cyclicDecrement: (params: Attributes) => any = ({

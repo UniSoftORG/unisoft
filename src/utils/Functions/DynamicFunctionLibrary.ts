@@ -1,9 +1,10 @@
 import functionsMap, {
   registerFunc,
   registerReactHook,
-} from "@/utils/Functions/useFunctions";
-import { simpleDeepClone, mapObjectValues } from "unisoft-utils";
-import { setState, useTimeEffect } from "@/utils/React/Initiator";
+} from '@/utils/Functions/useFunctions';
+import { mapObjectValues, simpleDeepClone } from 'unisoft-utils';
+import { setState, useTimeEffect } from '@/utils/React/Initiator';
+import { startsWith } from 'lodash';
 
 export interface CallbackConfig {
   name: string;
@@ -23,7 +24,7 @@ export function registerFunction(name: string, func: FunctionSignature) {
 export function invokeFunctionByName(
   name: string,
   attributes: Attributes,
-  inject?: any,
+  inject?: any
 ): any {
   if (name) {
     if (!functionsMap[name] && name) {
@@ -33,30 +34,32 @@ export function invokeFunctionByName(
   }
 }
 
-export function runMappedFunctions(tasks: any) {
+export function runMappedFunctions(uuid: string, tasks: any) {
   tasks.forEach((task: any) => {
-    if (task.name === "useInterval" && functionsMap[task.name]) {
-      useTimeEffect(task);
+    if (
+      startsWith(task.name, 'useInterval') &&
+      functionsMap[task.name + uuid.replaceAll('-', '')]
+    ) {
+      useTimeEffect(task, uuid);
       return;
     }
-    return runFunction(task);
+    return runFunction(task, uuid);
   });
 }
 
-export function runFunction(task: any) {
+export function runFunction(task: any, uuid: string) {
   const executeTask = (currentTask: any) => {
-    const result =
-      currentTask.name === "setState"
-        ? setState(currentTask)
-        : invokeFunctionByName(currentTask.name, currentTask.attributes);
+    const result = startsWith(currentTask.name, 'setState')
+      ? setState(currentTask, uuid)
+      : invokeFunctionByName(currentTask.name, currentTask.attributes);
 
     if (currentTask.callbacks && currentTask.callbacks.length) {
       currentTask.callbacks.forEach((callback: any) => {
         const callbackAttributes = mapObjectValues(
           callback.attributes,
           (value: string) => {
-            return value === "parentReturn" ? result : value;
-          },
+            return value === 'parentReturn' ? result : value;
+          }
         );
 
         executeTask({ ...callback, attributes: callbackAttributes });
@@ -70,14 +73,15 @@ export function runFunction(task: any) {
 }
 
 export function importReactHooks(name: string, injectHook: any) {
-  Object.keys(injectHook).map((value) => {
-    return registerReactHook(value, injectHook[value]);
-  });
+  injectHook &&
+    Object.keys(injectHook).map((value) => {
+      return registerReactHook(value, injectHook[value]);
+    });
 }
 
 export function invokeCallbacks(
   result: any,
-  callbackConfigs?: CallbackConfig[],
+  callbackConfigs?: CallbackConfig[]
 ) {
   if (!callbackConfigs) return;
   for (const config of callbackConfigs) {
@@ -88,7 +92,7 @@ export function invokeCallbacks(
 
 export function wrapExternalFunction(
   func: (...args: any[]) => any,
-  paramMapping: (attributes: Attributes) => any[],
+  paramMapping: (attributes: Attributes) => any[]
 ) {
   return (attributes: Attributes) => {
     const args = paramMapping(attributes);

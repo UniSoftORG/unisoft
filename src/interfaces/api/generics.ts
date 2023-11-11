@@ -1,4 +1,4 @@
-import { IBreadcrumbs, IHead, IMeta } from "@/interfaces/api/breadCrumbs";
+import { IBreadcrumbs, IHead, IMeta } from '@/interfaces/api/breadCrumbs';
 
 export interface ApiResult<Type> extends IGenericApiError {
   data: Type;
@@ -27,9 +27,9 @@ export interface IIconOrImage {
 }
 
 export enum SupportedApiMethods {
-  "GET" = "get",
-  "PUT" = "put",
-  "POST" = "post",
-  "DELETE" = "delete",
-  "PATCH" = "patch",
+  'GET' = 'get',
+  'PUT' = 'put',
+  'POST' = 'post',
+  'DELETE' = 'delete',
+  'PATCH' = 'patch',
 }

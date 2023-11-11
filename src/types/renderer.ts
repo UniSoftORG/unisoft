@@ -1,48 +1,52 @@
-import {ReactNode} from "react";
-import {DynamicRequest} from "@/types/dynamic";
-import {CreateState} from "@/types/react";
+import { ReactNode } from 'react';
+import { DynamicRequest } from '@/types/dynamic';
+import { CreateState } from '@/types/react';
+
+export type AnyObject = { [key: string]: any };
 
 export enum KnownComponentType {
-  Element = "Element",
-  Translation = "Translation",
-  Component = "Component",
-  Image = "Image",
-  Text = "Text",
+  Element = 'Element',
+  Translation = 'Translation',
+  Component = 'Component',
+  Image = 'Image',
+  Text = 'Text',
 }
 
 export enum KnownElementTag {
-  Main = "main",
-  Div = "div",
+  Main = 'main',
+  Div = 'div',
+  Link = 'a',
   Li = 'li',
-  Section = "section",
+  Section = 'section',
   Button = 'button',
   Nav = 'nav',
-  Form = "form",
-  Span = "span",
+  Form = 'form',
+  Span = 'span',
   Ul = 'ul',
   Paragraph = 'p',
-  Aside = "aside"
+  Aside = 'aside',
 }
 
 /**
  * Represents data for components.
  */
-export interface IComponentBase{
+export interface IComponentBase {
   name: string;
   uuid: string;
   type: KnownComponentType;
   element?: KnownElementTag;
 }
 
-export interface IComponent{
-  renderer?: "server" | "client";
+export interface IComponent {
+  uuid?: string;
+  renderer?: 'server' | 'client';
   attributes?: Record<string, any>;
   variables?: CreateState;
   states?: CreateState;
   elementAttributes?: React.HTMLAttributes<any>;
   dynamic?: any;
   rendererDynamic?: any;
-  receiveAttributes?: any;
+  receiveAttributes?: AnyObject;
   passAttributes?: any;
   children?: any;
   conditions?: string[];

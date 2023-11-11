@@ -36,6 +36,6 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.2.2",
-    "concurrently": "^8.2.1"
+    "concurrently": "^8.2.2"
   }
 }
