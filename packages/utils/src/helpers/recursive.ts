@@ -1,5 +1,5 @@
-import { Nested } from "../../@utils";
-import { getValue } from "../getters";
+import { Nested } from '../../@utils';
+import { getValue } from '../getters';
 
 /**
  * Recursively maps over an array of nested objects and applies a mapper function to each object.
@@ -13,10 +13,10 @@ import { getValue } from "../getters";
 export const mapRecursive = <T extends Nested<T>>(
   data: T[],
   mapperFn: (value: T, key?: any) => T,
-  nestedKey: string = "children",
+  nestedKey: string = 'children'
 ): T[] => {
   if (!Array.isArray(data)) {
-    throw new Error("Input must be an array.");
+    throw new Error('Input must be an array.');
   }
 
   return data.map((item, key) => {
@@ -43,8 +43,8 @@ export const mapRecursive = <T extends Nested<T>>(
 export const forRecursive = <T extends Record<string, any>>(
   data: T[],
   callback: (item: T, index: number, parent?: T) => Promise<any> | any,
-  nestedKey: keyof T = "children",
-  parent?: T,
+  nestedKey: keyof T = 'children',
+  parent?: T
 ): void => {
   for (let i = 0; i < data.length; i++) {
     const item = data[i];
@@ -68,7 +68,7 @@ export const forRecursive = <T extends Record<string, any>>(
 export const forEachRecursive = <T extends Record<string, any>>(
   data: T[],
   mapperFn: (component: T) => T,
-  nestedKey: string = "children",
+  nestedKey: string = 'children'
 ): T[] => {
   const result: T[] = [];
 
@@ -99,7 +99,7 @@ export const forEachRecursive = <T extends Record<string, any>>(
 export const forLoopRecursive = <T extends Record<string, any>>(
   data: T[],
   mapperFn: (component: T) => T,
-  nestedKey: string = "children",
+  nestedKey: string = 'children'
 ): T[] => {
   const result = [];
 
@@ -126,16 +126,16 @@ export const transformObject = (
   obj: AnyObject,
   shouldTransformByKey: string,
   copyKeys: string[],
-  parent?: AnyObject,
+  parent?: AnyObject
 ) => {
-  if (!obj || typeof obj !== "object") return;
+  if (!obj || typeof obj !== 'object') return;
 
   if (
     obj.hasOwnProperty(shouldTransformByKey) &&
-    typeof obj[shouldTransformByKey] === "string"
+    typeof obj[shouldTransformByKey] === 'string'
   ) {
     const pathParts = (obj[shouldTransformByKey] as unknown as string).split(
-      ".",
+      '.'
     );
     let valueToMap: any = parent;
 
@@ -163,7 +163,7 @@ export const transformObject = (
   }
 
   for (const key in obj) {
-    if (obj.hasOwnProperty(key) && typeof obj[key] === "object") {
+    if (obj.hasOwnProperty(key) && typeof obj[key] === 'object') {
       transformObject(obj[key], shouldTransformByKey, copyKeys, obj);
     }
   }

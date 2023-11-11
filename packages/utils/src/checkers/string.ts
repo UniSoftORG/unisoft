@@ -7,10 +7,10 @@
  */
 export const containsAny = (
   subject: string,
-  search: string | string[],
+  search: string | string[]
 ): boolean =>
   (Array.isArray(search) ? search : [search]).some((item) =>
-    subject.includes(item),
+    subject.includes(item)
   );
 
 /**
@@ -45,7 +45,7 @@ export const isUrl = (subject: string): boolean => {
  */
 export const isUuid = (subject: string): boolean =>
   /^[0-9a-f]{8}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{4}-?[0-9a-f]{12}$/i.test(
-    subject,
+    subject
   );
 
 /**

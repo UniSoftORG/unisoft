@@ -1,4 +1,4 @@
-import { MapOption } from "@utils";
+import { MapOption } from '@utils';
 
 /**
  * Generates an object from an array of map options.
@@ -9,14 +9,14 @@ import { MapOption } from "@utils";
 export const createObjectFromMapOptions = (mapOptions: MapOption[]) => {
   return mapOptions.reduce(
     (acc, option) => {
-      if (typeof option === "string") {
+      if (typeof option === 'string') {
         acc[option] = option;
       } else {
-        const { key, value, beforeValue = "", afterValue = "" } = option;
+        const { key, value, beforeValue = '', afterValue = '' } = option;
         acc[key] = `${beforeValue}${value}${afterValue}`;
       }
       return acc;
     },
-    {} as Record<string, any>,
+    {} as Record<string, any>
   );
 };

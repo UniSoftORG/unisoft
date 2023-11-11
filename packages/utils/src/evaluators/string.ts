@@ -1,5 +1,5 @@
-import { ValueReplacement } from "../../@utils";
-import { addAfter, addBefore } from "../setters";
+import { ValueReplacement } from '../../@utils';
+import { addAfter, addBefore } from '../setters';
 
 /**
  * Evaluates the replacement value based on the given condition.
@@ -15,7 +15,7 @@ export const evaluateReplacement = (
     newValue: string;
   },
   condition?: ValueReplacement,
-  noSpaceBetween?: boolean,
+  noSpaceBetween?: boolean
 ) => {
   switch (condition) {
     case ValueReplacement.All:
@@ -25,14 +25,14 @@ export const evaluateReplacement = (
         values.oldValue,
         values.newValue,
         undefined,
-        noSpaceBetween,
+        noSpaceBetween
       );
     default:
       return addAfter(
         values.oldValue,
         values.newValue,
         undefined,
-        noSpaceBetween,
+        noSpaceBetween
       );
   }
 };

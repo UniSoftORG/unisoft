@@ -1,4 +1,4 @@
-import { setValueAtPathInObject } from "../setters";
+import { setValueAtPathInObject } from '../setters';
 
 /**
  * Converts an array to an object using a key extractor function.
@@ -9,14 +9,14 @@ import { setValueAtPathInObject } from "../setters";
  */
 export const arrayToObject = <T>(
   arr: T[],
-  keyExtractor: (item: T) => string,
+  keyExtractor: (item: T) => string
 ): Record<string, T> => {
   return arr.reduce(
     (acc: Record<string, T>, item: T) => {
       acc[keyExtractor(item)] = item;
       return acc;
     },
-    {} as Record<string, T>,
+    {} as Record<string, T>
   );
 };
 
@@ -37,7 +37,7 @@ export const collapse = <T>(arr: T[][]): T[] => {
  * @param obj
  */
 export const separateKeysAndValues = <T>(
-  obj: Record<string, T>,
+  obj: Record<string, T>
 ): [string[], T[]] => {
   const keys = Object.keys(obj);
   const values = keys.map((key) => obj[key]);
@@ -52,11 +52,11 @@ export const separateKeysAndValues = <T>(
  * @param params
  */
 export const createQueryString = (
-  params: Record<string, string | number | boolean>,
+  params: Record<string, string | number | boolean>
 ): string => {
   return Object.keys(params)
-    .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
-    .join("&");
+    .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+    .join('&');
 };
 
 /**
@@ -66,7 +66,7 @@ export const createQueryString = (
  * @return {string} - The CSS class string.
  */
 export const convertArrayToClassString = (arr: string[]): string => {
-  return arr.filter(Boolean).join(" ");
+  return arr.filter(Boolean).join(' ');
 };
 /**
  * Converts an object to a string of CSS styles.
@@ -80,7 +80,7 @@ export const convertObjectToCssString = (styles: {
   return Object.entries(styles)
     .filter(([key, value]) => Boolean(key) && Boolean(value))
     .map(([key, value]) => `${key}:${value};`)
-    .join(" ");
+    .join(' ');
 };
 
 /**

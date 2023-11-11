@@ -9,7 +9,7 @@
 export const setNestedValue = <T>(
   obj: T,
   keyPath: (string | number)[],
-  value: any,
+  value: any
 ): T => {
   let currentObj: any = obj;
   for (let i = 0; i < keyPath.length - 1; i++) {
@@ -33,11 +33,11 @@ export const setNestedValue = <T>(
 export const setByDotNotation = <T, K extends keyof any = keyof any>(
   obj: T,
   path: string,
-  value: K,
+  value: K
 ): void => {
   // Handle both dot and array notations and split the path.
   try {
-    const parts = path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
+    const parts = path.replace(/\[/g, '.').replace(/\]/g, '').split('.');
 
     parts.reduce((acc: any, part, index, array) => {
       // If it's the last part, set the value

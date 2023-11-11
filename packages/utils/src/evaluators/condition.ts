@@ -1,8 +1,8 @@
-import { Conditional, ValueReplacement } from "../../@utils";
-import { createCondition, mapObjectValues } from "../helpers";
-import { evaluateReplacement } from "./string";
-import { getValue } from "../getters";
-import { setNestedValue } from "../setters";
+import { Conditional, ValueReplacement } from '../../@utils';
+import { createCondition, mapObjectValues } from '../helpers';
+import { evaluateReplacement } from './string';
+import { getValue } from '../getters';
+import { setNestedValue } from '../setters';
 
 /**
  * Transforms a condition from string to into actionable logic.
@@ -13,9 +13,9 @@ import { setNestedValue } from "../setters";
  */
 export const evaluateCondition = <T>(
   conditionStr: string,
-  mainObj: T,
+  mainObj: T
 ): boolean => {
-  const [leftPath, operator, rightPath] = conditionStr.split(" ");
+  const [leftPath, operator, rightPath] = conditionStr.split(' ');
 
   const leftValue = getValue(mainObj, leftPath);
   const rightValue = getValue(mainObj, rightPath);
@@ -46,15 +46,15 @@ export const evaluateConditions = <
     returnValueKeyOnly?: boolean;
     forceMostFrequentKey?: boolean;
   },
-  replaceValue: ValueReplacement = ValueReplacement.Before,
+  replaceValue: ValueReplacement = ValueReplacement.Before
 ) => {
   const { mainObj, valueKey, returnValueKeyOnly } = objOptions;
-  let conditional = "";
+  let conditional = '';
 
   if (conditions) {
     Array.isArray(conditions) &&
       conditions.forEach((attribute: any) => {
-        if (valueKey && typeof attribute === "object" && mainObj) {
+        if (valueKey && typeof attribute === 'object' && mainObj) {
           mapObjectValues(attribute, (conditions: any) => {
             conditions.forEach((condition: any) => {
               if (evaluateCondition(condition.condition, mainObj ?? {}))
@@ -71,16 +71,16 @@ export const evaluateConditions = <
 
   const finalValue = evaluateReplacement(
     {
-      oldValue: getValue(mainObj, valueKey ?? "") || "",
+      oldValue: getValue(mainObj, valueKey ?? '') || '',
       newValue: conditional.trim(),
     },
-    replaceValue,
+    replaceValue
   ).trim();
 
   if (returnValueKeyOnly && valueKey) {
-    return { [valueKey.split(".").pop() as string]: finalValue };
+    return { [valueKey.split('.').pop() as string]: finalValue };
   } else if (valueKey) {
-    return setNestedValue<ObjectType>(mainObj, valueKey.split("."), finalValue);
+    return setNestedValue<ObjectType>(mainObj, valueKey.split('.'), finalValue);
   } else {
     return finalValue as ReturnType;
   }

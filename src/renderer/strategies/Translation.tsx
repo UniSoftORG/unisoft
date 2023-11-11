@@ -18,7 +18,8 @@ const Translation: React.FC<{
         type: 'Translation',
         uuid: componentData.uuid,
       }}
-      key={componentData.uuid}>
+      key={componentData.uuid}
+    >
       Test
     </Element>
   );

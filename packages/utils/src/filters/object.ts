@@ -7,7 +7,7 @@
  */
 export const filterObjectByKey = <T extends string, K>(
   object: Record<T, K>,
-  keys: T[],
+  keys: T[]
 ): Partial<Record<T, K>> => {
   return keys.reduce(
     (acc, key) => {
@@ -16,6 +16,6 @@ export const filterObjectByKey = <T extends string, K>(
       }
       return acc;
     },
-    {} as Partial<Record<T, K>>,
+    {} as Partial<Record<T, K>>
   );
 };

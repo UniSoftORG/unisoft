@@ -7,10 +7,10 @@
  */
 export function mapObjectValues<T, U>(
   obj: Record<string, T>,
-  mapperFn: (value: T) => U,
+  mapperFn: (value: T) => U
 ): Record<string, U> {
   return Object.fromEntries(
-    Object.entries(obj).map(([key, value]) => [key, mapperFn(value)]),
+    Object.entries(obj).map(([key, value]) => [key, mapperFn(value)])
   );
 }
 
@@ -34,7 +34,7 @@ export function mapObjectValues<T, U>(
  */
 export const transformEntries = <T>(
   input: { [key: string]: any },
-  transformer: (key: string, value: any) => T,
+  transformer: (key: string, value: any) => T
 ): T[] => {
   return Object.entries(input).map(([key, value]) => transformer(key, value));
 };
@@ -48,7 +48,7 @@ export const transformEntries = <T>(
  */
 export function mapArrayValues<T, U>(
   values: T[],
-  mapperFn: (value: T) => U,
+  mapperFn: (value: T) => U
 ): U[] {
   return values.map(mapperFn);
 }

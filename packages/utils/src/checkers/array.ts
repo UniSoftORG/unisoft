@@ -5,7 +5,7 @@
  * @return {boolean} Returns true if the input is an accessible array or object, otherwise false.
  */
 export const isAccessible = (arr: unknown): boolean =>
-  (Array.isArray(arr) || typeof arr === "object") && arr !== null;
+  (Array.isArray(arr) || typeof arr === 'object') && arr !== null;
 
 /**
  * Checks if a given key exists in an array.
@@ -16,7 +16,7 @@ export const isAccessible = (arr: unknown): boolean =>
  */
 export const hasKey = (
   arr: Record<string, unknown> | null | undefined,
-  key: string,
+  key: string
 ): boolean =>
   <boolean>!!(arr && Object.prototype.hasOwnProperty.call(arr, key));
 
@@ -29,6 +29,6 @@ export const hasKey = (
  */
 export const hasAnyKey = (
   arr: Record<string, unknown> | null | undefined,
-  keys: string[],
+  keys: string[]
 ): boolean =>
   keys.some((key) => arr && Object.prototype.hasOwnProperty.call(arr, key));

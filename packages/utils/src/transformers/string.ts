@@ -1,4 +1,4 @@
-import { getValue } from "../getters";
+import { getValue } from '../getters';
 
 /**
  * Iteratively resolves placeholders in a template-like string using values from a provided object.
@@ -21,12 +21,12 @@ export const resolveTemplateString = (str: string, obj: any): string => {
 
     const value = getValue(obj, path);
 
-    if (typeof value === "object") {
+    if (typeof value === 'object') {
       replacedStr = value;
-    } else if (typeof value === "string" && value.includes("${")) {
+    } else if (typeof value === 'string' && value.includes('${')) {
       replacedStr = replacedStr.replace(
         fullMatch,
-        resolveTemplateString(value, obj),
+        resolveTemplateString(value, obj)
       );
     } else {
       replacedStr = replacedStr.replace(fullMatch, value);
@@ -47,7 +47,7 @@ export const resolveTemplateString = (str: string, obj: any): string => {
 export const limit = (
   subject: string,
   limit: number = 100,
-  end: string = "...",
+  end: string = '...'
 ): string => (subject.length > limit ? subject.slice(0, limit) + end : subject);
 
 /**
@@ -73,7 +73,7 @@ export const upper = (subject: string): string => subject.toUpperCase();
  * @returns {string} - The reversed string.
  */
 export const reverse = (subject: string): string =>
-  subject.split("").reverse().join("");
+  subject.split('').reverse().join('');
 
 /**
  * Converts a string to a URL-friendly slug.
@@ -82,7 +82,7 @@ export const reverse = (subject: string): string =>
  * @param {string} [separator='-'] - The separator for the slug.
  * @returns {string} - The slug.
  */
-export const slug = (subject: string, separator: string = "-"): string =>
+export const slug = (subject: string, separator: string = '-'): string =>
   subject.toLowerCase().replace(/[^\w]+/g, separator);
 
 /**
@@ -103,7 +103,7 @@ export const studly = (subject: string): string =>
 export const title = (subject: string): string =>
   subject.replace(
     /\w\S*/g,
-    (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(),
+    (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
   );
 
 /**
@@ -114,7 +114,7 @@ export const title = (subject: string): string =>
  */
 export const swap = (subject: string): string =>
   subject.replace(/\w/g, (char) =>
-    /[A-Z]/.test(char) ? char.toLowerCase() : char.toUpperCase(),
+    /[A-Z]/.test(char) ? char.toLowerCase() : char.toUpperCase()
   );
 
 /**
@@ -124,7 +124,7 @@ export const swap = (subject: string): string =>
  * @returns {string} - The string in snake_case.
  */
 export const snake = (subject: string): string =>
-  subject.replace(/([A-Z])/g, "_$1").toLowerCase();
+  subject.replace(/([A-Z])/g, '_$1').toLowerCase();
 
 /**
  * Removes extra whitespace from a string and trims it.
@@ -133,7 +133,7 @@ export const snake = (subject: string): string =>
  * @returns {string} - The squished string.
  */
 export const squish = (subject: string): string =>
-  subject.replace(/\s+/g, " ").trim();
+  subject.replace(/\s+/g, ' ').trim();
 
 /**
  * Capitalizes the first letter of a string.
@@ -155,7 +155,7 @@ export const headline = (subject: string): string =>
 export const replaceStart = (
   subject: string,
   search: string,
-  replacement: string,
+  replacement: string
 ): string =>
   subject.startsWith(search)
     ? replacement + subject.slice(search.length)
@@ -172,7 +172,7 @@ export const replaceStart = (
 export const replaceEnd = (
   subject: string,
   search: string,
-  replacement: string,
+  replacement: string
 ): string =>
   subject.endsWith(search)
     ? subject.slice(0, subject.length - search.length) + replacement
@@ -189,7 +189,7 @@ export const replaceEnd = (
 export const replaceFirst = (
   subject: string,
   search: string,
-  replace: string,
+  replace: string
 ): string => subject.replace(search, () => replace);
 
 /**
@@ -203,7 +203,7 @@ export const replaceFirst = (
 export const replaceLast = (
   subject: string,
   search: string,
-  replace: string,
+  replace: string
 ): string => {
   const pos = subject.lastIndexOf(search);
   if (pos === -1) return subject;
@@ -221,7 +221,7 @@ export const replaceLast = (
 export const excerpt = (
   subject: string,
   length: number = 100,
-  end: string = "...",
+  end: string = '...'
 ): string =>
   subject.length <= length
     ? subject
@@ -248,11 +248,11 @@ export const finish = (subject: string, cap: string): string =>
 export const wordWrap = (
   subject: string,
   width: number,
-  breakChar: string = "\n",
+  breakChar: string = '\n'
 ): string =>
   subject.replace(
-    new RegExp(`(?![^\n]{1,${width}}$)([^\n]{1,${width}})\\s`, "g"),
-    `$1${breakChar}`,
+    new RegExp(`(?![^\n]{1,${width}}$)([^\n]{1,${width}})\\s`, 'g'),
+    `$1${breakChar}`
   );
 
 /**

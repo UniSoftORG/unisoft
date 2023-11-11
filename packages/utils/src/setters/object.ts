@@ -8,7 +8,7 @@
 export const assignProp = <T, KeyType extends string>(
   target: Record<KeyType, T | undefined>,
   propName: KeyType,
-  source: Record<KeyType, T>,
+  source: Record<KeyType, T>
 ) => {
   if (source[propName] !== undefined) {
     target[propName] = source[propName];

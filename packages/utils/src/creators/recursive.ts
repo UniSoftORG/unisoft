@@ -7,7 +7,7 @@
 export const flatten = <T>(arr: any[]): T[] => {
   return arr.reduce((flat: T[], toFlatten): T[] => {
     return flat.concat(
-      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten,
+      Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten
     );
   }, []);
 };
@@ -19,7 +19,7 @@ export const flatten = <T>(arr: any[]): T[] => {
  * @return {T} - The cloned object.
  */
 export const deepClone = <T>(obj: T): T => {
-  if (obj === null || typeof obj !== "object") {
+  if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
@@ -27,7 +27,7 @@ export const deepClone = <T>(obj: T): T => {
     ? (obj.map((item) => deepClone(item)) as T)
     : (Object.entries(obj).reduce<{ [key: string]: any }>(
         (clone, [key, value]) => ({ ...clone, [key]: deepClone(value) }),
-        {},
+        {}
       ) as T);
 };
 

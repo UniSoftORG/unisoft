@@ -7,7 +7,7 @@
  */
 export const doesKeyExist = (
   obj: Record<string, unknown>,
-  key: string,
+  key: string
 ): boolean => key in obj;
 
 /**

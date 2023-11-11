@@ -7,7 +7,7 @@
  */
 export const efficientPluck = <T, K extends keyof T>(
   obj: T,
-  keys: K[],
+  keys: K[]
 ): Pick<T, K> => {
   const result: Pick<T, K> = {} as Pick<T, K>;
   for (const key of keys) {

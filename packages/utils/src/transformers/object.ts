@@ -1,6 +1,6 @@
-import { getValue } from "../getters";
-import { resolveTemplateString } from "./string";
-import { setByDotNotation } from "../setters";
+import { getValue } from '../getters';
+import { resolveTemplateString } from './string';
+import { setByDotNotation } from '../setters';
 
 /**
  * Replaces specified targeted strings within an object using a provided list.
@@ -12,7 +12,7 @@ import { setByDotNotation } from "../setters";
  */
 export const replaceDynamicTargets = <T>(
   obj: T,
-  targets: string[],
+  targets: string[]
 ): T | undefined => {
   targets?.map((target) => {
     const targetStr = getValue(obj, target);
@@ -63,12 +63,12 @@ export const deepMerge = (
         target[key] = targetValue.concat(sourceValue);
       } else if (targetValue instanceof Date && sourceValue instanceof Date) {
         target[key] = new Date(
-          Math.max(targetValue.getTime(), sourceValue.getTime()),
+          Math.max(targetValue.getTime(), sourceValue.getTime())
         );
       } else if (
-        typeof targetValue === "object" &&
+        typeof targetValue === 'object' &&
         targetValue &&
-        typeof sourceValue === "object" &&
+        typeof sourceValue === 'object' &&
         sourceValue
       ) {
         target[key] = deepMerge({ ...targetValue }, sourceValue);
@@ -89,7 +89,7 @@ export const deepMerge = (
  */
 export const objectToArray = <T>(
   obj: Record<string, T>,
-  keys?: string[],
+  keys?: string[]
 ): T[] => {
   return keys
     ? keys.map((key) => obj[key]).filter((val) => val !== undefined)
@@ -105,11 +105,11 @@ export const objectToArray = <T>(
  */
 export const excludeKeys = <T extends Record<string, any>, K extends keyof T>(
   obj: T,
-  keysToExclude: K[],
+  keysToExclude: K[]
 ): Omit<T, K> => {
   return Object.fromEntries(
     Object.entries(obj as Record<string, any>).filter(
-      ([key]) => !keysToExclude.includes(key as K),
-    ),
+      ([key]) => !keysToExclude.includes(key as K)
+    )
   ) as Omit<T, K>;
 };
