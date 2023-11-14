@@ -1,11 +1,10 @@
 import { KnownElementTag } from '@/types';
-import { generateElement, generateImage } from '@/definitions/generators';
-import User from '@/public/icons/user.svg';
-import { LinkHover } from '@/predefined/components/Navigations/LinkHover';
+import {generateElement, generateImage, generateLink} from '@/definitions/generators';
+import { LinkHover } from './LinkHover';
 import { createEvent, setState } from '@/definitions/executors';
 import { Events } from '@/types/events';
 
-export const Link = generateElement(
+export const Link = generateLink(
   'NavLink',
   {
     mapByKey: 'Nav.variables.links',
@@ -24,10 +23,16 @@ export const Link = generateElement(
     // ],
     children: [
       generateElement('Link', {
+        receiveAttributes: {
+          image: 'NavLink.passAttributes.image',
+        },
         children: [
           generateElement(
             'LinkButton',
             {
+              receiveAttributes: {
+                image: 'Link.passAttributes.image',
+              },
               elementAttributes: {
                 className:
                   'flex justify-center items-center rounded-lg px-8 py-6 z-50',
@@ -38,9 +43,11 @@ export const Link = generateElement(
                   'LinkIcon',
                   {
                     elementAttributes: {
-                      ['src' as any]: User,
                       className:
-                        'transition-transform duration-500 ease-in-out',
+                        'transition-transform duration-300 ease-in-out',
+                    },
+                    receiveAttributes: {
+                      image: 'LinkButton.passAttributes.image',
                     },
                   },
                   24
@@ -53,6 +60,5 @@ export const Link = generateElement(
       }),
       LinkHover,
     ],
-  },
-  KnownElementTag.Li
+  }
 );

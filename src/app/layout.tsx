@@ -1,9 +1,9 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import Logo from '@/public/kgb.png';
-import { Slider, VerticalNavigation } from 'unisoft-templates';
 import { PrepareRenderer } from '@/renderer/PrepareRenderer';
 import { generateComponentForRendering } from '@/renderer/helpers/initializors';
+import {VerticalNavigation} from "@/predefined/components/Navigations";
 
 export const metadata: Metadata = {
   title: 'UniSoft',

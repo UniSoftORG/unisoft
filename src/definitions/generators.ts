@@ -22,6 +22,19 @@ export const generateElement = (
   };
 };
 
+export const generateLink = (
+    name: string,
+    props: IComponent,
+): IComponent & IComponentBase => {
+  const uniqueIdentity = v4();
+  return {
+    name,
+    uuid: uniqueIdentity,
+    type: KnownComponentType.Link,
+    ...props,
+  };
+};
+
 export const generateImage = (
   name: string,
   { ...props }: IComponent,

@@ -79,8 +79,8 @@ module.exports = {
       animation: {
         fadeIn: 'fadeIn 1s ease-in forwards',
         fadeOut: 'fadeOut 0.3s ease-in forwards',
-        slideIn: 'slideIn 1s ease-in-out forwards',
-        slideOut: 'slideOut 1s ease-in-out forwards',
+        slideIn: 'slideIn 0.6s ease-in-out forwards',
+        slideOut: 'slideOut 0.6s ease-in-out forwards',
         shadowBlinkIn: 'shadowBlinkIn 2.5s ease-in-out forwards',
         shadowBlinkOut: 'shadowBlinkOut 1.5s ease-in-out forwards',
         zoomIn: 'zoomIn 0.6s ease forwards',
