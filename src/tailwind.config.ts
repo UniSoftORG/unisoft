@@ -10,6 +10,22 @@ module.exports = {
       colors: {
         primary: '#E23F33',
         'neural-dark': '#0F1114',
+        'red-light': '#F5655C',
+        red: '#E23F33',
+        'red-dark': '#8F241C',
+        'red-darker': '#591611',
+        'orange-lightest': '#FFDBA6',
+        'orange-light': '#FFB74D',
+        orange: '#D9932B',
+        'orange-dark': '#8D6118',
+        'orange-darker': '#593E0F',
+      },
+      maxHeight: {
+        full: '100%',
+      },
+      transitionProperty: {
+        height: 'height',
+        'max-height': 'max-height',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

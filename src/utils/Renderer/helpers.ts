@@ -33,8 +33,9 @@ export const processRenderer = (
   component: IComponentType,
   fromClient?: boolean
 ) => {
-  if (fromClient)
+  if (component.passAttributes?.reactActions) {
     importReactHooks(component.name, component.passAttributes?.reactActions);
+  }
   if (component.rendererDynamic)
     component = replaceDynamicTargets(component, component.rendererDynamic);
   if (component.rendererConditions)
@@ -53,7 +54,6 @@ export const processRenderer = (
       );
     });
   if (component.functions) {
-    console.log(component.uuid);
     runMappedFunctions(component.uuid, component.functions);
   }
 

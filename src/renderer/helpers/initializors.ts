@@ -26,10 +26,6 @@ export class PrepareComponent {
       this.componentData,
       this.componentData.passAttributes
     );
-    // this.componentData.dynamic &&
-    //   replaceDynamicTargets(this.componentData, this.componentData.dynamic);
-    // this.componentData.conditions &&
-    // replaceConditionalTargets(this.componentData, this.componentData.conditions);
   }
 
   processChildAttributes(

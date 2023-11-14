@@ -39,7 +39,9 @@ const ChildRenderer: React.FC<{
           component={{
             ...child,
             passAttributes: {
-              ...parentData.passAttributes[child.name],
+              ...(parentData.passAttributes && {
+                ...parentData.passAttributes[child.name],
+              }),
               ...child.passAttributes,
             },
           }}

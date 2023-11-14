@@ -43,7 +43,7 @@ export const generateImage = (
 
 export const generateTextField: any = (
   name: string,
-  { ...props }: IComponent
+  props: IComponent
 ): IComponentBase => {
   const uniqueIdentity = v4();
   return {

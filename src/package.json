@@ -16,11 +16,11 @@
     "react": "^18",
     "react-dom": "^18",
     "next": "14.0.2",
-    "uuid": "^9.0.1",
-    "unisoft-utils": "workspace:^1.0.3",
     "unisoft-templates": "workspace:^0.0.1",
+    "unisoft-utils": "workspace:^1.0.3",
     "lodash": "^4.17.21",
-    "fuse.js": "^7.0.0"
+    "fuse.js": "^7.0.0",
+    "sharp": "^0.32.6"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -38,6 +38,7 @@
     "typescript": "^5.2.2",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
-    "eslint": "^8.48.0"
+    "eslint": "^8.48.0",
+    "sass": "^1.69.5"
   }
 }

@@ -49,34 +49,38 @@ export function runMappedFunctions(uuid: string, tasks: any) {
 
 export function runFunction(task: any, uuid: string) {
   const executeTask = (currentTask: any) => {
-    const result = startsWith(currentTask.name, 'setState')
-      ? setState(currentTask, uuid)
-      : invokeFunctionByName(currentTask.name, currentTask.attributes);
-
-    if (currentTask.callbacks && currentTask.callbacks.length) {
-      currentTask.callbacks.forEach((callback: any) => {
-        const callbackAttributes = mapObjectValues(
-          callback.attributes,
-          (value: string) => {
-            return value === 'parentReturn' ? result : value;
-          }
-        );
-
-        executeTask({ ...callback, attributes: callbackAttributes });
-      });
+    if (startsWith(currentTask.name, 'setState')) {
+      setState(currentTask, uuid);
     }
-
-    return result;
+    // const result = startsWith(currentTask.name, 'setState')
+    //   ? setState(currentTask, uuid)
+    //   : invokeFunctionByName(currentTask.name, currentTask.attributes);
+    //
+    // if (currentTask.callbacks && currentTask.callbacks.length) {
+    //   currentTask.callbacks.forEach((callback: any) => {
+    //     const callbackAttributes = mapObjectValues(
+    //       callback.attributes,
+    //       (value: string) => {
+    //         return value === 'parentReturn' ? result : value;
+    //       }
+    //     );
+    //
+    //     executeTask({ ...callback, attributes: callbackAttributes });
+    //   });
+    // }
+    //
+    // return result;
   };
 
   return executeTask(simpleDeepClone(task));
 }
 
 export function importReactHooks(name: string, injectHook: any) {
-  injectHook &&
-    Object.keys(injectHook).map((value) => {
-      return registerReactHook(value, injectHook[value]);
-    });
+  injectHook
+    ? Object.keys(injectHook).map((value) => {
+        return registerReactHook(value, injectHook[value]);
+      })
+    : undefined;
 }
 
 export function invokeCallbacks(

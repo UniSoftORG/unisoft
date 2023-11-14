@@ -37,7 +37,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "sass": "^1.69.5"
   },
   "devDependencies": {
     "@types/uuid": "^9.0.7",

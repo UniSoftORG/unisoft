@@ -40,10 +40,7 @@ export const ActiveSlide = generateElement('Slide', {
   receiveAttributes: {
     activeSlide: 'Slider.states.activeSlide',
   },
-  // dynamic: ['elementAttributes.style.backgroundImage'],
-  rendererDynamic: [
-    'elementAttributes.className',
-    'elementAttributes.style.backgroundImage',
-  ],
+  dynamic: ['elementAttributes.style.backgroundImage'],
+  rendererDynamic: ['elementAttributes.className'],
   rendererConditions: ['elementAttributes.className'],
 });

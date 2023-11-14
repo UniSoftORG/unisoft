@@ -24,7 +24,9 @@ export enum KnownElementTag {
   Span = 'span',
   Ul = 'ul',
   Paragraph = 'p',
+  Header = 'header',
   Aside = 'aside',
+  Footer = 'footer',
 }
 
 /**
