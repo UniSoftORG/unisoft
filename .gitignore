@@ -7,7 +7,9 @@ packages/generator
 # dependencies
 node_modules
 .next
-
+./src/.env
+./src/.env.production
+./src/utils/Request/singletonApiRequest.ts
 /.pnp
 .pnp.js
 
