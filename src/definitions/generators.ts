@@ -4,8 +4,8 @@ import {
   IComponentType,
   KnownComponentType,
   KnownElementTag,
-} from '@/types';
-import { v4 } from 'uuid';
+} from "@/types";
+import { v4 } from "uuid";
 
 export const generateElement = (
   name: string,
@@ -18,6 +18,19 @@ export const generateElement = (
     uuid: uniqueIdentity,
     type: KnownComponentType.Element,
     element: type ?? KnownElementTag.Div,
+    ...props,
+  };
+};
+
+export const generateLink = (
+  name: string,
+  props: IComponent
+): IComponent & IComponentBase => {
+  const uniqueIdentity = v4();
+  return {
+    name,
+    uuid: uniqueIdentity,
+    type: KnownComponentType.Link,
     ...props,
   };
 };
@@ -35,7 +48,7 @@ export const generateImage = (
     ...props,
     elementAttributes: {
       ...props.elementAttributes,
-      ['alt' as any]: (props.elementAttributes as any)?.alt ?? '',
+      ["alt" as any]: (props.elementAttributes as any)?.alt ?? "",
       ...(squared !== undefined && { width: squared, height: squared }),
     },
   };
@@ -43,7 +56,7 @@ export const generateImage = (
 
 export const generateTextField: any = (
   name: string,
-  { ...props }: IComponent
+  props: IComponent
 ): IComponentBase => {
   const uniqueIdentity = v4();
   return {

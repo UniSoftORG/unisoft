@@ -1,4 +1,4 @@
-import { IIconOrImage } from '@/interfaces/api/generics';
+import { IIconOrImage } from "@/interfaces/api/generics";
 
 export interface IBreadcrumbItem {
   title?: string;

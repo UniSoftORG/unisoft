@@ -1,6 +1,6 @@
-import { FunctionNames } from '@/types/uniFunctions';
-import { FunctionAttributesMap } from '@/types/uniTypes';
-import { Events } from '@/types/events';
+import { Events } from "@/types/events";
+import { FunctionNames } from "@/types/uniFunctions";
+import { FunctionAttributesMap } from "@/types/uniTypes";
 
 export type Attributes = {
   [key: string]: any;

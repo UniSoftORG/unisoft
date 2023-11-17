@@ -1,4 +1,4 @@
-import { Attributes } from '../DynamicFunctionLibrary';
+import { Attributes } from "../DynamicFunctionLibrary";
 //
 // export function cyclicIncrement({ number, max = Infinity, min = 0, reset = false, callbacks = [] }: Attributes): Result {
 //     const nextNumber = number + 1;
@@ -15,4 +15,4 @@ export function consoleLog({ value }: Attributes): void {
   console.log(value);
 }
 
-// Add any other functions here as needed...
+// Add any other functions.ts here as needed...

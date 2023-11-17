@@ -1,8 +1,11 @@
-import { IComponentType } from '@/types';
-import { PrepareRenderer } from '@/renderer/PrepareRenderer';
+import { PrepareRenderer } from "@/renderer/PrepareRenderer";
+import { generateComponentForRendering } from "@/renderer/helpers/generateComponentForRendering";
+import { IComponentType } from "@/types";
 
 export default async function InitiateRenderer(template: IComponentType[]) {
   return template.map(async (componentData: IComponentType, index: number) => {
-    return <PrepareRenderer component={componentData} />;
+    await generateComponentForRendering(componentData);
+
+    return <PrepareRenderer component={componentData} key={index} />;
   });
 }

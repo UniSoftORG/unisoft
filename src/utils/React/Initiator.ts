@@ -1,8 +1,8 @@
-import functionsMap from '@/utils/Functions/useFunctions';
-import { runFunction } from '@/utils/Functions/DynamicFunctionLibrary';
+import { runFunction } from "@/utils/Functions/DynamicFunctionLibrary";
+import functionsMap from "@/utils/Functions/useFunctions";
 
 export const setState = (task: any, uuid: string) => {
-  functionsMap[`setState${uuid.replaceAll('-', '')}`](
+  functionsMap[`setState${uuid.replaceAll("-", "")}`](
     task.attributes.key,
     task.attributes.value
   );
@@ -15,7 +15,7 @@ export const setState = (task: any, uuid: string) => {
 // }
 
 export function useTimeEffect(task: any, uuid: string) {
-  functionsMap[`useInterval${uuid.replaceAll('-', '')}`](
+  functionsMap[`useInterval${uuid.replaceAll("-", "")}`](
     task.attributes.watchKeys,
     () => {
       task.attributes.callbacks.forEach((value: any) =>

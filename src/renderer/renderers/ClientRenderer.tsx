@@ -1,8 +1,6 @@
-'use client';
-import { IComponentType } from '@/types';
-import StateRenderer from '@/renderer/renderers/StateRenderer';
-import Renderer from '@/renderer/Render';
-import { Suspense } from 'react';
+import Renderer from "@/renderer/Render";
+import StateRenderer from "@/renderer/renderers/StateRenderer";
+import { IComponentType } from "@/types";
 
 const ClientRenderer: React.FC<{
   component: IComponentType;
@@ -12,9 +10,7 @@ const ClientRenderer: React.FC<{
   }
 
   return (
-    <Suspense>
-      <Renderer component={component} fromClient={true} key={component.uuid} />
-    </Suspense>
+    <Renderer component={component} fromClient={true} key={component.uuid} />
   );
 };
 

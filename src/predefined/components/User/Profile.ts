@@ -1,17 +1,18 @@
-import { generateElement, generateImage } from '@/definitions/generators';
-import User from '@/public/icons/user.svg';
+import { generateElement, generateImage } from "@/definitions/generators";
 
-export const Profile = generateElement('Profile', {
+export const Profile = generateElement("Profile", {
   elementAttributes: {
     className:
-      'flex flex-col right-0 items-center justify-center cursor-pointer w-full',
+      "flex flex-col right-0 items-center justify-center cursor-pointer w-full",
   },
   children: [
-    generateImage('Avatar', {
+    generateImage("Avatar", {
       elementAttributes: {
-        ['src' as any]: User,
+        ["src" as any]: "/icons/user.svg",
+        ["width" as any]: 100,
+        ["height" as any]: 100,
         className:
-          'rounded-full aspect-square object-cover w-12 h-12 border-2 border-gray-700 p-1.5',
+          "rounded-full aspect-square object-cover w-12 h-12 border-2 border-gray-700 p-1.5",
       },
     }),
   ],

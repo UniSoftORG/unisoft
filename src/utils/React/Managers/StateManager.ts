@@ -1,11 +1,11 @@
-import { Action, CreateState } from '@/types/react';
-import { useReducer } from 'react';
+import { Action, CreateState } from "@/types/react";
+import { useReducer } from "react";
 
 export const pageStates: any = {};
 
 function stateReducer(state: CreateState, action: Action) {
   switch (action.type) {
-    case 'SET_STATE':
+    case "SET_STATE":
       return { ...state, [action.payload.key]: action.payload.value };
     default:
       return state;
@@ -17,7 +17,7 @@ export default function useDynamicStates(
 ): [CreateState, (key: string, value: any) => void] {
   const [state, dispatch] = useReducer(stateReducer, initialStates);
   const setStateByKey = (key: string, value: any) => {
-    dispatch({ type: 'SET_STATE', payload: { key, value } });
+    dispatch({ type: "SET_STATE", payload: { key, value } });
   };
 
   return [state, setStateByKey];

@@ -64,7 +64,7 @@ export const removeValue = <T>(arr: T[], value: T): T[] => {
  */
 export const random = <T>(arr: T[]): T => {
   if (!arr.length) {
-    throw new Error('Array must not be empty.');
+    throw new Error("Array must not be empty.");
   }
   return arr[Math.floor(Math.random() * arr.length)];
 };
@@ -108,7 +108,7 @@ export const sortArrayDesc = <T>(arr: T[]): T[] => {
 export const sortRecursiveAsc = (arr: any): any => {
   if (Array.isArray(arr)) {
     return [...arr].sort().map(sortRecursiveAsc);
-  } else if (typeof arr === 'object' && arr !== null) {
+  } else if (typeof arr === "object" && arr !== null) {
     return Object.fromEntries(
       Object.entries(arr)
         .sort()
@@ -128,7 +128,7 @@ export const sortRecursiveAsc = (arr: any): any => {
 export const sortRecursiveDesc = (arr: any): any => {
   if (Array.isArray(arr)) {
     return [...arr].sort((a, b) => (a < b ? 1 : -1)).map(sortRecursiveDesc);
-  } else if (typeof arr === 'object' && arr !== null) {
+  } else if (typeof arr === "object" && arr !== null) {
     return Object.fromEntries(
       Object.entries(arr)
         .sort((a, b) => (a < b ? 1 : -1))

@@ -1,48 +1,44 @@
-import { KnownElementTag } from '@/types';
-import { generateElement, generateImage } from '@/definitions/generators';
-import Logo from '@/public/kgb.png';
-import { Vertical } from '@/predefined/components/Navigations/Vertical';
-import HomeIcon from '@/public/icons/home.svg';
-import GamesIcon from '@/public/icons/games.svg';
-import ForumIcon from '@/public/icons/forum.svg';
+import { generateElement, generateImage } from "@/definitions/generators";
+import { Vertical } from "@/predefined/components/Navigations/Vertical";
+import { KnownElementTag } from "@/types";
 
 export const NavWithLogo = generateElement(
-  'Nav',
+  "Nav",
   {
     variables: {
       links: [
         {
-          name: 'Home',
-          image: HomeIcon,
-          href: '/',
+          name: "Home",
+          image: "/icons/home.svg",
+          href: "/",
         },
         {
-          name: 'Games',
-          image: GamesIcon,
-          href: '/gameserver',
-          subText: 'Need a game server? This is a place for you!',
+          name: "Games",
+          image: "/icons/games.svg",
+          href: "/",
+          subText: "Need a game server? This is a place for you!",
         },
         {
-          name: 'Forum',
-          image: ForumIcon,
-          href: '/forum',
+          name: "Forum",
+          image: "/icons/forum.svg",
+          href: "/forum",
           subText: "Wanna hang out? That's the place!",
         },
       ],
     },
     elementAttributes: {
-      className: 'hidden fixed lg:flex flex-col h-screen ml-20 z-40 top-0',
+      className: "hidden fixed lg:flex flex-col h-screen ml-20 z-40 top-0",
     },
     children: [
-      generateElement('LogoWrapper', {
+      generateElement("LogoWrapper", {
         elementAttributes: {
-          className: 'mt-10 lg:mt-10',
+          className: "mt-10 lg:mt-10",
         },
         children: [
-          generateImage('Logo', {
+          generateImage("Logo", {
             elementAttributes: {
-              ['src' as any]: Logo,
-              ['height' as any]: 96,
+              ["src" as any]: "kgb.png",
+              ["height" as any]: 96,
             },
           }),
         ],

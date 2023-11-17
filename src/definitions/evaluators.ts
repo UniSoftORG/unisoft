@@ -1,4 +1,4 @@
-import { Operators } from '@/types';
+import { Operators } from "@/types";
 
 export const customCondition = (value: string) => `#{${value}}`;
 

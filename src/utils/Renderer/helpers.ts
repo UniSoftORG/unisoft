@@ -1,5 +1,8 @@
-import { IComponentBase, IComponentType } from '@/types';
-import { v4 } from 'uuid';
+import { IComponentBase, IComponentType } from "@/types";
+import {
+  importReactHooks,
+  runMappedFunctions,
+} from "@/utils/Functions/DynamicFunctionLibrary";
 import {
   evaluate,
   getValue,
@@ -7,11 +10,8 @@ import {
   resolveTemplateString,
   setByDotNotation,
   simpleDeepClone,
-} from 'unisoft-utils';
-import {
-  importReactHooks,
-  runMappedFunctions,
-} from '@/utils/Functions/DynamicFunctionLibrary';
+} from "unisoft-utils";
+import { v4 } from "uuid";
 
 export const replaceDynamicTargets = <T = any, R = any>(
   obj: T,
@@ -33,8 +33,9 @@ export const processRenderer = (
   component: IComponentType,
   fromClient?: boolean
 ) => {
-  if (fromClient)
+  if (component.passAttributes?.reactActions) {
     importReactHooks(component.name, component.passAttributes?.reactActions);
+  }
   if (component.rendererDynamic)
     component = replaceDynamicTargets(component, component.rendererDynamic);
   if (component.rendererConditions)
@@ -47,13 +48,12 @@ export const processRenderer = (
           (value: string) => {
             return evaluate(value);
           },
-          '#{',
-          '}'
+          "#{",
+          "}"
         ) as any
       );
     });
-  if (component.functions) {
-    console.log(component.uuid);
+  if (component.functions?.length > 0) {
     runMappedFunctions(component.uuid, component.functions);
   }
 
@@ -77,8 +77,8 @@ export const processDynamicAndConditions = (
           (value: string) => {
             return evaluate(value);
           },
-          '#{',
-          '}'
+          "#{",
+          "}"
         ) as any
       );
     });
@@ -97,8 +97,8 @@ export const processConditionsOnRenderer = (componentProps: IComponentType) => {
           (value: string) => {
             return evaluate(value);
           },
-          '#{',
-          '}'
+          "#{",
+          "}"
         ) as any
       );
     });

@@ -1,23 +1,19 @@
-import { KnownComponentType } from '@/types';
-import Element from '@/renderer/strategies/Element';
-// import Image from '@/test/strategies/Image';
-// import Text from '@/test/strategies/Text';
-import dynamic from 'next/dynamic';
-// import Translation from "@/renderer/strategies/Translation"
+import { KnownComponentType } from "@/types";
+// import Element from '@/renderer/strategies/Element';
+import Image from "@/renderer/strategies/Image";
+import Text from "@/renderer/strategies/Text";
+import dynamic from "next/dynamic";
+// import Link from "@/renderer/strategies/Link";
 
 const componentsMaps: any = {
-  [KnownComponentType.Element]: Element,
-  [KnownComponentType.Image]: dynamic(
-    () => import('@/renderer/strategies/Image')
+  [KnownComponentType.Image]: Image,
+  [KnownComponentType.Element]: dynamic(
+    () => import("@/renderer/strategies/Element")
   ),
-  [KnownComponentType.Text]: dynamic(
-    () => import('@/renderer/strategies/Text')
+  [KnownComponentType.Link]: dynamic(
+    () => import("@/renderer/strategies/Link")
   ),
+  [KnownComponentType.Text]: Text,
   // [KnownComponentType.Translation]: Translation,
 };
-
-// export function componentsMap(get: any){
-//     return componentsMaps[get]
-// }
-
 export default componentsMaps;

@@ -1,18 +1,18 @@
-import { IComponentType } from '@/types';
-import Renderer from '@/renderer/Render';
-import { Suspense } from 'react';
-import ClientRenderer from '@/renderer/renderers/ClientRenderer';
+import Renderer from "@/renderer/Render";
+import { replaceDynamicTargets } from "@/renderer/helpers/replacers";
+import ClientRenderer from "@/renderer/renderers/ClientRenderer";
+import { IComponentType } from "@/types";
 
 export const PrepareRenderer: React.FC<{
   component: IComponentType;
   fromClient?: boolean;
 }> = ({ component, fromClient }) => {
-  if (component.states) {
-    return (
-      <Suspense>
-        <ClientRenderer key={component.uuid} component={component} />
-      </Suspense>
-    );
+  if (component.dynamic) {
+    component = replaceDynamicTargets(component, component.dynamic);
+  }
+
+  if (component.renderer === "client" || component.states) {
+    return <ClientRenderer key={component.uuid} component={component} />;
   }
 
   return (

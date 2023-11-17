@@ -1,5 +1,5 @@
-import { ValueReplacement } from '../../@utils';
-import { addAfter, addBefore } from '../setters';
+import { ValueReplacement } from "../../@utils";
+import { addAfter, addBefore } from "../setters";
 
 /**
  * Evaluates the replacement value based on the given condition.

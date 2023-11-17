@@ -2,9 +2,10 @@
   "name": "unisoft",
   "version": "1.0.3",
   "scripts": {
-    "dev": "concurrently  \"pnpm dev:utils\" \"pnpm dev:types\" \"pnpm dev:src\"",
+    "dev": "concurrently  \"pnpm dev:utils\" \"pnpm dev:templates\" \"pnpm dev:types\" \"pnpm dev:src\"",
     "dev:src": "cd src && pnpm dev",
     "dev:utils": "cd packages/utils && pnpm watch",
+    "dev:templates": "cd packages/templates && pnpm watch",
     "dev:types": "cd packages/@types-unisoft && pnpm watch",
     "build": "cd src && pnpm build",
     "start": "cd src && pnpm start",
@@ -30,12 +31,20 @@
   },
   "resolutions": {
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.7"
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.1",
+    "ai": "^2.2.24",
+    "react-ai": "^0.16.3"
+  },
   "devDependencies": {
+    "@types/uuid": "^9.0.7",
     "typescript": "^5.2.2",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "prettier-plugin-organize-imports": "^3.2.4"
   }
 }

@@ -2,7 +2,7 @@ import {
   ApiResult,
   IGenericApiError,
   SupportedApiMethods,
-} from '@/interfaces/api/generics';
+} from "@/interfaces/api/generics";
 
 export default class SingletonApiRequest {
   revalidate: undefined | number = undefined;
@@ -25,9 +25,8 @@ export default class SingletonApiRequest {
 
   private requestHeaders = async (): Promise<Headers> => {
     return new Headers({
-      'content-type': 'application/json',
-      'X-UNI': process.env.NEXT_UNITOKEN ?? '',
-      accept: 'application/json',
+      "content-type": "application/json",
+      accept: "application/json",
     });
   };
 
@@ -66,7 +65,7 @@ export default class SingletonApiRequest {
         headers: headers,
         body: payload ? JSON.stringify(payload) : undefined,
         next: {
-          revalidate: 100,
+          revalidate: 0,
         },
       });
 

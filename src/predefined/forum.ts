@@ -1,27 +1,31 @@
-import { KnownElementTag } from '@/types';
-import { generateElement, generateTextField } from '@/definitions/generators';
-import { SupportedApiMethods } from '@/interfaces/api/generics';
+import { generateElement, generateTextField } from "@/definitions/generators";
+import {
+  getLatestAnnouncements,
+  getLatestTopics,
+  getMainCategories,
+} from "@/endpoints/forum";
+import { KnownElementTag } from "@/types";
 
 export const Forum = generateElement(
-  'Forum',
+  "Forum",
   {
     elementAttributes: {
-      className: 'relative w-full',
+      className: "relative w-full",
     },
     variables: {
       news: [],
       latest_topics: [],
       mainCategories: [],
     },
-    dynamic: ['functions.0.attributes.value'],
+    dynamic: ["functions.ts.0.attributes.value"],
     children: [
-      generateElement('News', {
-        mapByKey: 'Forum.variables.news',
+      generateElement("News", {
+        mapByKey: "Forum.variables.news",
         children: [
-          generateTextField('TextTest', {
+          generateTextField("TextTest", {
             receiveAttributes: {
-              text: 'News.passAttributes.title',
-              slug: 'News.passAttributes.slug',
+              text: "News.passAttributes.title",
+              slug: "News.passAttributes.slug",
             },
           }),
         ],
@@ -29,19 +33,16 @@ export const Forum = generateElement(
     ],
     requests: [
       {
-        objKey: 'news',
-        method: SupportedApiMethods.GET,
-        url: 'forum/threads?limit=4&category=announcements&include=category',
+        objKey: "news",
+        ...getLatestAnnouncements,
       },
       {
-        objKey: 'latest_topics',
-        method: SupportedApiMethods.GET,
-        url: 'forum/threads?limit=5&include=category',
+        objKey: "latest_topics",
+        ...getLatestTopics,
       },
       {
-        objKey: 'mainCategories',
-        method: SupportedApiMethods.GET,
-        url: 'forum/categories?include=stats, sub_categories',
+        objKey: "mainCategories",
+        ...getMainCategories,
       },
     ],
   },

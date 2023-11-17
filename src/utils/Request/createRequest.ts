@@ -1,5 +1,5 @@
-import { webRequest } from '@/utils/Request/singletonApiRequest';
-import { DynamicRequest } from '@/types';
+import { DynamicRequest } from "@/types";
+import { webRequest } from "@/utils/Request/singletonApiRequest";
 
 export const createRequest = async (endpoints: DynamicRequest[]) => {
   const webReq = webRequest();
@@ -8,7 +8,7 @@ export const createRequest = async (endpoints: DynamicRequest[]) => {
     endpoints.map(async (endpoint) => {
       const { method, url, payload, objKey } = endpoint;
 
-      if (method && typeof webReq[method] === 'function') {
+      if (method && typeof webReq[method] === "function") {
         try {
           const result = await webReq[method](url, payload);
           return { key: objKey, value: result };

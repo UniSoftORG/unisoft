@@ -1,4 +1,4 @@
-import { webRequest } from '../../utils/Request/singletonApiRequest';
+import { webRequest } from "../../utils/Request/singletonApiRequest";
 
 export const getPage = async (page: string) => {
   return await webRequest().get<{ components: any[] }>(`web/page/${page}`);

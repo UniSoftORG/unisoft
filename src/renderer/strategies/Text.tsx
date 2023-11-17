@@ -1,4 +1,4 @@
-import { IComponentType } from '@/types';
+import { IComponentType } from "@/types";
 
 const Text: React.FC<{ componentData: IComponentType; events?: any }> = ({
   componentData,

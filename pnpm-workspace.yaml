@@ -2,4 +2,5 @@ packages:
   - "packages/*"
   - "src"
   - "!**/test/**"
+  - "!packages/generator"
   - "!**/__tests__/**"

@@ -1,3 +1,4 @@
+import { IComponentType } from "@/types";
 import {
   evaluate,
   getValue,
@@ -5,8 +6,7 @@ import {
   resolveTemplateString,
   setByDotNotation,
   simpleDeepClone,
-} from 'unisoft-utils';
-import { IComponentType } from '@/types';
+} from "unisoft-utils";
 
 export const replaceDynamicTargets = (
   obj: IComponentType,
@@ -37,8 +37,8 @@ export const replaceConditionalTargets = (
           (value: string) => {
             return evaluate(value);
           },
-          '#{',
-          '}'
+          "#{",
+          "}"
         ) as any
       );
     });

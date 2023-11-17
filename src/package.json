@@ -15,11 +15,13 @@
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.2",
-    "uuid": "^9.0.1",
+    "openai-edge": "^1.2.2",
+    "next": "14.0.3",
+    "unisoft-templates": "workspace:^0.0.1",
     "unisoft-utils": "workspace:^1.0.3",
     "lodash": "^4.17.21",
-    "fuse.js": "^7.0.0"
+    "fuse.js": "^7.0.0",
+    "sharp": "^0.32.6"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -31,7 +33,7 @@
     "autoprefixer": "^10",
     "postcss": "^8",
     "tailwindcss": "^3",
-    "eslint-config-next": "14.0.2"
+    "eslint-config-next": "14.0.3"
   },
   "peerDependencies": {
     "typescript": "^5.2.2",

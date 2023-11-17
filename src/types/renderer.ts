@@ -1,30 +1,32 @@
-import { ReactNode } from 'react';
-import { DynamicRequest } from '@/types/dynamic';
-import { CreateState } from '@/types/react';
+import { DynamicRequest } from "@/types/dynamic";
+import { CreateState } from "@/types/react";
+import { ReactNode } from "react";
 
 export type AnyObject = { [key: string]: any };
 
 export enum KnownComponentType {
-  Element = 'Element',
-  Translation = 'Translation',
-  Component = 'Component',
-  Image = 'Image',
-  Text = 'Text',
+  Element = "Element",
+  Link = "Link",
+  Translation = "Translation",
+  Component = "Component",
+  Image = "Image",
+  Text = "Text",
 }
 
 export enum KnownElementTag {
-  Main = 'main',
-  Div = 'div',
-  Link = 'a',
-  Li = 'li',
-  Section = 'section',
-  Button = 'button',
-  Nav = 'nav',
-  Form = 'form',
-  Span = 'span',
-  Ul = 'ul',
-  Paragraph = 'p',
-  Aside = 'aside',
+  Main = "main",
+  Div = "div",
+  Li = "li",
+  Section = "section",
+  Button = "button",
+  Nav = "nav",
+  Form = "form",
+  Span = "span",
+  Ul = "ul",
+  Paragraph = "p",
+  Header = "header",
+  Aside = "aside",
+  Footer = "footer",
 }
 
 /**
@@ -39,7 +41,7 @@ export interface IComponentBase {
 
 export interface IComponent {
   uuid?: string;
-  renderer?: 'server' | 'client';
+  renderer?: "server" | "client";
   attributes?: Record<string, any>;
   variables?: CreateState;
   states?: CreateState;

@@ -1,5 +1,5 @@
-import { IComponentType } from '@/types';
-import { runFunction } from '@/utils/Functions/DynamicFunctionLibrary';
+import { IComponentType } from "@/types";
+import { runFunction } from "@/utils/Functions/DynamicFunctionLibrary";
 
 type EventConfig = {
   function: string;
@@ -8,17 +8,17 @@ type EventConfig = {
 };
 
 const events = [
-  'Click',
-  'MouseOver',
-  'MouseEnter',
-  'MouseDown',
-  'MouseUp',
-  'MouseMove',
-  'MouseOut',
-  'Blur',
-  'Focus',
-  'Change',
-  'Submit',
+  "Click",
+  "MouseOver",
+  "MouseEnter",
+  "MouseDown",
+  "MouseUp",
+  "MouseMove",
+  "MouseOut",
+  "Blur",
+  "Focus",
+  "Change",
+  "Submit",
 ];
 
 export const handleEvents = (
@@ -29,7 +29,7 @@ export const handleEvents = (
   const handlers: { [key: string]: any } = {};
 
   componentData?.onEvents.map((customEvent: any) => {
-    handlers['on' + customEvent.name] = (event: any) => {
+    handlers["on" + customEvent.name] = (event: any) => {
       customEvent.callbacks.forEach((value: any) =>
         runFunction(value, componentData.uuid)
       );

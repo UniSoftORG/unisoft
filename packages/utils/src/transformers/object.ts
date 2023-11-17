@@ -1,6 +1,6 @@
-import { getValue } from '../getters';
-import { resolveTemplateString } from './string';
-import { setByDotNotation } from '../setters';
+import { getValue } from "../getters";
+import { setByDotNotation } from "../setters";
+import { resolveTemplateString } from "./string";
 
 /**
  * Replaces specified targeted strings within an object using a provided list.
@@ -66,9 +66,9 @@ export const deepMerge = (
           Math.max(targetValue.getTime(), sourceValue.getTime())
         );
       } else if (
-        typeof targetValue === 'object' &&
+        typeof targetValue === "object" &&
         targetValue &&
-        typeof sourceValue === 'object' &&
+        typeof sourceValue === "object" &&
         sourceValue
       ) {
         target[key] = deepMerge({ ...targetValue }, sourceValue);

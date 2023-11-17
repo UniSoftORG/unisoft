@@ -1,15 +1,13 @@
-import { IComponentType } from '@/types';
-import { PrepareRenderer } from '@/renderer/PrepareRenderer';
-import { startsWith } from 'lodash';
-import { getValue } from 'unisoft-utils';
+import { PrepareRenderer } from "@/renderer/PrepareRenderer";
+import { IComponentType } from "@/types";
+import { startsWith } from "lodash";
+import { getValue } from "unisoft-utils";
 
 const ChildRenderer: React.FC<{
-  children: IComponentType[] | string;
+  children: IComponentType[];
   parentData: IComponentType;
 }> = ({ children, parentData }) => {
-  if (children && typeof children == 'string') {
-    return children;
-  } else if (children && typeof children !== 'string') {
+  if (children.length > 0) {
     return children.map((child, index) => {
       if (child.receiveAttributes) {
         Object.keys(child.receiveAttributes).map((passAttributeKey) => {
@@ -26,7 +24,7 @@ const ChildRenderer: React.FC<{
                 parentData,
                 child.receiveAttributes[passAttributeKey].replace(
                   `${parentData.name}.`,
-                  ''
+                  ""
                 )
               ),
             };
@@ -34,22 +32,8 @@ const ChildRenderer: React.FC<{
         });
       }
 
-      return (
-        <PrepareRenderer
-          component={{
-            ...child,
-            passAttributes: {
-              ...parentData.passAttributes[child.name],
-              ...child.passAttributes,
-            },
-          }}
-          key={`${child.uuid}-${index}`}
-          fromClient={true}
-        />
-      );
+      return <PrepareRenderer component={child} key={child.uuid} />;
     });
-  } else {
-    return null;
   }
 };
 

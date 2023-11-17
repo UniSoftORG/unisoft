@@ -1,4 +1,4 @@
-import { wrapExternalFunction } from '@/utils/Functions/DynamicFunctionLibrary';
+import { wrapExternalFunction } from "@/utils/Functions/DynamicFunctionLibrary";
 import {
   after,
   afterLast,
@@ -7,7 +7,7 @@ import {
   substrCount,
   ucsplit,
   wordCount,
-} from 'unisoft-utils';
+} from "unisoft-utils";
 
 export const wrappedAfter = wrapExternalFunction(after, (attributes) => [
   attributes.subject,

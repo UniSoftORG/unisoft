@@ -1,4 +1,5 @@
-import { FunctionNames } from '@/types/uniFunctions';
+import { IConsoleLog, ISetState } from "@/types/functions";
+import { FunctionNames } from "@/types/uniFunctions";
 import {
   addAfterAttributes,
   addBeforeAttributes,
@@ -119,8 +120,7 @@ import {
   upperAttributes,
   wordCountAttributes,
   wordWrapAttributes,
-} from '@/types/uniInterfaces';
-import { IConsoleLog, ISetState } from '@/types/functions';
+} from "@/types/uniInterfaces";
 
 export type FunctionAttributesMap = {
   [FunctionNames.consoleLog]: IConsoleLog;

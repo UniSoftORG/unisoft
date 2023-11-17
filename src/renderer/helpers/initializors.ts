@@ -1,7 +1,7 @@
-import { AnyObject, IComponentType } from '@/types';
-import { get, getValue } from 'unisoft-utils';
-import { v4 } from 'uuid';
-import { createRequest } from '@/utils/Request/createRequest';
+import { AnyObject, IComponentType } from "@/types";
+import { createRequest } from "@/utils/Request/createRequest";
+import { get, getValue } from "unisoft-utils";
+import { v4 } from "uuid";
 
 export class PrepareComponent {
   componentData: IComponentType;
@@ -16,20 +16,18 @@ export class PrepareComponent {
   }
 
   async prepareComponent() {
-    await this.prepareRequests(this.componentData.variables);
+    this.componentData.variables
+      ? await this.prepareRequests(this.componentData.variables)
+      : undefined;
     await this.generatePassAttributes(
       this.componentData,
       this.componentData?.passAttributes
     );
-    await this.transformObject('mapByKey');
+    await this.transformObject("mapByKey");
     await this.replaceValuesWithMainObject(
       this.componentData,
       this.componentData.passAttributes
     );
-    // this.componentData.dynamic &&
-    //   replaceDynamicTargets(this.componentData, this.componentData.dynamic);
-    // this.componentData.conditions &&
-    // replaceConditionalTargets(this.componentData, this.componentData.conditions);
   }
 
   processChildAttributes(
@@ -77,7 +75,7 @@ export class PrepareComponent {
   ): Promise<void> {
     if (passAttributes) {
       for (const [key, value] of Object.entries(passAttributes)) {
-        if (typeof value === 'object') {
+        if (typeof value === "object") {
           await this.replaceValuesWithMainObject(componentData, value);
         } else {
           this.replaceAttributeValue(componentData, passAttributes, key, value);
@@ -92,13 +90,13 @@ export class PrepareComponent {
     key: string,
     value: string
   ): void {
-    if (typeof value !== 'string' || !value.startsWith(mainObject.name + '.')) {
+    if (!value.startsWith(mainObject.name + ".")) {
       return;
     }
 
     try {
-      const path = value.replace(`${mainObject.name}.`, '');
-      const newValue = get<any, string>(mainObject, path);
+      const path = value.replace(`${mainObject.name}.`, "");
+      const newValue = get(mainObject, path);
       if (newValue !== undefined) {
         passAttributes[key] = newValue;
       }
@@ -121,11 +119,9 @@ export class PrepareComponent {
       );
     }
 
-    // Merge with existing passAttributes
     if (Object.keys(passAttributes).length > 0) {
       node.passAttributes = { ...node.passAttributes, ...passAttributes };
     }
-    // If parentAttributes contains a key matching the node's name, use it
     if (parentAttributes && parentAttributes[node.name]) {
       node.passAttributes = parentAttributes[node.name];
     }
@@ -148,7 +144,6 @@ export class PrepareComponent {
     shouldTransformByKey: string
   ) {
     if (checkObj.children) {
-      // Clone the children array to avoid direct modification during iteration
       const originalChildren = [...checkObj.children];
       let newChildren: any[] = [];
 
@@ -161,7 +156,7 @@ export class PrepareComponent {
             this.componentData,
             child[shouldTransformByKey].replace(
               `${this.componentData.name}.`,
-              ''
+              ""
             )
           );
           newChildren = this.createMappedChildren(child, parentValue);
@@ -190,20 +185,19 @@ export class PrepareComponent {
       ...child,
       uuid: v4(),
       passAttributes: { ...data, index: vKey },
-      children: child.children ? [...child.children] : undefined, // Clone children if exist
+      children: child.children ? [...child.children] : undefined,
     }));
   }
 
-  prepareRequests = async (requests: any) => {
+  prepareRequests = async (requests: AnyObject) => {
     if (!this.componentData.requests?.length) {
       return requests;
     }
 
     try {
       const requestedData = await createRequest(this.componentData.requests);
-
       return Object.keys(requestedData ?? {}).reduce(
-        (acc: any, key: string) => {
+        (acc: AnyObject, key: string) => {
           if (requestedData?.[key]?.data !== undefined) {
             acc[key] = requestedData[key]?.data;
           }
@@ -212,14 +206,8 @@ export class PrepareComponent {
         requests
       );
     } catch (error) {
-      console.error('Error in prepareRequests:', error);
+      console.error("Error in prepareRequests:", error);
       return requests;
     }
   };
 }
-
-export const generateComponentForRendering = (
-  componentData: IComponentType
-) => {
-  return PrepareComponent.getSingleton(componentData);
-};

@@ -1,28 +1,19 @@
-import Image from 'next/image';
-import { handleEvents } from '@/utils/Renderer/events';
+import { handleEvents } from "@/utils/Renderer/events";
+import Image from "next/image";
 
 const ImageRenderer: React.FC<any> = ({ children, componentData, events }) => {
-  // let src;
-  // const data = componentData.dynamicAttributes ? replaceDynamic(componentData, 'attrs', 'dynamicAttributes') : componentData
-  // if(data.src?.includes('false')){
-  //     src = data.src?.includes('false') ? componentData.attrs?.fallback ? componentData.attrs.fallback : '/kgb.png' : data.src
-  // } else {
-  //     src = data.src
-  // }
-
+  const image =
+    componentData.elementAttributes.src ?? componentData.passAttributes.image;
   return (
     <Image
-      src={
-        componentData.elementAttributes.src ??
-        componentData.passAttributes.image
-      }
-      alt={componentData.elementAttributes.alt ?? ''}
-      width={componentData.elementAttributes.width}
-      height={componentData.elementAttributes.height}
+      src={image}
+      alt={componentData.elementAttributes.alt ?? ""}
+      width={componentData.elementAttributes.width ?? 0}
+      height={componentData.elementAttributes.height ?? 0}
       className={componentData.elementAttributes.className}
-      loading={'eager'}
-      priority
-      {...handleEvents(componentData, { customPrefix: 'executeOn' })}
+      loading={"eager"}
+      key={`${componentData.uuid}-${componentData?.passAttributes?.index}`}
+      {...handleEvents(componentData, { customPrefix: "executeOn" })}
     />
   );
 };

@@ -1,7 +1,7 @@
-import { IFunction, IUseEffect } from '@/types/functions';
-import { FunctionNames } from '@/types/uniFunctions';
-import { FunctionAttributesMap } from '@/types/uniTypes';
-import { Events } from '@/types/events';
+import { Events } from "@/types/events";
+import { IFunction, IUseEffect } from "@/types/functions";
+import { FunctionNames } from "@/types/uniFunctions";
+import { FunctionAttributesMap } from "@/types/uniTypes";
 
 export const useFunction = <T extends FunctionNames>(
   name: T,
@@ -18,7 +18,7 @@ export const useInterval = <T extends FunctionNames>(
   callbacks: IFunction<T>[],
   delay: number
 ): IUseEffect => ({
-  name: 'useInterval',
+  name: "useInterval",
   attributes: {
     watchKeys,
     callbacks,
