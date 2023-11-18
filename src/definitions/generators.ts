@@ -48,7 +48,7 @@ export const generateImage = (
     ...props,
     elementAttributes: {
       ...props.elementAttributes,
-      alt: props.elementAttributes ?? "",
+      alt: "",
       ...(squared !== undefined && { width: squared, height: squared }),
     } as ImageProps,
   };

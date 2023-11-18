@@ -45,7 +45,7 @@ export const Card = generateElement(
           },
           children: [
             generateElement("Game", {
-              mapByKey: "children",
+              mapByKey: "GameProducts.variables.products",
               states: {
                 hovered: "false",
               },
