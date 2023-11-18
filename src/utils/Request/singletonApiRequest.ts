@@ -27,6 +27,7 @@ export default class SingletonApiRequest {
     return new Headers({
       "content-type": "application/json",
       accept: "application/json",
+      "X-UNI": "IiTtyXQ3vzsMFkmnU4DMaMY4Xg3o3rZSHnzAvhaE5UhAqNW5vxvkMY5bpQ72pRHCbsYd1KWIVjNB"
     });
   };
 

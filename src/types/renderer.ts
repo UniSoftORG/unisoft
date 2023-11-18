@@ -1,8 +1,11 @@
 import { DynamicRequest } from "@/types/dynamic";
-import { CreateState } from "@/types/react";
-import { ReactNode } from "react";
+import { CreateState, ReactHooks } from '@/types/react';
+import { IEvent, IFunction, IUseEffect } from '@/types/functions';
+import { FunctionNames } from '@/types/uniFunctions';
+import { Events } from 'unisoft-templates/src/types/events';
+import { ImageProps } from 'next/dist/shared/lib/get-img-props';
 
-export type AnyObject = { [key: string]: any };
+// Utility type for nested property paths
 
 export enum KnownComponentType {
   Element = "Element",
@@ -39,41 +42,30 @@ export interface IComponentBase {
   element?: KnownElementTag;
 }
 
+export type UniFunc = ReactHooks & FunctionNames
 export interface IComponent {
   uuid?: string;
   renderer?: "server" | "client";
-  attributes?: Record<string, any>;
   variables?: CreateState;
   states?: CreateState;
-  elementAttributes?: React.HTMLAttributes<any>;
-  dynamic?: any;
-  rendererDynamic?: any;
-  receiveAttributes?: AnyObject;
-  passAttributes?: any;
-  children?: any;
+  elementAttributes?: React.HTMLAttributes<any> | ImageProps;
+  children?: IComponentType[];
+  mapByKey?: string;
+  functions?: IFunction<FunctionNames>[];
+  onEvents?: IEvent<Events>[];
+  requests?: DynamicRequest[];
+
+  dynamic?: string[];
+  rendererDynamic?: string[];
   conditions?: string[];
   rendererConditions?: string[];
-  mapByKey?: string;
-  mappedComponent?: IComponentType[];
-  mapAttributes?: any;
-  functions?: any;
-  useEffects?: any;
-  // children?: IComponentBase<Type, ChildType>[] | React.ReactElement<{parentprops?: any}>[] | React.ReactElement<{parentprops?: any}>;
-  onEvents?: any;
-  requests?: DynamicRequest[];
+
+  receiveAttributes?: any;
+  passAttributes?: any;
 }
 
 export type IComponentType = IComponentBase & IComponent;
 
-/**
- * Props for determining how to render a component.
- */
-export interface DetermineRendererProps {
-  Component?: any;
-  componentData: IComponentType;
-  parentType?: string;
-  parentUuid?: string;
-  parentProps?: unknown;
-  index?: string | number;
-  children?: ReactNode;
-}
+
+// Example usage of DeepKeyOf
+

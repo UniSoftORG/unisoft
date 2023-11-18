@@ -12,7 +12,7 @@ import {
 
 describe('Array and Object utilities', () => {
     describe('mapToKeys', () => {
-        it('should map an array to an object', () => {
+        it('should map.py an array to an object', () => {
             expect(mapToKeys([1, 2], (n) => ({[n]: n * 2}))).toEqual({1: 2, 2: 4});
         });
     });

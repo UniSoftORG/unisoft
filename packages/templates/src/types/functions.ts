@@ -15,7 +15,7 @@ export interface IEvents<T extends Events, F extends FunctionNames> {
 
 export interface IFunction<T extends FunctionNames> {
   name: T;
-  attributes: FunctionAttributesMap[T];
+  attributes?: FunctionAttributesMap[T];
   callbacks?: IFunction<T>[];
 }
 

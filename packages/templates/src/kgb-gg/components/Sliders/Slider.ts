@@ -53,8 +53,8 @@ export const Slider = generateElement(
     states: {
       activeSlide: 0,
     },
-    rendererDynamic: ['functions.ts.0.attributes.callbacks.0.attributes.value'],
-    rendererConditions: ['functions.ts.0.attributes.callbacks.0.attributes.value'],
+    rendererDynamic: ['functions.py.ts.0.attributes.callbacks.0.attributes.value'],
+    rendererConditions: ['functions.py.ts.0.attributes.callbacks.0.attributes.value'],
     children: [
       // generateElement('Wrap', {
       //     elementAttributes: {

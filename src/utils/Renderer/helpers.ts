@@ -1,4 +1,4 @@
-import { IComponentBase, IComponentType } from "@/types";
+import { IComponentType } from "@/types";
 import {
   importReactHooks,
   runMappedFunctions,
@@ -11,7 +11,6 @@ import {
   setByDotNotation,
   simpleDeepClone,
 } from "unisoft-utils";
-import { v4 } from "uuid";
 
 export const replaceDynamicTargets = <T = any, R = any>(
   obj: T,
@@ -53,75 +52,9 @@ export const processRenderer = (
         ) as any
       );
     });
-  if (component.functions?.length > 0) {
+  if (component.functions?.length) {
     runMappedFunctions(component.uuid, component.functions);
   }
 
   return component;
-};
-
-export const processDynamicAndConditions = (
-  component: IComponentType,
-  fromClient?: boolean
-) => {
-  if (component.dynamic) {
-    component = replaceDynamicTargets(component, component.dynamic);
-  }
-  if (component.conditions)
-    component.conditions.forEach((keyPath: string) => {
-      return setByDotNotation(
-        component,
-        keyPath,
-        processTemplateStrings(
-          getValue(component, keyPath),
-          (value: string) => {
-            return evaluate(value);
-          },
-          "#{",
-          "}"
-        ) as any
-      );
-    });
-
-  return component;
-};
-
-export const processConditionsOnRenderer = (componentProps: IComponentType) => {
-  if (componentProps.rendererConditions)
-    componentProps.rendererConditions.forEach((keyPath: string) => {
-      return setByDotNotation(
-        componentProps,
-        keyPath,
-        processTemplateStrings(
-          getValue(componentProps, keyPath),
-          (value: string) => {
-            return evaluate(value);
-          },
-          "#{",
-          "}"
-        ) as any
-      );
-    });
-};
-
-export const processDynamicOnRenderer = (componentProps: IComponentType) => {
-  if (componentProps.rendererDynamic)
-    componentProps = replaceDynamicTargets(
-      componentProps,
-      componentProps.rendererDynamic
-    );
-};
-
-export const updateUUIDs = (component: IComponentType): IComponentBase => {
-  const newComponent = { ...component };
-
-  newComponent.uuid = v4();
-
-  if (Array.isArray(newComponent.children)) {
-    newComponent.children = newComponent.children.map((child) =>
-      updateUUIDs(child as IComponentBase)
-    );
-  }
-
-  return newComponent;
-};
+}

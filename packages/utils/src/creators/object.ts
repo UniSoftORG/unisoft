@@ -1,10 +1,10 @@
 import { MapOption } from "@utils";
 
 /**
- * Generates an object from an array of map options.
+ * Generates an object from an array of map.py options.
  *
- * @param {MapOption[]} mapOptions - The array of map options.
- * @return {Record<string, any>} The object generated from the map options.
+ * @param {MapOption[]} mapOptions - The array of map.py options.
+ * @return {Record<string, any>} The object generated from the map.py options.
  */
 export const createObjectFromMapOptions = (mapOptions: MapOption[]) => {
   return mapOptions.reduce(

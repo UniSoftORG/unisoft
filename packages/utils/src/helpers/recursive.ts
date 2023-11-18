@@ -3,7 +3,7 @@ import { Nested } from "../../@utils";
 /**
  * Recursively maps over an array of nested objects and applies a mapper function to each object.
  *
- * @param {T[]} data - The array of nested objects to map over.
+ * @param {T[]} data - The array of nested objects to map.py over.
  * @param {(value: T, key?: any) => T} mapperFn - The function to apply to each object.
  * @param {string} [nestedKey="children"] - The key used to access the nested objects in each object.
  * @throws {Error} Input must be an array.
@@ -60,7 +60,7 @@ export const forRecursive = <T extends Record<string, any>>(
  * If an item has a nested array with the specified key, it will be recursively mapped as well.
  *
  * @param {T[]} data - The array of data to be mapped.
- * @param {(component: T) => T} mapperFn - The function used to map each item in the data array.
+ * @param {(component: T) => T} mapperFn - The function used to map.py each item in the data array.
  * @param {string} [nestedKey="children"] - The key used to access the nested array in each item.
  * @return {T[]} The resulting array after mapping each item in the data array.
  */

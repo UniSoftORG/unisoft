@@ -37,10 +37,10 @@ export const setState = (
   },
 });
 
-export const createEvent = <T extends Events, F extends FunctionNames>(
+export const createEvent = <T extends Events>(
   name: T,
   // attributes: FunctionAttributesMap[T],
-  callbacks?: IFunction<F>[]
+  callbacks?: IFunction<FunctionNames>[]
 ) => ({
   name,
   // attributes,

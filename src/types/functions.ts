@@ -1,6 +1,7 @@
 import { Events } from "@/types/events";
 import { FunctionNames } from "@/types/uniFunctions";
 import { FunctionAttributesMap } from "@/types/uniTypes";
+import { ReactHooks } from '@/types/react';
 
 export type Attributes = {
   [key: string]: any;
@@ -19,14 +20,19 @@ export interface IFunction<T extends FunctionNames> {
   callbacks?: IFunction<T>[];
 }
 
+export interface IEvent<T extends Events> {
+  name: T;
+  callbacks?: IFunction<FunctionNames>[];
+}
+
 export type Fu = {};
 
 export interface IUseEffect {
-  name: string;
+  name: FunctionNames;
   attributes: {
-    watchKeys: string[];
-    callbacks: any;
-    delay: number;
+    watchKeys?: string[];
+    callbacks?: any;
+    delay?: number;
   };
 }
 
@@ -37,6 +43,12 @@ export interface ISetState {
 
 export interface IConsoleLog {
   value: any;
+}
+
+export interface IUseInterval {
+  watchKeys?: string[];
+  callbacks?: IFunction<FunctionNames>[];
+  delay: number;
 }
 // export interface IUseEffectReturn {
 //     name: string;

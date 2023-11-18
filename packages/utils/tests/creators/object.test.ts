@@ -3,7 +3,7 @@ import {createObjectFromMapOptions} from "../../src/creators";
 
 describe('Object Creator Module', () => {
     describe('createObjectFromMapOptions', () => {
-        it('generates an object from an array of map options', () => {
+        it('generates an object from an array of map.py options', () => {
             const mapOptions = [
                 'key1',
                 {key: 'key2', value: 'value2'},
@@ -19,7 +19,7 @@ describe('Object Creator Module', () => {
             });
         });
 
-        it('handles map options with missing values', () => {
+        it('handles map.py options with missing values', () => {
             const mapOptions: MapOption[] = [
                 'key1',
                 {key: 'key2', value: ''},

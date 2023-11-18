@@ -1,4 +1,3 @@
-"use client";
 import ChildRenderer from "@/renderer/renderers/ChildRenderer";
 import { IComponentType } from "@/types";
 import { handleEvents } from "@/utils/Renderer/events";

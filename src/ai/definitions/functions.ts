@@ -17,7 +17,7 @@ export const defaultDefinitions: ChatCompletionFunctions[] = [
   {
     name: "example_component",
     description:
-      "Example slider component definition, with functions, useEffects, animations, conditions, etc...",
+      "Example slider component definition, with functions.py, useEffects, animations, conditions, etc...",
     parameters: {
       type: "object",
       properties: {},

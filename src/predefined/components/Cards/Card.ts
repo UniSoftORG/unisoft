@@ -3,7 +3,7 @@ import { createEvent, setState } from "@/definitions/executors";
 import {
   generateElement,
   generateImage,
-  generateTextField,
+  generateTextField
 } from "@/definitions/generators";
 import { getAttribute, getState } from "@/definitions/getters";
 import { products } from "@/endpoints/products";
@@ -45,7 +45,7 @@ export const Card = generateElement(
           },
           children: [
             generateElement("Game", {
-              mapByKey: "GameProducts.variables.products",
+              mapByKey: "children",
               states: {
                 hovered: "false",
               },

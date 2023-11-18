@@ -18,7 +18,7 @@ export const Link = generateElement(
       createEvent(Events.onMouseEnter, [setState('hovered', 'true')]),
       createEvent(Events.onMouseLeave, [setState('hovered', 'false')]),
     ],
-    // functions.ts: [
+    // functions.py.ts: [
     //     useFunction('consoleLog', {value: '${states.hovered}'}),
     // ],
     children: [

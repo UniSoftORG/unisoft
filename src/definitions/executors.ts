@@ -15,10 +15,10 @@ export const useFunction = <T extends FunctionNames>(
 
 export const useInterval = <T extends FunctionNames>(
   watchKeys: string[],
-  callbacks: IFunction<T>[],
+  callbacks: IFunction<FunctionNames>[],
   delay: number
-): IUseEffect => ({
-  name: "useInterval",
+): IFunction<FunctionNames.useInterval> => ({
+  name: FunctionNames.useInterval,
   attributes: {
     watchKeys,
     callbacks,

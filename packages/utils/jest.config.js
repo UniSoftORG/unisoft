@@ -4,7 +4,7 @@ module.exports = {
     '^.+\\.ts?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  testMatch: ['**/*.test.ts'],
+  testMatch: ['**/*.init.ts'],
   roots: ['<rootDir>/tests'],
   moduleNameMapper: {
     '^@utils$': '<rootDir>/@templates/index.ts',

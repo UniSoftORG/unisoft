@@ -21,14 +21,8 @@ export const Link = generateLink("NavLink", {
   ],
   children: [
     generateElement("Link", {
-      receiveAttributes: {
-        image: "NavLink.passAttributes.image",
-      },
       children: [
         generateElement("LinkButton", {
-          receiveAttributes: {
-            image: "Link.passAttributes.image",
-          },
           elementAttributes: {
             className:
               "flex justify-center items-center rounded-lg px-8 py-6 z-50",
@@ -42,7 +36,7 @@ export const Link = generateLink("NavLink", {
                   className: "transition-transform duration-300 ease-in-out",
                 },
                 receiveAttributes: {
-                  image: "LinkButton.passAttributes.image",
+                  image: "NavLink.passAttributes.image",
                 },
               },
               24

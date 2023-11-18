@@ -1,6 +1,6 @@
 import { containsAny, containsAll, isUrl, isUuid, isUlid, is, isAscii, isJson } from '../../src/checkers';
 
-describe('String utility functions', () => {
+describe('String utility functions.py', () => {
   describe('contains function', () => {
     it('should return true if the subject contains the search string', () => {
       expect(containsAny('hello world', 'world')).toBe(true);

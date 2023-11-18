@@ -29,7 +29,7 @@ export const LinkHover = generateElement("NavLinkHover", {
           className: "font-extrabold text-primary text-md",
         },
         children: [
-          generateTextField("Title", { passAttributes: { text: "test" } }),
+          generateTextField("Title", { receiveAttributes: { text: "NavLink.passAttributes.name" } }),
         ],
       },
       KnownElementTag.Span
@@ -41,7 +41,7 @@ export const LinkHover = generateElement("NavLinkHover", {
           className: "text-xs text-gray-light",
         },
         children: [
-          generateTextField("Title2", { passAttributes: { text: "test" } }),
+          generateTextField("Title2", { receiveAttributes: { text: "NavLink.passAttributes.name" } }),
         ],
       },
       KnownElementTag.Paragraph

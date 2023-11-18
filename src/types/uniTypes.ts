@@ -1,4 +1,4 @@
-import { IConsoleLog, ISetState } from "@/types/functions";
+import { IConsoleLog, ISetState, IUseInterval } from '@/types/functions';
 import { FunctionNames } from "@/types/uniFunctions";
 import {
   addAfterAttributes,
@@ -123,6 +123,8 @@ import {
 } from "@/types/uniInterfaces";
 
 export type FunctionAttributesMap = {
+  [FunctionNames.useInterval]: IUseInterval,
+  [FunctionNames.useTimeOut]: IUseInterval,
   [FunctionNames.consoleLog]: IConsoleLog;
   [FunctionNames.setState]: ISetState;
   [FunctionNames.isAccessible]: isAccessibleAttributes;

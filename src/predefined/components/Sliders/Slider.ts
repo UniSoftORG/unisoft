@@ -1,5 +1,5 @@
 import { ternaryCondition } from "@/definitions/evaluators";
-import { setState, useInterval } from "@/definitions/executors";
+import { setState, useInterval } from '@/definitions/executors';
 import { generateElement } from "@/definitions/generators";
 import { getState } from "@/definitions/getters";
 import { Navigation } from "@/predefined/components/Sliders/Navigation";
@@ -23,6 +23,13 @@ export const Slider = generateElement(
         },
         {
           image: "/images/slider/bg-test3.webp",
+          href: "/",
+          text: "Minecraft",
+          description:
+            "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        },
+        {
+          image: "/images/slider/bg-test2.webp",
           href: "/",
           text: "Minecraft",
           description:

@@ -17,7 +17,7 @@ export const Forum = generateElement(
       latest_topics: [],
       mainCategories: [],
     },
-    dynamic: ["functions.ts.0.attributes.value"],
+    dynamic: ["functions.py.ts.0.attributes.value"],
     children: [
       generateElement("News", {
         mapByKey: "Forum.variables.news",

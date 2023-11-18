@@ -1,10 +1,10 @@
 import {
   IComponent,
-  IComponentBase,
-  IComponentType,
+  IComponentBase, IComponentType,
   KnownComponentType,
   KnownElementTag,
-} from "@/types";
+} from '@/types';
+import { ImageProps } from 'next/dist/shared/lib/get-img-props';
 import { v4 } from "uuid";
 
 export const generateElement = (
@@ -48,16 +48,16 @@ export const generateImage = (
     ...props,
     elementAttributes: {
       ...props.elementAttributes,
-      ["alt" as any]: (props.elementAttributes as any)?.alt ?? "",
+      alt: props.elementAttributes ?? "",
       ...(squared !== undefined && { width: squared, height: squared }),
-    },
+    } as ImageProps,
   };
 };
 
 export const generateTextField: any = (
   name: string,
   props: IComponent
-): IComponentBase => {
+): IComponent & IComponentBase => {
   const uniqueIdentity = v4();
   return {
     name,

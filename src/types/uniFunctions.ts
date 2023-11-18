@@ -1,4 +1,22 @@
 export enum FunctionNames {
+  // React Hooks
+  // useState = "useState",
+  // useEffect = "useEffect",
+  // useContext = "useContext",
+  // useReducer = "useReducer",
+  // useCallback = "useCallback",
+  // useMemo = "useMemo",
+  // useRef = "useRef",
+  // useImperativeHandle = "useImperativeHandle",
+  // useLayoutEffect = "useLayoutEffect",
+  // useDebugValue = "useDebugValue",
+  // useTransition = "useTransition",
+  // useDeferredValue = "useDeferredValue",
+
+  // Custom hooks, to ensure the best practices
+  useTimeOut = "useTimeOut",
+  useInterval = "useInterval",
+
   consoleLog = "consoleLog",
   setState = "setState",
   isAccessible = "isAccessible",
