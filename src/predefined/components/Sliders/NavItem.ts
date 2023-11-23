@@ -5,9 +5,9 @@ import {
 } from '@/definitions/generators';
 import { createEvent, setState } from '@/definitions/executors';
 import { Events } from '@/types/events';
-import { getAttribute } from '@/definitions/getters';
+import { getAttribute, getState } from '@/definitions/getters';
 import { KnownElementTag, Operators } from '@/types';
-import { ternaryCondition } from '@/definitions/evaluators';
+import { customCondition, ternaryCondition } from '@/definitions/evaluators';
 
 const ternaryUtil = (
   trueReturn: string | number,
@@ -26,8 +26,16 @@ const ternaryUtil = (
 export const NavItem = generateElement('Item', {
   mapByKey: 'Slider.variables.slides',
   elementAttributes: {
-    className:
-      'lg:flex z-40 lg:justify-center items-center lg:px-3 lg:py-2 rounded-full',
+    className: `${getAttribute('index')} ${customCondition(
+      `${getState('activeSlide')} === ${getAttribute(
+        'index'
+      )} && slider-button-hover`
+    )} lg:flex z-40 lg:justify-center items-center lg:px-3 lg:py-2 rounded-full`,
+  },
+  rendererDynamic: ['elementAttributes.className'],
+  rendererConditions: ['elementAttributes.className'],
+  receiveAttributes: {
+    activeSlide: 'Slider.states.activeSlide',
   },
   children: [
     generateElement(

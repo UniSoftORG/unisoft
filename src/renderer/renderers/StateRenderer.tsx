@@ -2,6 +2,7 @@ import Renderer from '@/renderer/Render';
 import useDynamicStates from '@/utils/React/Managers/StateManager';
 import { IComponentType } from '@/types';
 import { useInterval } from '@/utils/React/Managers/TimeManager';
+import { Suspense } from 'react';
 
 const StateRenderer: React.FC<{
   component: IComponentType;
@@ -9,10 +10,6 @@ const StateRenderer: React.FC<{
   const [states, setStateByKey] = component.states
     ? useDynamicStates(component.states)
     : [];
-  const handleStateChange = (key: string, value: any) => {
-    setStateByKey && setStateByKey(key, value);
-    // Additional logic if needed
-  };
   // useEffect(() => {
   //   if (component.name === 'TestMsap2') {
   //     setStateByKey && setStateByKey('hey', 's');

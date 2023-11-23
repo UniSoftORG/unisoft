@@ -55,15 +55,7 @@ export const Slider = generateElement(
     },
     rendererDynamic: ['functions.0.attributes.callbacks.0.attributes.value'],
     rendererConditions: ['functions.0.attributes.callbacks.0.attributes.value'],
-    children: [
-      // generateElement('Wrap', {
-      //     elementAttributes: {
-      //         className: "flex flex-col lg:grid lg:grid-cols-6 lg:content-center lg:justify-items-end w-full",
-      //     },
-      // }),
-      ActiveSlide,
-      Navigation,
-    ],
+    children: [ActiveSlide, Navigation],
   },
   KnownElementTag.Section
 );

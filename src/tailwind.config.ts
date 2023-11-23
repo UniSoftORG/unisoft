@@ -10,6 +10,22 @@ module.exports = {
       colors: {
         primary: '#E23F33',
         'neural-dark': '#0F1114',
+        'red-light': '#F5655C',
+        red: '#E23F33',
+        'red-dark': '#8F241C',
+        'red-darker': '#591611',
+        'orange-lightest': '#FFDBA6',
+        'orange-light': '#FFB74D',
+        orange: '#D9932B',
+        'orange-dark': '#8D6118',
+        'orange-darker': '#593E0F',
+      },
+      maxHeight: {
+        full: '100%',
+      },
+      transitionProperty: {
+        height: 'height',
+        'max-height': 'max-height',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -63,8 +79,8 @@ module.exports = {
       animation: {
         fadeIn: 'fadeIn 1s ease-in forwards',
         fadeOut: 'fadeOut 0.3s ease-in forwards',
-        slideIn: 'slideIn 1s ease-in-out forwards',
-        slideOut: 'slideOut 1s ease-in-out forwards',
+        slideIn: 'slideIn 0.6s ease-in-out forwards',
+        slideOut: 'slideOut 0.6s ease-in-out forwards',
         shadowBlinkIn: 'shadowBlinkIn 2.5s ease-in-out forwards',
         shadowBlinkOut: 'shadowBlinkOut 1.5s ease-in-out forwards',
         zoomIn: 'zoomIn 0.6s ease forwards',

@@ -6,6 +6,7 @@ export type AnyObject = { [key: string]: any };
 
 export enum KnownComponentType {
   Element = 'Element',
+  Link = 'Link',
   Translation = 'Translation',
   Component = 'Component',
   Image = 'Image',
@@ -24,7 +25,9 @@ export enum KnownElementTag {
   Span = 'span',
   Ul = 'ul',
   Paragraph = 'p',
+  Header = 'header',
   Aside = 'aside',
+  Footer = 'footer',
 }
 
 /**

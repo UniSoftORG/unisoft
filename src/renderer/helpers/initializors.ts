@@ -26,10 +26,6 @@ export class PrepareComponent {
       this.componentData,
       this.componentData.passAttributes
     );
-    // this.componentData.dynamic &&
-    //   replaceDynamicTargets(this.componentData, this.componentData.dynamic);
-    // this.componentData.conditions &&
-    // replaceConditionalTargets(this.componentData, this.componentData.conditions);
   }
 
   processChildAttributes(
@@ -98,7 +94,7 @@ export class PrepareComponent {
 
     try {
       const path = value.replace(`${mainObject.name}.`, '');
-      const newValue = get<any, string>(mainObject, path);
+      const newValue = get(mainObject, path);
       if (newValue !== undefined) {
         passAttributes[key] = newValue;
       }

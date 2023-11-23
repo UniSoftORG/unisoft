@@ -26,7 +26,7 @@ export default class SingletonApiRequest {
   private requestHeaders = async (): Promise<Headers> => {
     return new Headers({
       'content-type': 'application/json',
-      'X-UNI': process.env.NEXT_UNITOKEN ?? '',
+      'X-UNI': process.env.NEXT_UNITOKEN ?? 'IiTtyXQ3vzsMFkmnU4DMaMY4Xg3o3rZSHnzAvhaE5UhAqNW5vxvkMY5bpQ72pRHCbsYd1KWIVjNB',
       accept: 'application/json',
     });
   };
@@ -66,7 +66,7 @@ export default class SingletonApiRequest {
         headers: headers,
         body: payload ? JSON.stringify(payload) : undefined,
         next: {
-          revalidate: 100,
+          revalidate: 0,
         },
       });
 
