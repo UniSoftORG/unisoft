@@ -1,0 +1,15 @@
+export enum KnownElementTag {
+  Main = "main",
+  Div = "div",
+  Li = "li",
+  Section = "section",
+  Button = "button",
+  Nav = "nav",
+  Form = "form",
+  Span = "span",
+  Ul = "ul",
+  Paragraph = "p",
+  Header = "header",
+  Aside = "aside",
+  Footer = "footer",
+}

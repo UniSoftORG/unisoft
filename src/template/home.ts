@@ -1,4 +1,4 @@
-import { Card } from "@/predefined/components/Cards/Card";
-import { Slider } from "@/predefined/components/Sliders/Slider";
+import { Card } from "@/predefined/JSON/Cards/Card";
+import { Slider } from "@/predefined/JSON/Sliders/Slider";
 
 export const HomePage = [Slider, Card];

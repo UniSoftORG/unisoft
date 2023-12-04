@@ -1,6 +1,6 @@
-import { Forum } from "@/predefined/forum";
-import InitiateRenderer from "@/renderer/InitiateRenderer";
+import InitiateRenderer from "@/core/Renderer/InitiateRenderer";
+import { ForumPage } from "@/template/forum";
 
 export default async function Home() {
-  return await InitiateRenderer([Forum]);
+  return await InitiateRenderer(ForumPage);
 }

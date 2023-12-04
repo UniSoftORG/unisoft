@@ -1,13 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    // "./renderer/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./predefined/**/*.{ts,js}",
+    "./renderer/strategies/**/*.{ts,tsx,js}",
     // "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
+        "dark-background": "#060708",
+        "gray-dark": "#292C33",
+        "gray-darker": "#181B1F",
         primary: "#E23F33",
         "neural-dark": "#0F1114",
         "red-light": "#F5655C",
@@ -42,16 +46,29 @@ module.exports = {
           "0%": { opacity: 1 },
           "100%": { opacity: 0 },
         },
-        slideIn: {
+        slideInRight: {
           "0%": {
             transform: "translateX(-100%)",
             opacity: "0",
           },
           "100%": { transform: "translateX(0)", opacity: "1" },
         },
+        slideInLeft: {
+          "0%": {
+            transform: "translateX(100%)",
+            opacity: "0",
+          },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
         slideOut: {
           "0%": { transform: "translateX(0)", opacity: "1" },
+          "50%": { opacity: "0.1" },
           "100%": { transform: "translateX(100%)", opacity: "0" },
+        },
+        slideOutLeft: {
+          "0%": { transform: "translateX(0)", opacity: "1" },
+          "50%": { opacity: "0.1" },
+          "100%": { transform: "translateX(-100%)", opacity: "0" },
         },
         shadowBlinkIn: {
           "0%": {
@@ -79,8 +96,10 @@ module.exports = {
       animation: {
         fadeIn: "fadeIn 1s ease-in forwards",
         fadeOut: "fadeOut 0.3s ease-in forwards",
-        slideIn: "slideIn 0.6s ease-in-out forwards",
+        slideInRight: "slideInRight 0.6s ease-in-out forwards",
+        slideInLeft: "slideInLeft 0.6s ease-in-out forwards",
         slideOut: "slideOut 0.6s ease-in-out forwards",
+        slideOutLeft: "slideOutLeft 0.3s ease-in-out forwards",
         shadowBlinkIn: "shadowBlinkIn 2.5s ease-in-out forwards",
         shadowBlinkOut: "shadowBlinkOut 1.5s ease-in-out forwards",
         zoomIn: "zoomIn 0.6s ease forwards",

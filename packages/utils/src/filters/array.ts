@@ -159,3 +159,39 @@ export const filterArray = <T>(arr: T[], fn: (value: T) => boolean): T[] => {
 export const filterNotNull = <T>(arr: T[]) => {
   return arr.filter(Boolean);
 };
+
+/**
+ * Sorts an array based on a specified order.
+ *
+ * @param {Array} arr - The array to be sorted.
+ * @param {Array} order - The order to sort the array by.
+ * @return {Array} - The sorted array.
+ */
+export function sortArrayByOrder<T extends string | number>(
+  arr: T[],
+  order: T[]
+): T[] {
+  const orderMap = new Map<T, number>(
+    order.map((item, index) => [item, index])
+  );
+
+  return arr.sort((a, b) => {
+    const aIndex = orderMap.has(a) ? orderMap.get(a) : Infinity;
+    const bIndex = orderMap.has(b) ? orderMap.get(b) : Infinity;
+
+    if (aIndex !== bIndex) {
+      return (aIndex ?? Infinity) - (bIndex ?? Infinity);
+    }
+
+    if (aIndex === Infinity && bIndex === Infinity) {
+      if (typeof a === "string" && typeof b === "string") {
+        return a.localeCompare(b);
+      }
+      if (typeof a === "number" && typeof b === "number") {
+        return a - b;
+      }
+    }
+
+    return 0;
+  });
+}

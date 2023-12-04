@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { DynamicRequest } from '@/types/dynamic';
-import { CreateState } from '@/types/react';
+import { DynamicRequest } from '@/types';
+import { CreateState } from '@/types';
 
 export type AnyObject = { [key: string]: any };
 

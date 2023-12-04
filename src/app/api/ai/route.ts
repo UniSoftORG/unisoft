@@ -1,4 +1,4 @@
-import { defaultDefinitions } from "@/ai/definitions/functions";
+import { defaultDefinitions } from "@/core/AI/definitions/functions";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import { Configuration, OpenAIApi } from "openai-edge";
 

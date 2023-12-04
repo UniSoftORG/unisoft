@@ -12,6 +12,7 @@ node_modules
 ./src/utils/Request/singletonApiRequest.ts
 /.pnp
 .pnp.js
+dist
 
 # testing
 coverage
