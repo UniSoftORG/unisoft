@@ -27,8 +27,8 @@
   },
   "devDependencies": {
     "ts-loader": "^9.5.1",
-    "tsup": "^8.0.0",
-    "typedoc": "^0.25.3"
+    "tsup": "^8.0.1",
+    "typedoc": "^0.25.4"
   },
   "peerDependencies": {
     "uuid": "^9.0.1",
