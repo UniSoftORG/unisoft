@@ -37,7 +37,7 @@ export const setByDotNotation = <T, K extends keyof any = keyof any>(
 ): void => {
   // Handle both dot and array notations and split the path.
   try {
-    const parts = path.replace(/\[/g, '.').replace(/\]/g, '').split('.');
+    const parts = path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
 
     parts.reduce((acc: any, part, index, array) => {
       // If it's the last part, set the value

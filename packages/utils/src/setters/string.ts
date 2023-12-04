@@ -1,4 +1,4 @@
-import { after, before } from '../getters';
+import { after, before } from "../getters";
 
 /**
  * Adds a value before a specified match in a subject string.
@@ -15,9 +15,9 @@ export const addBefore = (
   matchAfter?: string,
   notSpaceBetween: boolean = false
 ): string => {
-  const separator = notSpaceBetween ? '' : ' ';
+  const separator = notSpaceBetween ? "" : " ";
 
-  if (typeof matchAfter === 'undefined') {
+  if (typeof matchAfter === "undefined") {
     return valueToAdd + separator + subject;
   }
 
@@ -44,14 +44,14 @@ export const addAfter = (
   matchBefore?: string,
   notSpaceBetween: boolean = false
 ): string => {
-  const separator = notSpaceBetween ? '' : ' ';
+  const separator = notSpaceBetween ? "" : " ";
 
-  if (typeof matchBefore === 'undefined') {
+  if (typeof matchBefore === "undefined") {
     return subject + separator + valueToAdd;
   }
 
   const afterMatch = after(subject, matchBefore);
-  if (afterMatch === '') {
+  if (afterMatch === "") {
     return subject;
   }
 
@@ -79,7 +79,7 @@ export const replaceBetween = (
   }
 
   const afterStart = after(subject, startMatch);
-  if (afterStart === '') {
+  if (afterStart === "") {
     return subject;
   }
 
@@ -106,7 +106,7 @@ export const mask = (
   subject: string,
   start: number,
   length: number,
-  maskChar: string = '*'
+  maskChar: string = "*"
 ): string => {
   const masked = maskChar.repeat(length);
   return subject.slice(0, start) + masked + subject.slice(start + length);
@@ -126,7 +126,7 @@ export const replaceArray = (
   replace: any[]
 ): string => {
   let index = 0;
-  return subject.replace(new RegExp(search, 'g'), () => replace[index++] ?? '');
+  return subject.replace(new RegExp(search, "g"), () => replace[index++] ?? "");
 };
 
 /**
@@ -165,9 +165,9 @@ export const processTemplateStrings = (
   start: string,
   end: string
 ): string => {
-  const escapedStart = start.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
-  const escapedEnd = end.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
-  const pattern = new RegExp(`${escapedStart}(.*?)${escapedEnd}`, 'g');
+  const escapedStart = start.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
+  const escapedEnd = end.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
+  const pattern = new RegExp(`${escapedStart}(.*?)${escapedEnd}`, "g");
 
   return input.replace(pattern, (match, content) => callback(content));
 };

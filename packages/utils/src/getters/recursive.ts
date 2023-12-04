@@ -1,4 +1,4 @@
-import { forRecursive } from '../helpers';
+import { forRecursive } from "../helpers";
 
 /**
  * Finds an object in an array of objects by searching for a specific value in a specified key.
@@ -15,7 +15,7 @@ export const findObjectByValue = async <T extends Record<string, any>>(
   value: any,
   key: keyof T,
   parent?: T,
-  nestedKey: keyof T = 'children'
+  nestedKey: keyof T = "children"
 ): Promise<
   | {
       object: T;
@@ -44,3 +44,28 @@ export const findObjectByValue = async <T extends Record<string, any>>(
 
   return foundObject;
 };
+
+export function getAllValuesByKey<T>(
+  obj: T,
+  searchKeys: string[],
+  valueKeys: string[]
+): any[] {
+  let values: any[] = [];
+
+  function searchValues(currentObj: any) {
+    if (Array.isArray(currentObj)) {
+      currentObj.forEach((item) => searchValues(item));
+    } else if (typeof currentObj === "object" && currentObj !== null) {
+      for (const key in currentObj) {
+        if (searchKeys.includes(key)) {
+          searchValues(currentObj[key]);
+        } else if (valueKeys.includes(key)) {
+          values.push(currentObj[key]);
+        }
+      }
+    }
+  }
+
+  searchValues(obj);
+  return values;
+}

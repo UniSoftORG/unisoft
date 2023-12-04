@@ -25,7 +25,7 @@ export const get = <T, K extends string | number | symbol>(
   path: string,
   defaultValue?: T
 ): T | undefined => {
-  const keys = path.split('.');
+  const keys = path.split(".");
   return (
     keys.reduce((acc: any, key: string) => acc?.[key], obj) ?? defaultValue
   );
@@ -55,8 +55,8 @@ export const last = <T>(arr: T[], fn: (value: T) => boolean): T | undefined => {
  * @return {Record<string, T>} An object with the keys and values based on the provided key and array elements.
  */
 export const keyBy = <T>(arr: T[], key: keyof T): Record<string, T> => {
-  if (!arr.length || typeof arr[0][key] === 'undefined') {
-    throw new Error('Invalid key provided.');
+  if (!arr.length || typeof arr[0][key] === "undefined") {
+    throw new Error("Invalid key provided.");
   }
   return arr.reduce((acc: Record<string, T>, curr: T) => {
     acc[String(curr[key])] = curr;

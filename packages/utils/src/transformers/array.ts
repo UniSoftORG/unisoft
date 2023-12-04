@@ -1,4 +1,4 @@
-import { setValueAtPathInObject } from '../setters';
+import { setValueAtPathInObject } from "../setters";
 
 /**
  * Converts an array to an object using a key extractor function.
@@ -55,8 +55,8 @@ export const createQueryString = (
   params: Record<string, string | number | boolean>
 ): string => {
   return Object.keys(params)
-    .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
-    .join('&');
+    .map((k) => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
+    .join("&");
 };
 
 /**
@@ -66,7 +66,7 @@ export const createQueryString = (
  * @return {string} - The CSS class string.
  */
 export const convertArrayToClassString = (arr: string[]): string => {
-  return arr.filter(Boolean).join(' ');
+  return arr.filter(Boolean).join(" ");
 };
 /**
  * Converts an object to a string of CSS styles.
@@ -80,7 +80,7 @@ export const convertObjectToCssString = (styles: {
   return Object.entries(styles)
     .filter(([key, value]) => Boolean(key) && Boolean(value))
     .map(([key, value]) => `${key}:${value};`)
-    .join(' ');
+    .join(" ");
 };
 
 /**

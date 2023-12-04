@@ -7,7 +7,7 @@
  */
 export const after = (subject: string, search: string): string => {
   const pos = subject.indexOf(search);
-  return pos === -1 ? '' : subject.slice(pos + search.length);
+  return pos === -1 ? "" : subject.slice(pos + search.length);
 };
 
 /**
@@ -19,7 +19,7 @@ export const after = (subject: string, search: string): string => {
  */
 export const afterLast = (subject: string, search: string): string => {
   const pos = subject.lastIndexOf(search);
-  return pos === -1 ? '' : subject.slice(pos + search.length);
+  return pos === -1 ? "" : subject.slice(pos + search.length);
 };
 
 /**

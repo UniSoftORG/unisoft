@@ -19,7 +19,7 @@ export const flatten = <T>(arr: any[]): T[] => {
  * @return {T} - The cloned object.
  */
 export const deepClone = <T>(obj: T): T => {
-  if (obj === null || typeof obj !== 'object') {
+  if (obj === null || typeof obj !== "object") {
     return obj;
   }
 

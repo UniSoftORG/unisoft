@@ -7,7 +7,7 @@ export const addValueToArrayAtIndex = <T>(
   index: number
 ): T[] => {
   if (index < 0 || index > arr.length) {
-    throw new Error('Index out of bounds');
+    throw new Error("Index out of bounds");
   }
 
   return [...arr.slice(0, index), value, ...arr.slice(index)];
@@ -21,7 +21,7 @@ export const removeValueFromArrayAtIndex = <T>(
   index: number
 ): T[] => {
   if (index < 0 || index >= arr.length) {
-    throw new Error('Index out of bounds');
+    throw new Error("Index out of bounds");
   }
 
   return [...arr.slice(0, index), ...arr.slice(index + 1)];
@@ -55,11 +55,11 @@ export const setValueAtPathInObject = <T>(
   path: string,
   value: unknown
 ): T => {
-  if (!object || typeof object !== 'object') {
-    throw new Error('Input must be an object.');
+  if (!object || typeof object !== "object") {
+    throw new Error("Input must be an object.");
   }
 
-  const keys = path.split('.');
+  const keys = path.split(".");
   keys.reduce(
     (obj: any, key: string, index: number) =>
       index === keys.length - 1

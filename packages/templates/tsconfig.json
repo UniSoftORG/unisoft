@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es2015",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "declaration": true,
+    "outDir": "./dist/",
+    "module": "CommonJS",
+    "baseUrl": "./",
+    "strict": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+  ],
+  "include": [
+    "./@templates/**/*.ts",
+    "./src/**/*.ts",
+    "./tests/**/*.ts"
+  ]
+}

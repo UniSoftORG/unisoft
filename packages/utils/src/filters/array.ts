@@ -64,7 +64,7 @@ export const removeValue = <T>(arr: T[], value: T): T[] => {
  */
 export const random = <T>(arr: T[]): T => {
   if (!arr.length) {
-    throw new Error('Array must not be empty.');
+    throw new Error("Array must not be empty.");
   }
   return arr[Math.floor(Math.random() * arr.length)];
 };
@@ -108,7 +108,7 @@ export const sortArrayDesc = <T>(arr: T[]): T[] => {
 export const sortRecursiveAsc = (arr: any): any => {
   if (Array.isArray(arr)) {
     return [...arr].sort().map(sortRecursiveAsc);
-  } else if (typeof arr === 'object' && arr !== null) {
+  } else if (typeof arr === "object" && arr !== null) {
     return Object.fromEntries(
       Object.entries(arr)
         .sort()
@@ -128,7 +128,7 @@ export const sortRecursiveAsc = (arr: any): any => {
 export const sortRecursiveDesc = (arr: any): any => {
   if (Array.isArray(arr)) {
     return [...arr].sort((a, b) => (a < b ? 1 : -1)).map(sortRecursiveDesc);
-  } else if (typeof arr === 'object' && arr !== null) {
+  } else if (typeof arr === "object" && arr !== null) {
     return Object.fromEntries(
       Object.entries(arr)
         .sort((a, b) => (a < b ? 1 : -1))
@@ -159,3 +159,39 @@ export const filterArray = <T>(arr: T[], fn: (value: T) => boolean): T[] => {
 export const filterNotNull = <T>(arr: T[]) => {
   return arr.filter(Boolean);
 };
+
+/**
+ * Sorts an array based on a specified order.
+ *
+ * @param {Array} arr - The array to be sorted.
+ * @param {Array} order - The order to sort the array by.
+ * @return {Array} - The sorted array.
+ */
+export function sortArrayByOrder<T extends string | number>(
+  arr: T[],
+  order: T[]
+): T[] {
+  const orderMap = new Map<T, number>(
+    order.map((item, index) => [item, index])
+  );
+
+  return arr.sort((a, b) => {
+    const aIndex = orderMap.has(a) ? orderMap.get(a) : Infinity;
+    const bIndex = orderMap.has(b) ? orderMap.get(b) : Infinity;
+
+    if (aIndex !== bIndex) {
+      return (aIndex ?? Infinity) - (bIndex ?? Infinity);
+    }
+
+    if (aIndex === Infinity && bIndex === Infinity) {
+      if (typeof a === "string" && typeof b === "string") {
+        return a.localeCompare(b);
+      }
+      if (typeof a === "number" && typeof b === "number") {
+        return a - b;
+      }
+    }
+
+    return 0;
+  });
+}

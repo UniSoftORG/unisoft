@@ -5,7 +5,7 @@
  * @return {boolean} Returns true if the input is an accessible array or object, otherwise false.
  */
 export const isAccessible = (arr: unknown): boolean =>
-  (Array.isArray(arr) || typeof arr === 'object') && arr !== null;
+  (Array.isArray(arr) || typeof arr === "object") && arr !== null;
 
 /**
  * Checks if a given key exists in an array.
