@@ -17,7 +17,7 @@ const authMiddleware = withAuth(
 );
 
 export async function middleware(req: NextRequest, res: NextResponse) {
-  NextResponse.next();
+  return NextResponse.next();
   // return (authMiddleware as any)(req);
 }
 

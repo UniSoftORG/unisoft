@@ -1,6 +1,6 @@
 import { generateElement } from "@/core/Renderer/definitions/generators";
 import { Profile } from "@/predefined/JSON/User/Profile";
-import { KnownElementTag } from "@/types";
+import { ElementTags } from "@/types";
 import { NavLinks } from "./NavLinks";
 
 export const Vertical = generateElement(
@@ -16,5 +16,5 @@ export const Vertical = generateElement(
     },
     children: [Profile, NavLinks],
   },
-  KnownElementTag.Nav
+  ElementTags.Nav
 );

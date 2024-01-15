@@ -10,7 +10,7 @@ import { LinkHover } from "./LinkHover";
 export const Link = generateLink("NavLink", {
   mapByKey: "Nav.variables.links",
   elementAttributes: {
-    className: "animate-zoomIn",
+    className: "animate-fadeIn",
   },
   states: {
     hovered: "false",
@@ -20,29 +20,25 @@ export const Link = generateLink("NavLink", {
     createEvent(Events.onMouseLeave, [setState("hovered", "false")]),
   ],
   children: [
-    generateElement("Link", {
+    generateElement("LinkButton", {
+      elementAttributes: {
+        className:
+          "flex justify-center items-center rounded-lg px-8 py-6 z-50",
+        style: { minWidth: "2.5rem" },
+      },
       children: [
-        generateElement("LinkButton", {
-          elementAttributes: {
-            className:
-              "flex justify-center items-center rounded-lg px-8 py-6 z-50",
-            style: { minWidth: "2.5rem" },
+        generateImage(
+          "LinkIcon",
+          {
+            elementAttributes: {
+              className: "transition-transform duration-300 ease-in-out",
+            },
+            receiveAttributes: {
+              image: "NavLink.passAttributes.image",
+            },
           },
-          children: [
-            generateImage(
-              "LinkIcon",
-              {
-                elementAttributes: {
-                  className: "transition-transform duration-300 ease-in-out",
-                },
-                receiveAttributes: {
-                  image: "NavLink.passAttributes.image",
-                },
-              },
-              24
-            ),
-          ],
-        }),
+          24
+        ),
       ],
     }),
     LinkHover,

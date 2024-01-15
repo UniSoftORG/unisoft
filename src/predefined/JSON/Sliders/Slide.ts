@@ -9,8 +9,7 @@ import { Operators } from "@/types";
 export const ActiveSlide = generateElement("Slide", {
   mapByKey: "Slider.variables.slides",
   elementAttributes: {
-    className: `absolute w-full bg-cover bg-center h-full pl-8 pr-8 lg:pl-52 lg:pr-12 grid content-center transition duration-500
-              ${ternaryCondition(
+    className: `absolute w-full bg-cover bg-center h-full pl-8 pr-8 lg:pl-52 lg:pr-12 grid content-center transition duration-500 ${ternaryCondition(
                 {
                   value1: getAttribute("index"),
                   operator: Operators.StrictEqual,

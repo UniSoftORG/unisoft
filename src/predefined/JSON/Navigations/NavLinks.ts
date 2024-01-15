@@ -1,18 +1,20 @@
 import { generateElement } from "@/core/Renderer/definitions/generators";
-import { KnownElementTag } from "@/types";
+import { ElementTags } from "@/types";
 import { Link } from "./Link";
+// import { Indicator } from '@/predefined/JSON/Navigations/Indicator';
 
 export const NavLinks = generateElement("NavLinks", {
   elementAttributes: {
     className: "flex-grow flex justify-center items-center",
   },
   children: [
+    // Indicator,
     generateElement(
       "Links",
       {
         children: [Link],
       },
-      KnownElementTag.Ul
+      ElementTags.Ul
     ),
   ],
 });

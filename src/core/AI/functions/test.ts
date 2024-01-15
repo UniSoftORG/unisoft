@@ -1,7 +1,7 @@
 import { functionResponse } from "@/core/AI/utils/functions";
 import { generateElement } from "@/core/Renderer/definitions/generators";
 import { Slider } from "@/predefined/JSON/Sliders/Slider";
-import { HomePage } from "@/template/home";
+import { HomePage } from "@/template/pages/home";
 import { FunctionCall, Message } from "ai";
 
 export const functionCallHandler = async (

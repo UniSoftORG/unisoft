@@ -125,7 +125,7 @@ export default class ApiRequest {
         headers: headers,
         body: payload ? JSON.stringify(payload) : undefined,
         next: {
-          revalidate: 0,
+          revalidate: 120,
           // ...(this.revalidate !== undefined && {revalidate: 0}),
         },
       });

@@ -3,7 +3,7 @@ import {
   generateImage,
 } from "@/core/Renderer/definitions/generators";
 import { Vertical } from "@/predefined/JSON/Navigations/Vertical";
-import { KnownElementTag } from "@/types";
+import { ElementTags } from "@/types";
 
 export const NavWithLogo = generateElement(
   "Nav",
@@ -49,5 +49,5 @@ export const NavWithLogo = generateElement(
       Vertical,
     ],
   },
-  KnownElementTag.Aside
+  ElementTags.Aside
 );

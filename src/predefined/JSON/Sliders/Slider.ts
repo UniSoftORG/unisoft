@@ -4,7 +4,8 @@ import { generateElement } from "@/core/Renderer/definitions/generators";
 import { getState } from "@/core/Renderer/definitions/getters";
 import { Navigation } from "@/predefined/JSON/Sliders/Navigation";
 import { ActiveSlide } from "@/predefined/JSON/Sliders/Slide";
-import { KnownElementTag, Operators } from "@/types";
+import { ElementTags, Operators } from "@/types";
+import { slides } from '@/template/data/slides';
 
 export const Slider = generateElement(
   "Slider",
@@ -13,30 +14,7 @@ export const Slider = generateElement(
       className: "relative h-screen w-full",
     },
     variables: {
-      test: {},
-      slides: [
-        {
-          image: "/images/slider/bg-test.webp",
-          href: "/",
-          text: "Counter Strike: Global Offensive",
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-          image: "/images/slider/bg-test3.webp",
-          href: "/",
-          text: "Minecraft",
-          description:
-            "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-          image: "/images/slider/bg-test2.webp",
-          href: "/",
-          text: "Minecraft",
-          description:
-            "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-      ],
+      slides: slides,
     },
     functions: [
       useInterval(
@@ -66,5 +44,5 @@ export const Slider = generateElement(
     children: [ActiveSlide, Navigation],
   },
 
-  KnownElementTag.Section
+  ElementTags.Section
 );

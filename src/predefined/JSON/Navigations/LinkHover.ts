@@ -4,7 +4,7 @@ import {
   generateTextField,
 } from "@/core/Renderer/definitions/generators";
 import { getAttribute } from "@/core/Renderer/definitions/getters";
-import { KnownElementTag, Operators } from "@/types";
+import { TextTags, Operators } from '@/types';
 
 export const LinkHover = generateElement("NavLinkHover", {
   receiveAttributes: {
@@ -17,7 +17,7 @@ export const LinkHover = generateElement("NavLinkHover", {
         value2: "true",
         operator: Operators.StrictEqual,
       },
-      "visible animate-slideIn",
+      "animate-slideInRight",
       "hidden"
     )} absolute cursor-default box bg-neural-dark bg-opacity-90 arrow-center w-48 rounded-2xl flex flex-col justify-center items-center pl-4  py-3 pr-2 text-center z-40`,
     style: { left: "6.5rem", marginTop: "-4.6rem", minHeight: "5rem" },
@@ -37,7 +37,7 @@ export const LinkHover = generateElement("NavLinkHover", {
           }),
         ],
       },
-      KnownElementTag.Span
+      TextTags.Span
     ),
     generateElement(
       "TitleText2",
@@ -51,7 +51,7 @@ export const LinkHover = generateElement("NavLinkHover", {
           }),
         ],
       },
-      KnownElementTag.Paragraph
+      TextTags.Paragraph
     ),
   ],
 });

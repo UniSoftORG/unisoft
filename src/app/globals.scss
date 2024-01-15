@@ -1,6 +1,9 @@
+@import "assets/scss/svgColors";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 @layer base {
   ::-webkit-scrollbar {
@@ -46,6 +49,19 @@
     box-shadow: 0 0 0px 1000px #181A1F inset;
     transition: background-color 5000s ease-in-out 0s;
   }
+}
+
+.dark-gradient {
+  background: linear-gradient(270deg, #0F1114 0%, rgba(15, 17, 20, 0) 100%);
+}
+
+.dark-gradient-r {
+  background: linear-gradient(270deg, rgba(15, 17, 20, 0.25) 0%, #0F1114 100%);
+}
+
+.dark-gradient-180 {
+  background: linear-gradient(0deg, #0F1114, #0F1114),
+  linear-gradient(180deg, rgba(6, 7, 8, 0) 0%, #060708 60.01%, #060708 100%);
 }
 
 .nav-bg {

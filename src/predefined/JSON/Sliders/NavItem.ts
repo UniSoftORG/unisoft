@@ -9,7 +9,7 @@ import {
   generateTextField,
 } from "@/core/Renderer/definitions/generators";
 import { getAttribute } from "@/core/Renderer/definitions/getters";
-import { Events, KnownElementTag, Operators } from "@/types";
+import { Events, ElementTags, Operators } from "@/types";
 
 const ternaryUtil = (
   trueReturn: string | number,
@@ -64,7 +64,7 @@ export const NavItem = generateElement("Item", {
           index: "Item.passAttributes.index",
         },
       },
-      KnownElementTag.Button
+      ElementTags.Button
     ),
     generateElement(
       "ImageWrapper",
@@ -109,7 +109,7 @@ export const NavItem = generateElement("Item", {
           ),
         ],
       },
-      KnownElementTag.Button
+      ElementTags.Button
     ),
   ],
 });

@@ -1,13 +1,13 @@
 import {
   CreateState,
-  DynamicRequest,
+  DynamicRequest, ElementTag,
   FunctionNames,
   IEvent,
   IFunction,
   IUserData,
   KnownComponentType,
-  KnownElementTag,
-} from "@/types";
+  ElementTags, TextTags,
+} from '@/types';
 import { ImageProps } from "next/dist/shared/lib/get-img-props";
 import { Events } from "unisoft-templates/src/types/events";
 
@@ -18,7 +18,7 @@ export interface IComponentBase {
   name: string;
   uuid: string;
   type: KnownComponentType;
-  element?: KnownElementTag;
+  element?: ElementTag;
 }
 
 export interface IComponent {

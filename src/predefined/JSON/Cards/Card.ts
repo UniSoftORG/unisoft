@@ -8,7 +8,7 @@ import {
 } from "@/core/Renderer/definitions/generators";
 import { getAttribute, getState } from "@/core/Renderer/definitions/getters";
 import DoubleArrow from "@/public/icons/doubleArrow.svg";
-import { Events, KnownElementTag } from "@/types";
+import { Events, ElementTags } from "@/types";
 
 export const Card = generateElement(
   "GameProducts",
@@ -34,7 +34,7 @@ export const Card = generateElement(
             }),
           ],
         },
-        KnownElementTag.Header
+        ElementTags.Header
       ),
       generateElement(
         "GameList",
@@ -153,7 +153,7 @@ export const Card = generateElement(
                                 }),
                               ],
                             },
-                            KnownElementTag.Button
+                            ElementTags.Button
                           ),
                           generateElement(
                             "Button2",
@@ -173,13 +173,13 @@ export const Card = generateElement(
                                 }),
                               ],
                             },
-                            KnownElementTag.Button
+                            ElementTags.Button
                           ),
                         ],
                       }),
                     ],
                   },
-                  KnownElementTag.Footer
+                  ElementTags.Footer
                 ),
               ],
               rendererDynamic: ["elementAttributes.className"],
@@ -192,7 +192,7 @@ export const Card = generateElement(
             }),
           ],
         },
-        KnownElementTag.Div
+        ElementTags.Div
       ),
     ],
     requests: [
@@ -202,5 +202,5 @@ export const Card = generateElement(
       },
     ],
   },
-  KnownElementTag.Section
+  ElementTags.Section
 );

@@ -46,7 +46,6 @@ export default async function RootLayout({
               ...VerticalNavigation,
               session: session?.user,
             })}
-            key={"layout"}
           />
           {children}
         </NextAuthProvider>

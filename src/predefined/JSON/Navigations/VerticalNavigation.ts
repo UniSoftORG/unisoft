@@ -3,7 +3,7 @@ import {
   generateImage,
 } from "@/core/Renderer/definitions/generators";
 import Logo from "@/public/kgb.png";
-import { KnownElementTag } from "@/types";
+import { ElementTags } from "@/types";
 import { Vertical } from "./Vertical";
 
 export const VerticalNavigation = generateElement(
@@ -19,7 +19,7 @@ export const VerticalNavigation = generateElement(
         {
           name: "Games",
           image: "/icons/games.svg",
-          href: "/",
+          href: "/gameservers",
           subText: "Need a game server? This is a place for you!",
         },
         {
@@ -41,8 +41,8 @@ export const VerticalNavigation = generateElement(
         children: [
           generateImage("Logo", {
             elementAttributes: {
-              ["src" as any]: Logo,
-              ["height" as any]: 96,
+              ["src" as any]: '/kgb.png',
+              ["width" as any]: 82,
             },
           }),
         ],
@@ -50,5 +50,5 @@ export const VerticalNavigation = generateElement(
       Vertical,
     ],
   },
-  KnownElementTag.Aside
+  ElementTags.Aside
 );

@@ -1,26 +1,36 @@
 "use server";
+/**
+ * This file contains functions for initializing, transforming, and processing UI component data.
+ * It handles dynamic rendering aspects like mapping child components based on specific keys,
+ * preparing requests for component data, and processing attributes dynamically.
+ *
+ * Author: Rade Ilijev
+ */
 import { IComponentType } from "@/types";
 import { createRequest } from "@/utils/Request/createRequest";
 import { getValue } from "unisoft-utils";
 import { v4 } from "uuid";
 
-export async function initComponent(componentData: IComponentType) {
+/**
+ * Initializes a component with provided data. Processes any defined requests for the component and then
+ * transforms it based on mapping rules.
+ *
+ * @param componentData - The data for the component to be initialized.
+ * @return A Promise that resolves with the initialized component data.
+ */
+export async function initComponent(componentData: IComponentType): Promise<IComponentType> {
   if (componentData.requests?.length) await prepareRequests(componentData);
   return transformObject(componentData, "mapByKey");
 }
-async function transformObject(
-  componentData: IComponentType,
-  shouldTransformByKey: string
-): Promise<IComponentType> {
-  return processChildrenMapping(
-    { ...componentData },
-    shouldTransformByKey,
-    componentData,
-    []
-  );
-}
 
-async function prepareRequests(componentData: IComponentType) {
+/**
+ * Prepares and executes requests for component data. Merges the response into the component's variables.
+ * Handles errors by returning the original variables in case of request failure.
+ *
+ * @param componentData - The component data for which requests are prepared.
+ * @return A Promise resolving to the prepared component data variables or undefined if there are no requests.
+ */
+async function prepareRequests(componentData: IComponentType): Promise<IComponentType["variables"] | undefined> {
   if (!componentData.requests) {
     return;
   }
@@ -43,46 +53,43 @@ async function prepareRequests(componentData: IComponentType) {
   }
 }
 
+
+async function transformObject(
+  componentData: IComponentType,
+  shouldTransformByKey: string
+): Promise<IComponentType> {
+  return processChildrenMapping(
+    { ...componentData },
+    []
+  );
+}
+
 function processChildrenMapping(
   checkObj: IComponentType,
-  shouldTransformByKey: string,
-  rootObj: IComponentType,
   parentHierarchy: IComponentType[]
 ): IComponentType {
   let updatedHierarchy = [...parentHierarchy, checkObj];
-  checkObj.receiveAttributes?.hasOwnProperty("session");
+
   if (!checkObj.children) {
     return processReceiveAttributes({ ...checkObj }, updatedHierarchy);
   }
 
   let newChildren: IComponentType[] = [];
-
   for (const child of checkObj.children) {
-    if (
-      child.hasOwnProperty(shouldTransformByKey) &&
-      (child as any)[shouldTransformByKey].startsWith(rootObj.name)
-    ) {
-      const parentValuePath = (child as any)[shouldTransformByKey].replace(
-        `${rootObj.name}.`,
-        ""
-      );
-      const parentValue = getValue(rootObj, parentValuePath);
+    if (child.mapByKey) {
+      const valuePath = child.mapByKey;
+      const parentValue = getValueFromHierarchy(updatedHierarchy, valuePath);
+
       if (Array.isArray(parentValue)) {
-        newChildren.push(
-          ...parentValue.map((item, index) =>
-            createMappedChild(child, item, index, rootObj, updatedHierarchy)
-          )
-        );
+        parentValue.forEach((item, index) => {
+          let mappedChild = createMappedChild(child, item, index, updatedHierarchy);
+          newChildren.push(processChildrenMapping(mappedChild, updatedHierarchy));
+        });
+      } else {
+        newChildren.push(processChildrenMapping({ ...child }, updatedHierarchy));
       }
     } else {
-      newChildren.push(
-        processChildrenMapping(
-          { ...child },
-          shouldTransformByKey,
-          rootObj,
-          updatedHierarchy
-        )
-      );
+      newChildren.push(processChildrenMapping({ ...child }, updatedHierarchy));
     }
   }
 
@@ -92,11 +99,24 @@ function processChildrenMapping(
   );
 }
 
+
+function getValueFromHierarchy(
+  hierarchy: IComponentType[],
+  valuePath: string
+): any {
+  for (let i = hierarchy.length - 1; i >= 0; i--) {
+    const obj = hierarchy[i];
+    if (valuePath.startsWith(`${obj.name}.`)) {
+      return getValue(obj, valuePath.replace(`${obj.name}.`, ""));
+    }
+  }
+  return undefined;
+}
+
 function createMappedChild(
   templateChild: IComponentType,
   data: any,
   index: number,
-  rootObj: IComponentType,
   parentHierarchy: IComponentType[]
 ): IComponentType {
   let newChild: IComponentType = {
@@ -104,25 +124,21 @@ function createMappedChild(
     passAttributes: { ...data, index },
     uuid: v4(),
   };
+
   if (templateChild.children) {
     newChild.children = templateChild.children.map((child: IComponentType) =>
-      processChildrenMapping({ ...child }, "", rootObj, [
-        ...parentHierarchy,
-        newChild,
-      ])
+      processChildrenMapping({ ...child }, [...parentHierarchy, newChild])
     );
   }
+
   return processReceiveAttributes(newChild, [...parentHierarchy, newChild]);
 }
+
 
 function processReceiveAttributes(
   obj: IComponentType,
   parentHierarchy: IComponentType[]
 ): IComponentType {
-  if (!obj.receiveAttributes) {
-    return obj;
-  }
-
   let existingPassAttributes = obj.passAttributes || {};
   let newPassAttributes = { ...existingPassAttributes };
   let newReceiveAttributes: { [key: string]: any } = {};
@@ -149,17 +165,8 @@ function processReceiveAttributes(
     }
   }
 
-  if (Object.keys(newPassAttributes).length === 0) {
-    delete obj.passAttributes;
-  } else {
-    obj.passAttributes = newPassAttributes;
-  }
-
-  if (Object.keys(newReceiveAttributes).length === 0) {
-    delete obj.receiveAttributes;
-  } else {
-    obj.receiveAttributes = newReceiveAttributes;
-  }
+  obj.passAttributes = Object.keys(newPassAttributes).length ? newPassAttributes : undefined;
+  obj.receiveAttributes = Object.keys(newReceiveAttributes).length ? newReceiveAttributes : undefined;
 
   return obj;
 }

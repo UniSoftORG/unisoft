@@ -5,7 +5,7 @@ import { Endpoints } from "@/utils/Request/new/endpoints";
 import { post } from "@/utils/Request/new/request";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
 
 type Props = {
   currentUser?: any;
@@ -31,14 +31,20 @@ export const SessionProvider = ({ currentUser }: Props) => {
 
       if (!isGenericApiError(request)) {
         const sessionId = await getCookie("sessionId");
-        if (sessionId !== request.data.session_id) {
-          toast.error("Session expired... Logging out");
-          // await logOut()
-          await signOut();
-          await setCookie("sessionId", request.data.session_id);
-        } else {
+        if(!sessionId){
           await setCookie("sessionId", request.data.session_id);
         }
+        //
+        // if (sessionId !== request.data.session_id) {
+        //   toast.error("Session expired... Logging out");
+        //   // await logOut()
+        //   await signOut();
+        //   // await setCookie("sessionId", request.data.session_id);
+        // } else {
+        //   if(!sessionId){
+        //     // await setCookie("sessionId", request.data.session_id);
+        //   }
+        // }
       }
     })();
   }, []);

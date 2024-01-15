@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./predefined/**/*.{ts,js}",
+    "./predefined/**/*.{ts,tsx,js}",
     "./renderer/strategies/**/*.{ts,tsx,js}",
     // "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -12,6 +12,9 @@ module.exports = {
         "dark-background": "#060708",
         "gray-dark": "#292C33",
         "gray-darker": "#181B1F",
+        'gray-lightest': '#E6EAF2',
+        'gray-light': '#C7CDD9',
+        'gray': '#6F7480',
         primary: "#E23F33",
         "neural-dark": "#0F1114",
         "red-light": "#F5655C",
@@ -85,8 +88,8 @@ module.exports = {
           },
         },
         zoomIn: {
-          "0%": { transform: "scale(0, 0)" },
-          "100%": { transform: "scale(1, 1)" },
+          "0%": { transform: "scale(0)"},
+          "100%": { transform: "scale(1)" },
         },
         zoomOut: {
           "0%": { transform: "scale(1, 1)" },

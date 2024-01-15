@@ -1,0 +1,133 @@
+.svg-color {
+  &.dark-background {
+    filter: invert(3%) sepia(5%) saturate(1248%) hue-rotate(169deg) brightness(87%) contrast(100%);
+  }
+
+  &.white {
+    filter: invert(91%) sepia(4%) saturate(192%) hue-rotate(186deg) brightness(104%) contrast(90%);
+  }
+
+  &.dark-card {
+    filter: invert(3%) sepia(3%) saturate(5176%) hue-rotate(177deg) brightness(95%) contrast(92%);
+  }
+
+  &.gray-over-card {
+    filter: invert(8%) sepia(3%) saturate(6285%) hue-rotate(185deg) brightness(90%) contrast(86%);
+  }
+
+  &.gray-lightest {
+    filter: invert(93%) sepia(16%) saturate(94%) hue-rotate(185deg) brightness(98%) contrast(94%);
+  }
+
+  &.gray-light {
+    filter: invert(94%) sepia(2%) saturate(1389%) hue-rotate(187deg) brightness(89%) contrast(91%);
+  }
+
+  &.gray {
+    filter: invert(48%) sepia(9%) saturate(460%) hue-rotate(185deg) brightness(92%) contrast(94%);
+  }
+
+  &.gray-darker {
+    filter: invert(7%) sepia(13%) saturate(855%) hue-rotate(174deg) brightness(92%) contrast(91%);
+  }
+
+  &.gray-dark {
+    filter: invert(12%) sepia(13%) saturate(839%) hue-rotate(184deg) brightness(92%) contrast(84%);
+  }
+
+  &.red-lightest {
+    filter: invert(99%) sepia(38%) saturate(5138%) hue-rotate(292deg) brightness(102%) contrast(100%);
+  }
+
+  &.red-light {
+    filter: invert(61%) sepia(87%) saturate(2188%) hue-rotate(318deg) brightness(92%) contrast(110%);
+  }
+
+  &.red {
+    filter: invert(35%) sepia(98%) saturate(3529%) hue-rotate(344deg) brightness(93%) contrast(89%);
+  }
+
+  &.red-dark {
+    filter: invert(15%) sepia(52%) saturate(5015%) hue-rotate(353deg) brightness(81%) contrast(86%);
+  }
+
+  &.red-darker {
+    filter: invert(100%) sepia(4%) saturate(2431%) hue-rotate(168deg) brightness(92%) contrast(87%);
+  }
+
+  &.orange-lightest {
+    filter: invert(99%) sepia(48%) saturate(5022%) hue-rotate(299deg) brightness(118%) contrast(104%);
+  }
+
+  &.orange-light {
+    filter: invert(66%) sepia(79%) saturate(370%) hue-rotate(347deg) brightness(100%) contrast(102%);
+  }
+
+  &.orange {
+    filter: invert(77%) sepia(15%) saturate(2904%) hue-rotate(338deg) brightness(89%) contrast(91%);
+  }
+
+  &.orange-dark {
+    filter: invert(34%) sepia(95%) saturate(430%) hue-rotate(359deg) brightness(91%) contrast(85%);
+  }
+
+  &.orange-darker {
+    filter: invert(18%) sepia(64%) saturate(1583%) hue-rotate(23deg) brightness(97%) contrast(88%);
+  }
+
+  &.blue-light {
+    filter: invert(60%) sepia(29%) saturate(1147%) hue-rotate(176deg) brightness(109%) contrast(88%);
+  }
+
+  &.blue {
+    filter: invert(48%) sepia(100%) saturate(395%) hue-rotate(164deg) brightness(96%) contrast(87%);
+  }
+
+  &.blue-dark {
+    filter: invert(18%) sepia(17%) saturate(6576%) hue-rotate(198deg) brightness(100%) contrast(95%);
+  }
+
+  &.blue-darker {
+    filter: invert(9%) sepia(29%) saturate(5520%) hue-rotate(197deg) brightness(100%) contrast(94%);
+  }
+
+  &.green-lightest {
+    filter: invert(92%) sepia(9%) saturate(1387%) hue-rotate(79deg) brightness(100%) contrast(101%);
+  }
+
+  &.green-light {
+    filter: invert(77%) sepia(9%) saturate(2669%) hue-rotate(88deg) brightness(92%) contrast(93%);
+  }
+
+  &.green {
+    filter: invert(51%) sepia(62%) saturate(503%) hue-rotate(91deg) brightness(96%) contrast(96%);
+  }
+
+  &.green-dark {
+    filter: invert(19%) sepia(98%) saturate(7330%) hue-rotate(157deg) brightness(91%) contrast(80%);
+  }
+
+  &.green-darker {
+    filter: invert(18%) sepia(70%) saturate(561%) hue-rotate(87deg) brightness(97%) contrast(92%);
+  }
+
+  &.violet-lightest {
+    filter: invert(73%) sepia(69%) saturate(1238%) hue-rotate(201deg) brightness(102%) contrast(110%);
+  }
+
+  &.violet-light {
+    filter: invert(51%) sepia(23%) saturate(7472%) hue-rotate(237deg) brightness(101%) contrast(101%);
+  }
+
+  &.violet {
+    filter: invert(31%) sepia(44%) saturate(7237%) hue-rotate(259deg) brightness(88%) contrast(101%);
+  }
+
+  &.violet-dark {
+    filter: invert(15%) sepia(44%) saturate(5976%) hue-rotate(268deg) brightness(81%) contrast(95%);
+  }
+
+  &.violet-darker {
+    filter: invert(8%) sepia(37%) saturate(7485%) hue-rotate(271deg) brightness(89%) contrast(96%);
+  }
+}

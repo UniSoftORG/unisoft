@@ -1,53 +1,52 @@
-import {
-  getLatestAnnouncements,
-  getLatestTopics,
-  getMainCategories,
-} from "@/core/Backend/Endpoints/forum";
-import {
-  generateElement,
-  generateTextField,
-} from "@/core/Renderer/definitions/generators";
-import { KnownElementTag } from "@/types";
+import { getLatestAnnouncements, getLatestTopics, getMainCategories } from '@/core/Backend/Endpoints/forum';
+import { generateElement } from '@/core/Renderer/definitions/generators';
+import { ElementTags } from '@/types';
+import { VerticalSection } from '@/predefined/JSON/Flex/VerticalSection';
+import { SimpleCard } from '@/predefined/JSON/Cards/SimpleCard';
+import { FlexCard } from '@/predefined/JSON/Cards/FlexCard';
 
 export const Forum = generateElement(
-  "Forum",
+  'Forum',
   {
     elementAttributes: {
-      className: "relative w-full",
+      className: 'relative w-full',
     },
     variables: {
       news: [],
       latest_topics: [],
-      mainCategories: [],
+      mainCategories: []
     },
-    dynamic: ["functions.py.ts.0.attributes.value"],
     children: [
-      generateElement("News", {
-        mapByKey: "Forum.variables.news",
+      VerticalSection([
+        {
+          ...SimpleCard,
+          mapByKey: 'Forum.variables.news',
+        }
+      ]),
+      generateElement('CentralContent', {
+        elementAttributes: {
+          className: 'grid grid-cols-12 mt-12 relative mb-12 space-y-6 lg:space-y-0 lg:space-x-6'
+        },
         children: [
-          generateTextField("TextTest", {
-            receiveAttributes: {
-              text: "News.passAttributes.title",
-              slug: "News.passAttributes.slug",
+          generateElement('Categories', {
+            elementAttributes: {
+              className: 'col-span-12 lg:col-span-9 z-20'
             },
-          }),
+            children: [
+              {
+                ...FlexCard,
+                mapByKey: "Forum.variables.mainCategories",
+              }
+            ]
+          }, ElementTags.Section)
         ],
-      }),
+      })
     ],
     requests: [
-      {
-        objKey: "news",
-        ...getLatestAnnouncements,
-      },
-      {
-        objKey: "latest_topics",
-        ...getLatestTopics,
-      },
-      {
-        objKey: "mainCategories",
-        ...getMainCategories,
-      },
+      getLatestAnnouncements('news'),
+      getLatestTopics('latest_topics'),
+      getMainCategories('mainCategories'),
     ],
   },
-  KnownElementTag.Section
+  ElementTags.Main,
 );

@@ -1,24 +1,25 @@
 import {
+  ElementTag,
   IComponent,
   IComponentBase,
   IComponentType,
   KnownComponentType,
-  KnownElementTag,
-} from "@/types";
+  ElementTags, TextTags,
+} from '@/types';
 import { ImageProps } from "next/dist/shared/lib/get-img-props";
 import { v4 } from "uuid";
 
 export const generateElement = (
   name: string,
   props: IComponent,
-  type?: KnownElementTag
+  type?: ElementTag
 ): IComponent & IComponentBase => {
   const uniqueIdentity = v4();
   return {
     name,
     uuid: uniqueIdentity,
     type: KnownComponentType.Element,
-    element: type ?? KnownElementTag.Div,
+    element: type ?? ElementTags.Div,
     ...props,
   };
 };
@@ -50,19 +51,21 @@ export const generateImage = (
     elementAttributes: {
       ...props.elementAttributes,
       alt: "",
-      ...(squared !== undefined && { width: squared, height: squared }),
+      ...(typeof squared !== "undefined" && { width: squared, height: squared }),
     } as ImageProps,
   };
 };
 
-export const generateTextField: any = (
+export const generateTextField = (
   name: string,
-  props: IComponent
+  props: IComponent,
+  type?: TextTags
 ): IComponent & IComponentBase => {
   const uniqueIdentity = v4();
   return {
     name,
     uuid: uniqueIdentity,
+    element: type ?? TextTags.Span,
     type: KnownComponentType.Text,
     ...props,
   };
