@@ -12,12 +12,12 @@ export const createCondition = (
   secondParam: any
 ): boolean => {
   const conditions: { [key in string]: () => boolean } = {
-    '===': () => firstParam === secondParam,
-    '!==': () => firstParam !== secondParam,
-    '<': () => firstParam < secondParam,
-    '<=': () => firstParam <= secondParam,
-    '>': () => firstParam > secondParam,
-    '>=': () => firstParam >= secondParam,
+    "===": () => firstParam === secondParam,
+    "!==": () => firstParam !== secondParam,
+    "<": () => firstParam < secondParam,
+    "<=": () => firstParam <= secondParam,
+    ">": () => firstParam > secondParam,
+    ">=": () => firstParam >= secondParam,
   };
   return (
     conditions[operator]?.() ??

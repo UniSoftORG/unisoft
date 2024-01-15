@@ -1,3 +1,3 @@
-export * from './string';
-export * from './object';
-export * from './recursive';
+export * from "./object";
+export * from "./recursive";
+export * from "./string";

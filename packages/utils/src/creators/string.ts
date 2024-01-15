@@ -7,7 +7,7 @@
 export const generateRandomPassword = (length: number): string =>
   generateRandomString(
     length,
-    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
   );
 
 /**
@@ -19,9 +19,9 @@ export const generateRandomPassword = (length: number): string =>
  */
 export const generateRandomString = (
   length: number,
-  allowedChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 ): string => {
-  let result = '';
+  let result = "";
   for (let i = 0; i < length; i++) {
     result += allowedChars.charAt(
       Math.floor(Math.random() * allowedChars.length)

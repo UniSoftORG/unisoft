@@ -1,8 +1,8 @@
 import {
-  ApiResult,
   IGenericApiError,
   SupportedApiMethods,
-} from '@/interfaces/api/generics';
+} from "@/types/request/generics";
+import { ApiResponse } from "@/types/request/response";
 
 export default class SingletonApiRequest {
   revalidate: undefined | number = undefined;
@@ -25,15 +25,16 @@ export default class SingletonApiRequest {
 
   private requestHeaders = async (): Promise<Headers> => {
     return new Headers({
-      'content-type': 'application/json',
-      'X-UNI': process.env.NEXT_UNITOKEN ?? '',
-      accept: 'application/json',
+      "content-type": "application/json",
+      accept: "application/json",
+      "X-UNI":
+        "IiTtyXQ3vzsMFkmnU4DMaMY4Xg3o3rZSHnzAvhaE5UhAqNW5vxvkMY5bpQ72pRHCbsYd1KWIVjNB",
     });
   };
 
   private static async getResponse<Type>(
     response: Response
-  ): Promise<ApiResult<Type>> {
+  ): Promise<ApiResponse<Type>> {
     const json = await response.json();
 
     if (response.status >= 400) {
@@ -58,15 +59,15 @@ export default class SingletonApiRequest {
     method: SupportedApiMethods,
     endpoint: string,
     payload?: Record<string, unknown>
-  ): Promise<ApiResult<Type>> {
+  ): Promise<ApiResponse<Type>> {
     try {
       const headers = await this.requestHeaders();
-      const response = await fetch(process.env.NEXT_API_URL + endpoint, {
+      const response = await fetch("/api/" + endpoint, {
         method: method.toUpperCase(),
         headers: headers,
         body: payload ? JSON.stringify(payload) : undefined,
         next: {
-          revalidate: 100,
+          revalidate: 0,
         },
       });
 
@@ -76,7 +77,7 @@ export default class SingletonApiRequest {
     }
   }
 
-  async get<Type>(endpoint: string): Promise<ApiResult<Type>> {
+  async get<Type>(endpoint: string): Promise<ApiResponse<Type>> {
     return await this.createRequest<Type>(
       SupportedApiMethods.GET,
       endpoint,
@@ -87,7 +88,7 @@ export default class SingletonApiRequest {
   async post<Type>(
     endpoint: string,
     payload: Record<string, unknown> | any
-  ): Promise<ApiResult<Type>> {
+  ): Promise<ApiResponse<Type>> {
     return await this.createRequest<Type>(
       SupportedApiMethods.POST,
       endpoint,
@@ -98,7 +99,7 @@ export default class SingletonApiRequest {
   async put<Type>(
     endpoint: string,
     payload: Record<string, unknown> | any
-  ): Promise<ApiResult<Type>> {
+  ): Promise<ApiResponse<Type>> {
     return await this.createRequest<Type>(
       SupportedApiMethods.PUT,
       endpoint,
@@ -109,7 +110,7 @@ export default class SingletonApiRequest {
   async patch<Type>(
     endpoint: string,
     payload: Record<string, unknown> | any
-  ): Promise<ApiResult<Type>> {
+  ): Promise<ApiResponse<Type>> {
     return await this.createRequest<Type>(
       SupportedApiMethods.PATCH,
       endpoint,
@@ -120,7 +121,7 @@ export default class SingletonApiRequest {
   async delete<Type>(
     endpoint: string,
     payload: Record<string, unknown> | any
-  ): Promise<ApiResult<Type>> {
+  ): Promise<ApiResponse<Type>> {
     return await this.createRequest<Type>(
       SupportedApiMethods.DELETE,
       endpoint,

@@ -1,6 +1,6 @@
-import { FilterOptions } from '@utils';
-import { mapRecursive } from '../helpers';
-import { assignProp } from '../setters';
+import { FilterOptions } from "@utils";
+import { mapRecursive } from "../helpers";
+import { assignProp } from "../setters";
 
 /**
  * Filters properties from the given object based on the received properties and options.

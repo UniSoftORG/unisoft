@@ -3,16 +3,16 @@
   "version": "1.0.3",
   "scripts": {
     "dev": "concurrently  \"pnpm dev:utils\" \"pnpm dev:types\" \"pnpm dev:src\"",
+    "upgrade-deps": "concurrently  \"ncu --upgrade\" \"cd src && ncu --upgrade\" \"cd packages/templates && ncu --upgrade\" \"cd packages/generator && ncu --upgrade\" \"cd packages/@types-unisoft && ncu --upgrade\" \"cd packages/utils && ncu --upgrade\"",
     "dev:src": "cd src && pnpm dev",
     "dev:utils": "cd packages/utils && pnpm watch",
+    "dev:templates": "cd packages/templates && pnpm watch",
     "dev:types": "cd packages/@types-unisoft && pnpm watch",
     "build": "cd src && pnpm build",
     "start": "cd src && pnpm start",
     "test": "concurrently  \"pnpm test:utils\"",
     "test:utils": "cd packages/utils && pnpm test",
-    "format": "concurrently  \"pnpm format:src\" \"pnpm format:utils\"",
-    "format:src": "cd src && pnpm format",
-    "format:utils": "cd packages/utils && pnpm format"
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,json}'"
   },
   "pnpm": {
     "peerDependencyRules": {
@@ -30,12 +30,20 @@
   },
   "resolutions": {
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.7"
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.1",
+    "ai": "^2.2.31",
+    "react-ai": "^0.16.3"
+  },
   "devDependencies": {
-    "typescript": "^5.2.2",
-    "concurrently": "^8.2.2"
+    "@types/uuid": "^9.0.7",
+    "typescript": "^5.3.3",
+    "concurrently": "^8.2.2",
+    "prettier-plugin-organize-imports": "^3.2.4"
   }
 }
